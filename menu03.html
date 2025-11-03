@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>초급자 가이드 리스트</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --text:#111827;
+      --muted:#6b7280;
+      --accent:#f8fafc;
+      --primary:#2563eb; /* 파란색 */
+      --visited:#16a34a; /* 초록색 */
+      --disabled:#6b7280; /* 회색 */
+      --accent2:#eef2ff;
+      --radius:12px;
+      --gap:12px;
+      --shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Noto Sans KR",Roboto,Arial,sans-serif;
+      min-height:100vh; display:flex; flex-direction:column;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* 헤더 */
+    header{
+      position:sticky; top:0; z-index:5;
+      background:#fff; border-bottom:1px solid var(--border);
+    }
+    .header-inner{
+      max-width:900px; margin:0 auto; padding:10px 12px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:10px;
+      background:var(--accent2); border:1px solid var(--border);
+      color:#1f2937; text-decoration:none; font-size:14px; line-height:1;
+      flex-shrink:0;
+    }
+    .back:focus{ outline:2px solid #93c5fd; outline-offset:2px; }
+    .back:hover{filter:brightness(1.02)}
+    h1{margin:0; font-size:18px; font-weight:800; letter-spacing:-0.2px}
+
+    @media (min-width:768px){
+      .header-inner{padding:12px 16px; gap:12px}
+      h1{font-size:20px}
+    }
+
+    .partner-inner{
+      max-width:900px; margin:0 auto; padding:8px 12px 10px;
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    .partner{display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit}
+    .partner img{height:24px; width:auto; object-fit:contain; display:block}
+    .partner .text-box{display:flex; flex-direction:column}
+    .partner .name{font-size:12px; font-weight:700; margin:0; line-height:1.3}
+    .partner .url{font-size:11px; color:var(--muted); margin:0}
+    @media (min-width:768px){
+      .partner img{height:28px}
+      .partner .name{font-size:13px}
+      .partner .url{font-size:12px}
+    }
+
+    /* 리스트 컨테이너 */
+    .wrap{
+      max-width:900px; margin:0 auto;
+      padding:14px 12px 28px;
+      flex:1; width:100%;
+    }
+    @media (min-width:768px){
+      .wrap{padding:16px 16px 32px}
+    }
+
+    .list{
+      display:grid; grid-template-columns:1fr; gap:var(--gap); margin-top:12px;
+    }
+
+    /* 아이템 */
+    .item{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:12px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      transition:border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    @media (min-width:640px){
+      .item{padding:14px}
+    }
+    @media (hover:hover){
+      .item:hover{border-color:#d8dee6; box-shadow:var(--shadow)}
+    }
+
+    .left{
+      display:flex; align-items:center; gap:10px; min-width:0; flex:1 1 auto;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px; flex:0 0 10px; background:var(--border);
+    }
+
+    .title{
+      margin:0; font-size:15px; font-weight:700; line-height:1.4;
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    .title a{ text-decoration:none; }
+    .title a:focus{ outline:2px solid #93c5fd; outline-offset:2px; border-radius:6px; }
+    .title a:hover{text-decoration:underline}
+
+    .title.link-blue a{color:var(--primary)}
+    .title.link-green a{color:var(--visited)}
+    .title.link-gray{color:var(--disabled)}
+    .title.link-gray a{color:var(--disabled); pointer-events:none; cursor:default; text-decoration:none}
+
+    .right{
+      display:flex; align-items:center; gap:8px; flex-shrink:0;
+    }
+    .tag{
+      font-size:12px; color:#374151; background:#f9fafb; border:1px solid var(--border);
+      padding:6px 10px; border-radius:999px; font-weight:700;
+    }
+    .count{
+      font-size:12px; color:#0f172a; background:#e2e8f0; border:1px solid #cbd5e1;
+      padding:6px 10px; border-radius:999px; font-weight:700;
+    }
+
+    /* 모바일에서 줄바꿈 시 오른쪽 뱃지 그룹을 다음 줄로 보내고 좌측 정렬 */
+    @media (max-width:480px){
+      .item{align-items:flex-start}
+      .right{width:100%; justify-content:flex-start}
+    }
+
+    .footer{
+      padding:16px 0 28px; text-align:center; color:var(--muted); font-size:12px;
+      border-top:1px solid var(--border); margin-top:16px
+    }
+    @media (min-width:768px){
+      .footer{font-size:13px}
+    }
+
+    /* 토스트 */
+    .toast{
+      position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+      background:#111827; color:#fff; padding:10px 14px; border-radius:8px;
+      border:1px solid #374151; box-shadow:0 12px 30px rgba(0,0,0,.2);
+      opacity:0; pointer-events:none; transition:opacity .2s ease; font-size:14px; font-weight:600;
+      max-width:92vw; text-align:center;
+    }
+    .toast.show{opacity:1}
+    @supports(padding: max(0px)){
+      .toast{ bottom:max(24px, env(safe-area-inset-bottom)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="back" href="menu00.html" aria-label="이전 페이지로">← 이전 페이지</a>
+      <h1>초급자 가이드 리스트</h1>
+    </div>
+    <div class="partner-inner">
+      <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+        <img src="http://www.katiagroup.or.kr/images/header/logo_new.png" alt="KATIA 로고">
+        <div class="text-box">
+          <div class="name">Korea Auto Tuning Industry Association</div>
+          <div class="url">www.katiagroup.or.kr</div>
+        </div>
+      </a>
+      <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+        <img src="https://www.kal.ac.kr/Files/202210/stie/20221031105706062_1_0.png" alt="KAL 로고">
+        <div class="text-box">
+          <div class="name">KAL</div>
+          <div class="url">www.kal.ac.kr</div>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div id="list" class="list" role="list"></div>
+    <div class="footer">모든 이동은 현재창에서 진행됩니다. 링크가 있는 메뉴만 이동합니다.</div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">현재 작업 중 입니다.</div>
+
+  <script>
+    // 리스트 데이터: 각 항목은 id, title, href?(선택) 포함
+    const items = [
+      { id: 'abs_guide', title: '초보자를 위한 ABS 보조장치 안전 제동 가이드', href: '초급자/ABS 보조장치.html' },
+      { id: 'navigation', title: '네비게이션' },
+      { id: 'decal', title: '데칼' },
+      { id: 'light_cover', title: '라이트 커버 및 LED 라이트' },
+      { id: 'wrapping', title: '랩핑' },
+      { id: 'lowering_spring', title: '로우다운 스프링' },
+      { id: 'lip_spoiler', title: '립 스포일러' },
+      { id: 'muffler_tip', title: '머플러 팁' },
+      { id: 'brake', title: '브레이크' },
+      { id: 'dashcam', title: '블랙박스' },
+      { id: 'shock_absorber', title: '쇼크 업소버' },
+      { id: 'steering_wheel', title: '스티어링 휠' },
+      { id: 'spoiler', title: '스포일러' },
+      { id: 'anti_roll_bar', title: '안티 롤바(Anti-Roll Bar)' },
+      { id: 'amp_subwoofer', title: '앰프와 서브우퍼' },
+      { id: 'air_filter', title: '에어필터' },
+      { id: 'audio_speaker', title: '오디오 스피커' },
+      { id: 'window_tint', title: '윈도우 틴팅' },
+      { id: 'coating', title: '유리막 코팅' },
+      { id: 'interior_led', title: '자동차 LED 실내등' },
+      { id: 'parking_sensor', title: '주차센서' },
+      { id: 'tire', title: '타이어' },
+      { id: 'pedal_cover', title: '페달 커버' },
+      { id: 'hipass', title: '하이패스' },
+      { id: 'head_unit', title: '헤드 유닛' },
+      { id: 'rear_camera', title: '후방카메라' },
+      { id: 'wheel', title: '휠' }
+    ];
+
+    const STORAGE_KEY = 'beginner_views'; // { id: count }
+    const toast = document.getElementById('toast');
+
+    function loadViews(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      }catch(e){
+        return {};
+      }
+    }
+    function saveViews(map){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      }catch(e){}
+    }
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast.tid);
+      showToast.tid = setTimeout(()=>toast.classList.remove('show'), 1400);
+    }
+
+    function render(){
+      const views = loadViews();
+      const listEl = document.getElementById('list');
+      listEl.innerHTML = '';
+
+      items.forEach(item=>{
+        const count = views[item.id] || 0;
+        const hasLink = !!item.href;
+
+        const itemEl = document.createElement('div');
+        itemEl.className = 'item';
+        itemEl.setAttribute('role','listitem');
+
+        const left = document.createElement('div');
+        left.className = 'left';
+
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        left.appendChild(dot);
+
+        const title = document.createElement('h3');
+        title.className = 'title ' + (hasLink ? (count > 0 ? 'link-green' : 'link-blue') : 'link-gray');
+
+        if(hasLink){
+          const a = document.createElement('a');
+          a.href = item.href;
+          a.textContent = item.title;
+          a.setAttribute('aria-label', item.title + '로 이동');
+
+          a.addEventListener('click', ()=>{
+            // 같은 창에서 이동하며, 이동 직전 view count +1
+            try{
+              const v = loadViews();
+              v[item.id] = (v[item.id] || 0) + 1;
+              saveViews(v);
+            }catch(e){}
+            // 즉시 렌더 갱신(색상/카운트)
+            render();
+            // 기본 내비게이션은 그대로 진행
+          });
+
+          title.appendChild(a);
+        }else{
+          title.textContent = item.title;
+          title.setAttribute('title','링크 없음');
+        }
+
+        left.appendChild(title);
+
+        const right = document.createElement('div');
+        right.className = 'right';
+
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = hasLink ? (count > 0 ? '이미 봄' : '링크 있음') : '링크 없음';
+        right.appendChild(tag);
+
+        const countBadge = document.createElement('span');
+        countBadge.className = 'count';
+        countBadge.textContent = (count || 0) + '회';
+        right.appendChild(countBadge);
+
+        itemEl.appendChild(left);
+        itemEl.appendChild(right);
+
+        listEl.appendChild(itemEl);
+      });
+    }
+
+    // 초기 렌더
+    render();
+
+    // 접근성: 키보드 포커스(Enter)로도 카운트 증가가 반영되도록 처리
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){
+        const active = document.activeElement;
+        if(active && active.tagName === 'A'){
+          const href = active.getAttribute('href');
+          const item = items.find(x=>x.href === href);
+          if(item){
+            const v = loadViews();
+            v[item.id] = (v[item.id] || 0) + 1;
+            saveViews(v);
+            render();
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

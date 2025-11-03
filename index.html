@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>main | 튜닝 가이드 스플래시</title>
+  <meta name="theme-color" content="#0c6efd">
+  <link rel="manifest" href="json/manifest.json">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --primary: #0c6efd;
+      --accent: #f0f4ff;
+      --card: #fafafa;
+      --border: #e5e7eb;
+      --caption-bg: #f8fafc;
+      --caption-text: #6b7280;
+      --toast-bg: #111827;
+      --toast-text: #f9fafb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    @media (min-width: 768px) {
+      .wrap { padding: 24px; }
+    }
+
+    .partner-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+    .partner { display: flex; align-items: center; gap: 6px; }
+    .partner img { height: 24px; width: auto; object-fit: contain; display: block; }
+    .partner .text-box {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 24px;
+    }
+    .partner .name { font-size: 12px; line-height: 1.35; font-weight: 600; color: var(--text); margin: 0; }
+    .partner .url { font-size: 11px; line-height: 1.3; color: var(--muted); margin: 0; }
+    @media (min-width: 768px) {
+      .partner img { height: 28px; }
+      .partner .name { font-size: 13px; }
+    }
+
+    header .brand {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; text-align: center; width: 100%;
+    }
+    header .brand h1 { width: 100%; margin: 6px 0 0; font-size: 18px; font-weight: 700; }
+    @media (min-width: 768px) {
+      header .brand h1 { font-size: 20px; }
+    }
+    .tag { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; font-size: 12px; color: var(--muted); margin-right: 6px; }
+
+    /* 버튼 바 */
+    .actions {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 10px 0 6px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px;
+      background: #fff; color: #111827; font-weight: 600; font-size: 14px;
+      cursor: pointer; transition: box-shadow .15s ease, transform .1s ease;
+    }
+    .btn:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn .icon { width: 16px; height: 16px; display: inline-block; }
+    .hint { color: var(--muted); font-size: 13px; text-align: center; min-height: 18px; }
+
+    /* 스플래시 히어로 */
+    html,body{height:100%}
+    body{ display:grid; place-items:center }
+    .center{ display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; padding:16px }
+    .hero{
+      width:min(92vw,640px); height:min(52vh,360px);
+      background:url('https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      border-radius:16px; border:1px solid var(--border);
+      box-shadow:0 10px 24px rgba(0,0,0,.08); cursor:pointer; position:relative; overflow:hidden
+    }
+    .hero::after{
+      content:"튜닝, 시작해볼까요? 이미지 클릭 또는 자동 이동";
+      position:absolute; left:0; right:0; bottom:0;
+      padding:10px 12px; background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,.25) 100%);
+      font-weight:600; color:#f9fafb; font-size:13px;
+    }
+    @media (min-width: 768px) {
+      .center { gap:16px; padding:24px; }
+      .hero { width:min(80vw,640px); height:min(60vh,360px); }
+      .hero::after { font-size:14px; padding:12px 16px; }
+    }
+
+    .progress{ width:min(92vw,420px); height:8px; border-radius:999px; background:#f3f4f6; overflow:hidden; border:1px solid var(--border) }
+    .bar{ height:100%; width:0; background:linear-gradient(90deg,#60a5fa,#22d3ee); transition:width .1s ease }
+
+    /* 토스트 */
+    .toast {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%) translateY(20px);
+      min-width: 240px; max-width: 92vw; padding: 10px 14px;
+      background: var(--toast-bg); color: var(--toast-text); border-radius: 10px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18); opacity: 0; pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease; z-index: 1000; font-size: 13px;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="http://www.katiagroup.or.kr/images/header/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="https://www.kal.ac.kr/Files/202210/stie/20221031105706062_1_0.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="actions" aria-label="빠른 작업">
+        <button class="btn" id="btnBookmark" type="button" aria-label="현재 페이지 즐겨찾기 추가">
+          <span class="icon" aria-hidden="true">🔖</span> 즐겨찾기
+        </button>
+        <button class="btn" id="btnInstall" type="button" aria-label="앱처럼 만들기(홈 화면에 추가)" disabled>
+          <span class="icon" aria-hidden="true">📱</span> 앱처럼 만들기
+        </button>
+      </div>
+      <div class="hint" id="installHint" aria-live="polite"></div>
+    </header>
+
+    <div class="center">
+      <div class="hero" id="hero" aria-label="메뉴로 이동"></div>
+      <div class="progress"><div class="bar" id="bar"></div></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // 스플래시 자동 이동
+    const hero = document.getElementById('hero');
+    const bar = document.getElementById('bar');
+    let t = 0, dur = 30000, start = performance.now(), raf;
+    function tick(now){
+      t = Math.min(1, (now - start)/dur);
+      bar.style.width = (t*100).toFixed(1) + '%';
+      if(t < 1) raf = requestAnimationFrame(tick);
+      else window.location.href = 'menu00.html';
+    }
+    raf = requestAnimationFrame(tick);
+    hero.addEventListener('click', () => { cancelAnimationFrame(raf); window.location.href = 'menu00.html'; });
+
+    // 토스트
+    const toast = document.getElementById('toast');
+    function showToast(msg, ms = 2800){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=> toast.classList.remove('show'), ms);
+    }
+
+    // 즐겨찾기 버튼 로직
+    const btnBookmark = document.getElementById('btnBookmark');
+    btnBookmark.addEventListener('click', () => {
+      const url = window.location.href;
+      const title = document.title || '튜닝 가이드';
+      const isMac = navigator.platform.toUpperCase().includes('MAC');
+      const ua = navigator.userAgent.toLowerCase();
+
+      // Internet Explorer/Legacy Edge
+      if (window.external && 'AddFavorite' in window.external) {
+        try { window.external.AddFavorite(url, title); return; } catch(e){}
+      }
+
+      // Firefox 옛 방식 (북마크 사이드바 열기)
+      if (window.sidebar && window.sidebar.addPanel) {
+        try { window.sidebar.addPanel(title, url, ''); return; } catch(e){}
+      }
+
+      // 최신 브라우저 안내
+      if (/iphone|ipad|ipod/.test(ua)) {
+        showToast('iOS 사파리: 하단 공유 버튼 → “즐겨찾기에 추가”를 탭하세요.');
+      } else if (/android/.test(ua)) {
+        showToast('안드로이드: 브라우저 메뉴(⋮) → ★ 북마크 추가를 선택하세요.');
+      } else if (ua.includes('safari') && !ua.includes('chrome')) {
+        showToast('Safari: ' + (isMac ? 'Command + D' : 'Ctrl + D') + ' 를 눌러 즐겨찾기에 추가하세요.');
+      } else if (ua.includes('chrome') || ua.includes('edg') || ua.includes('crios')) {
+        showToast((isMac ? 'Command + D' : 'Ctrl + D') + ' 를 눌러 즐겨찾기에 추가하세요.');
+      } else if (ua.includes('firefox')) {
+        showToast((isMac ? 'Command + D' : 'Ctrl + D') + ' 를 눌러 북마크에 추가하세요.');
+      } else {
+        showToast('브라우저의 메뉴에서 즐겨찾기/북마크 추가를 선택하세요.');
+      }
+    });
+
+    // 앱처럼 만들기(PWA 설치) 로직
+    const btnInstall = document.getElementById('btnInstall');
+    const installHint = document.getElementById('installHint');
+    let deferredPrompt = null;
+
+    function setInstallHintByEnv() {
+      const ua = navigator.userAgent.toLowerCase();
+      const isIOS = /iphone|ipad|ipod/.test(ua);
+      const isAndroid = /android/.test(ua);
+      const isDesktop = !isIOS && !isAndroid;
+
+      if (isDesktop) {
+        installHint.textContent = '데스크톱 크롬/엣지: 주소창의 “앱 설치” 아이콘으로 홈 설치가 가능합니다.';
+      } else if (isAndroid) {
+        installHint.textContent = '안드로이드: 크롬/삼성인터넷에서 “홈 화면에 추가” 또는 “앱 설치” 메뉴를 사용하세요.';
+      } else if (isIOS) {
+        installHint.textContent = 'iOS 사파리: 공유 버튼 → “홈 화면에 추가”를 사용하세요.';
+      }
+    }
+    setInstallHintByEnv();
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btnInstall.disabled = false;
+      installHint.textContent = '앱 설치가 가능합니다. “앱처럼 만들기”를 눌러 설치하세요.';
+    });
+
+    btnInstall.addEventListener('click', async () => {
+      const ua = navigator.userAgent.toLowerCase();
+      const isIOS = /iphone|ipad|ipod/.test(ua);
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+      if (isStandalone) {
+        showToast('이미 홈 화면에 추가되어 있습니다.');
+        return;
+      }
+
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        if (choice.outcome === 'accepted') {
+          showToast('설치를 시작합니다. 홈 화면을 확인하세요.');
+        } else {
+          showToast('나중에 다시 시도할 수 있습니다.');
+        }
+        deferredPrompt = null;
+        return;
+      }
+
+      if (isIOS) {
+        showToast('iOS: 공유 버튼(사각형+화살표) → “홈 화면에 추가”를 선택하세요.', 4200);
+        installHint.textContent = 'iOS 사파리는 시스템 메뉴에서 “홈 화면에 추가”를 이용해야 합니다.';
+        return;
+      }
+
+      showToast('이 브라우저는 설치 프롬프트를 지원하지 않습니다. 브라우저 메뉴에서 “홈 화면에 추가”를 확인하세요.');
+    });
+
+    // 서비스 워커 등록 (현재 경로 기준)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

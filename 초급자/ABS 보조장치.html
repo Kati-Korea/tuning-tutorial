@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>초보자를 위한 ABS 보조장치 | 누구나 따라 하는 안전 제동 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+    .video-error {
+      position:fixed; left:50%; top:16px; transform:translateX(-50%);
+      background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px;
+      padding:8px 12px; font-size:12px; display:none; z-index:1100;
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>초보자를 위한 ABS 보조장치 · 안전 제동 가이드</h1>
+        <span class="tag">입문용</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="http://www.katiagroup.or.kr/images/header/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="https://www.kal.ac.kr/Files/202210/stie/20221031105706062_1_0.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu03.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>초보자를 위한 ABS 보조장치<br>안전 제동 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#can-do">이 가이드로 무엇을 할 수 있나요?</a></li>
+          <li><a href="#abs-easy">아주 쉽게 이해하는 ABS</a></li>
+          <li><a href="#safety-prep">먼저 안전! 필수 준비물과 환경</a></li>
+          <li><a href="#terms-5">최소 개념: 용어 5개만 알면 충분</a></li>
+          <li><a href="#checklist">바로 써먹는 초보 체크리스트</a></li>
+          <li><a href="#legal">절대 합법/안전 가이드(한국)</a></li>
+          <li><a href="#symptoms">고장 징후와 1차 대응</a></li>
+          <li><a href="#maintenance">집에서 가능한 유지관리</a></li>
+          <li><a href="#bleeding-comm">블리딩 이해와 정비소 의사소통</a></li>
+          <li><a href="#core-principles">“초보가 알 정도” 핵심 원리</a></li>
+          <li><a href="#test">초보 친화 테스트</a></li>
+          <li><a href="#upgrade">중급으로 가는 문: 업그레이드의 뜻</a></li>
+          <li><a href="#choose-pro">정비소/전문가 선택 기준</a></li>
+          <li><a href="#troubleshoot">문제 발생 시 단계별 해결</a></li>
+          <li><a href="#data">초보도 알 수 있는 데이터 활용</a></li>
+          <li><a href="#reg-quick">초보용 법규 빠른 정리</a></li>
+          <li><a href="#starter-list">입문형 체크리스트(누구나)</a></li>
+          <li><a href="#qa">Q&A 초간단</a></li>
+          <li><a href="#wrapup">마무리: 안전과 일관성</a></li>
+          <li><a href="#appendix">부록 A~D</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://maintec.co.kr/" target="_blank" rel="noopener">
+            <img src="https://maintec.co.kr/images/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="메인텍 로고">
+            <div class="content">
+              <p class="title">메인텍</p>
+              <p class="desc">브레이크/정비 장비 정보 및 서비스</p>
+            </div>
+          </a>
+          <a class="banner" href="https://blog.naver.com/sunnmotors/130074721201" target="_blank" rel="noopener">
+            <img src="https://blogpfthumb-phinf.pstatic.net/20091130_57/sunnmotors_1259559152773_Ytp8J8_jpg/%BD%E3%B5%F0%BD%BA%C5%A907.jpg?type=w161" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="SUN&MOTORS 아이콘">
+            <div class="content">
+              <p class="title">SUN&MOTORS</p>
+              <p class="desc">ABS 관련 정비 사례 블로그</p>
+            </div>
+          </a>
+          <a class="banner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener">
+            <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="TS한국교통안전공단 로고">
+            <div class="content">
+              <p class="title">TS한국교통안전공단</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://img1.daumcdn.net/thumb/R1280x0.fwebp/?fname=http://t1.daumcdn.net/brunch/service/user/cXD7/image/B0aFgj4k-QThVlk1yoewiVGvKZM.jpeg" alt="표지 이미지">
+              </div>
+               <div class="ad-link">표지 · 출처: mblogthumb-phinf.pstatic.net</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="can-do" class="section" data-index="1">
+          <h3>01. 이 가이드로 무엇을 할 수 있나요?</h3>
+          <div class="subtitle">초보 운전자/오너를 위한 실전 범위</div>
+          <ul>
+            <li>ABS가 무엇이고 왜 필요한지 이해</li>
+            <li>브레이크 기본 구조와 안전 점검 체크리스트 수행</li>
+            <li>경고등 점등 시 기초 점검·대응 절차</li>
+            <li>정비소에서 요청할 블리딩(ABS 내부 포함) 의사소통 포인트</li>
+            <li>합법·보험·보증 영향 범위에서의 유지관리</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://mblogthumb-phinf.pstatic.net/MjAxOTAxMjFfMjg2/MDAxNTQ4MDc3NzEwNzc2.BZ_vWPqVgOBEA8kuoEaV4XR7uDTT7LIb3s77CkFrsyUg.4989lERkWmHUyPDwDSUOdrJqGpVB_VXndZT3HKmlfj0g.JPEG.jihun24/brake-services.jpg?type=w800" alt="ABS 시스템">
+              </div>
+               <div class="ad-link">ABS 시스템 · 출처: mblogthumb-phinf.pstatic.net</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="abs-easy" class="section" data-index="2">
+          <h3>02. 아주 쉽게 이해하는 ABS</h3>
+          <ul>
+            <li>브레이크 페달 → 유압 “압력” 생성 → 바퀴에 “제동력” 전달</li>
+            <li>바퀴가 잠기면 조향 불능/미끄러짐 → ABS가 바퀴별 압력을 빠르게 줄였다 늘려 잠김 방지</li>
+            <li>결과: 미끄러운 길에서도 조향 가능성·직진 안정성 유지, 평균 제동 성능 “일관성” 향상</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://cdn.motorgraph.com/news/photo/201408/3713_12293_417.jpg" alt="조향 이미지">
+              </div>
+               <div class="ad-link">조향 · 출처: cdn.motorgraph.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="safety-prep" class="section" data-index="3">
+          <h3>03. 먼저 안전! 필수 준비물과 환경</h3>
+          <ul>
+            <li>개인 보호: 장갑, 보안경, 미끄럼 방지 신발</li>
+            <li>차량 고정: 평지, 주차 브레이크, 휠 초크, 잭 스탠드</li>
+            <li>전원 안전: 시동 OFF, 키 OUT, 배터리 음극 탈거, LOTO 가능 시 적용</li>
+            <li>화학물 안전: 브레이크액은 도장 손상 → 흡수포/즉시 물 세척</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0BLTT0EAMbHmYcOzkEsl_4D3c4ZCn5YpHSA&s" alt="안전 준비물">
+              </div>
+               <div class="ad-link">안전 준비 · 출처: encrypted-tbn0.gstatic.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="terms-5" class="section" data-index="4">
+          <h3>04. 최소 개념: 용어 5개만 알면 충분</h3>
+          <ul>
+            <li>ABS: 바퀴 잠김 방지 장치</li>
+            <li>휠속 센서: 바퀴 회전 속도 읽는 센서</li>
+            <li>브레이크 라인/호스: 압력 전달 배관</li>
+            <li>브레이크액: 압력 전달 유체(DOT 4/5.1)</li>
+            <li>DTC: 진단코드(경고등 점등 시 저장된 오류 번호)</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://blog.kakaocdn.net/dna/ch8bni/btsiM9LSMi3/AAAAAAAAAAAAAAAAAAAAAL1v4elnAKOk9UKcSRW1jkLa-IpWPby1h-DrpVbpjUL9/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1761922799&allow_ip=&allow_referer=&signature=ViLQBPW4WdGeVhkgb8pRbPI7T6Y%3D" alt="브레이크 라인/호스">
+              </div>
+               <div class="ad-link">브레이크 라인/호스 · 출처: blog.kakaocdn.net</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="checklist" class="section" data-index="5">
+          <h3>05. 바로 써먹는 초보 체크리스트</h3>
+          <ul>
+            <li>ABS 경고등: 시동 후 자동 소등이 정상. 계속 켜지면 DTC 확인</li>
+            <li>휠 주변 이물/오염: 세척(고압수로 커넥터 직접 분사 금지)</li>
+            <li>브레이크액 잔량: MIN~MAX 사이, 뚜껑 외부 오염 제거(혼입 금지)</li>
+            <li>페달 감각: 시동 OFF 상태에서 반복 밟아 단단해지는지 확인(스폰지감→정비)</li>
+            <li>누유 흔적: 캘리퍼/호스 이음부 유막 있으면 즉시 정비</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNTA0MTZfMTYy/MDAxNzQ0ODExODkyNTU2.b2QNKf3wjpKJM5lX8MKBw_dLQAfJgOWzoK_kNUw6Bx8g.yckPim4wNsXOrMKOWVYZYs__51hSqRrMWtfgmkay_dAg.PNG/image.PNG?type=w800" alt="ABS 경고등">
+              </div>
+               <div class="ad-link">ABS 경고등 · 출처: mblogthumb-phinf.pstatic.net</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="legal" class="section" data-index="6">
+          <h3>06. 절대 합법/안전 가이드(한국)</h3>
+          <ul>
+            <li>도로 주행차량에서 라인 락 사용 금지</li>
+            <li>구조변경 필요한 개조(모듈/배관 큰 변경 등)는 TS 사전 상담 및 승인</li>
+            <li>인증 부품 사용, 작업 내역·영수증·부품 증빙 보관</li>
+            <li>보험/제조사 보증 영향 사전 확인</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://cdn.011st.com/11dims/resize/2000x2000/quality/75/11src/product/4928301218/B.jpg?875000000" alt="라인 락 이미지">
+              </div>
+               <div class="ad-link">라인 락 · 출처: cdn.011st.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="symptoms" class="section" data-index="7">
+          <h3>07. 고장 징후와 1차 대응</h3>
+          <ul>
+            <li>저속 떨림 + 경고등: 톤링 오염/간극, 커넥터 문제 → 휠/허브 청소, 배선 점검 → 간극 조정/센서 교체</li>
+            <li>페달 스폰지/과도한 스트로크: 공기 혼입/미세 누유 → 주행 자제·견인 권장 → 블리딩/누설 점검</li>
+            <li>ABS 소음/진동: 급제동 시 정상 가능. 경고등 동반 시 DTC 확인</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-vid video-thumb" data-video-id="-NcBK9hnkCo" role="button" aria-label="페달 스폰지 현상 영상 재생">
+                <img src="https://i.ytimg.com/vi/-NcBK9hnkCo/hqdefault.jpg" alt="페달 스폰지 현상 영상 썸네일">
+              </div>
+               <div class="ad-link">페달 스폰지 현상 · 출처: YouTube(차박사TV)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="maintenance" class="section" data-index="8">
+          <h3>08. 집에서 가능한 유지관리(무개조)</h3>
+          <ul>
+            <li>휠속 센서 주변 청결 유지(부드러운 브러시/에어)</li>
+            <li>브레이크액 수분 상태 점검(테스터/정비소)</li>
+            <li>배선/커넥터 외관 확인(손상·고정·장력 과도 여부)</li>
+            <li>타이어 공기압/편마모 점검(ABS/제동 안정성에 직접 영향)</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://s.alicdn.com/@sc04/kf/H0d71a073da8646d28a0352efd5ce5a4aK.jpg" alt="배선/커넥터">
+              </div>
+               <div class="ad-link">배선/커넥터 · 출처: s.alicdn.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="bleeding-comm" class="section" data-index="9">
+          <h3>09. 블리딩 이해와 정비소 의사소통</h3>
+          <ul>
+            <li>공기 혼입 시 압력 손실로 성능 저하 → 블리딩 필수</li>
+            <li>요청 문구 예시:
+              <ul>
+                <li>“차종 매뉴얼 순서로 4바퀴 블리딩, ABS 내부 블리드(진단기 구동) 포함해 주세요.”</li>
+                <li>“압송식 블리더 1.0~1.5 bar로 균일하게, 누설/라인압 유지 시험 결과 공유 부탁드립니다.”</li>
+              </ul>
+            </li>
+            <li>셀프 참여 팁: 리저버 이물 방지, 새 액 사용, 넘침 주의, 순서 준수 확인</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://thumbnail.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/3256/ab33b9689fd80a849579c23eb07c1e8f1333edd518193b98ee52993cf7fa.jpg" alt="블리딩 재료">
+              </div>
+               <div class="ad-link">블리딩 재료 · 출처: thumbnail.coupangcdn.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="core-principles" class="section" data-index="10">
+          <h3>10. “초보가 알 정도” 핵심 원리</h3>
+          <ul>
+            <li>최대 제동력은 바퀴가 살짝 미끄러지는 구간에서 발생. ABS는 그 “살짝”을 자동 유지.</li>
+            <li>슬립율: [s = (차속 − 바퀴속도) / 차속], 목표 대략 [s ≈ 0.1 ~ 0.2] (노면/타이어에 따라 달라짐)</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://i.ytimg.com/vi/qIJF7tSsumI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBs37dmw_txt-CTSi5JIvKTkr4eMg" alt="최대 제동력 그래프">
+              </div>
+               <div class="ad-link">최대 제동력 · 출처: i.ytimg.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://maintec.co.kr/" target="_blank" rel="noopener" aria-label="메인텍 이동">
+                <div class="img-ad">
+                  <img src="https://maintec.co.kr/data/item/1738890706/thumb-67Cw6rK9_413x560.jpg" alt="메인텍 상품 배너">
+                </div>
+              </a>
+              <div class="ad-link">메인텍 · 출처: maintec.co.kr/shop/list.php?ca_id=80</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="test" class="section" data-index="11">
+          <h3>11. 초보 친화 테스트</h3>
+          <ul>
+            <li>빈 넓은 마른 노면에서 30→0 km/h 직선 제동 2~3회</li>
+            <li>강한 제동 시 페달 달칵/차량 직진 유지 → 정상 가능성 높음</li>
+            <li>경고등 점등·한쪽 치우침 → 정비소로 이동</li>
+            <li>젖은 노면/빙판 테스트는 위험하므로 금지</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-vid video-thumb" data-video-id="bWWvN2iR4uc?si=Q9m3pW_hxYLgU2rw" role="button" aria-label="경고등 정보 영상 재생">
+                <img src="https://i.ytimg.com/vi/bWWvN2iR4uc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAraSrRNj-TXNkZa5WNtCrLQkn9Hg" alt="경고등 정보 영상 썸네일">
+              </div>
+               <div class="ad-link">경고등의 다양한 정보 · 출처: YouTube(수입차정비 마일레오토서비스)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="upgrade" class="section" data-index="12">
+          <h3>12. 중급으로 가는 문 : “업그레이드”의 뜻</h3>
+          <ul>
+            <li>하드웨어(모듈/밸브/호스/밸브블록)·소프트웨어(코딩/파라미터) 모두 안전·법규·전문장비 필요</li>
+            <li>센서/호스/액 고급화 → 반응성/일관성 향상 가능</li>
+            <li>부품 교체는 누설·코딩 실패·제동 불능 리스크 → <strong>전문가 작업 필수</strong></li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://lh3.googleusercontent.com/proxy/3lwtxiOgJ08NmeWy0rAlhel68IVf5JFR1Gbq20EzyuZM1iniA70osHzuaNOF1x3Wqq7by6F342riMfk2afClJw" alt="다양한 센서">
+              </div>
+               <div class="ad-link">다양한 센서들 · 출처: lh3.googleusercontent.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="choose-pro" class="section" data-index="13">
+          <h3>13. 정비소/전문가 선택 기준</h3>
+          <ul>
+            <li>문서화 : 작업 전 체크리스트, 작업 후 리포트</li>
+            <li>장비 : 교정 토크 렌치, ABS 블리드 가능한 진단기, 누설/압력 유지 시험</li>
+            <li>합법성 : 구조변경/인증 부품/보험·보증 안내</li>
+            <li>피드백 : 증상을 데이터(파형·간극·로그)로 설명</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3waMy6fkFA1VkSocOVWU8L8mjBXUbKyrRcg&s" alt="구조변경 순서">
+              </div>
+               <div class="ad-link">구조변경 순서 · 출처: encrypted-tbn0.gstatic.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="troubleshoot" class="section" data-index="14">
+          <h3>14. 문제 발생 시 단계별 해결</h3>
+          <ol>
+            <li><strong>증상 기록</strong>: 속도, 노면, 경고등, 반복 여부</li>
+            <li><strong>쉬운 점검</strong>: 타이어 공기압/마모, 센서 주변 이물, 누유, 브레이크액 잔량</li>
+            <li><strong>정비 의뢰</strong>: “휠속 센서 파형/간극·DTC 확인”, “ABS 내부 블리드·누설/압력 유지 시험”</li>
+            <li><strong>재발 방지</strong>: 주기 점검(시즌/10,000~20,000 km), 녹 방지·청결 유지</li>
+          </ol>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://www.heydealer.com/blog/wp-content/uploads/2023/04/67-1.jpg" alt="정비 의뢰">
+              </div>
+               <div class="ad-link">정비의뢰 · 출처: www.heydealer.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="data" class="section" data-index="15">
+          <h3>15. 초보도 알 수 있는 데이터 활용</h3>
+          <ul>
+            <li>제동 시 쏠림 여부</li>
+            <li>페달 감각 변화(시간대/열 받은 후)</li>
+            <li>비/마른 노면에서 ABS 개입 감각 차이</li>
+            <li>경고등 점등 순간(요철/방지턱 직후 등)</li>
+          </ul>
+          <div class="callout">이 기록만으로도 정비사가 원인 추적을 훨씬 빠르게 수행합니다.</div>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZobOauHeavKESa0Z6IHPbZQM1LphDGd82Ew&s" alt="노면에 따른 ABS">
+              </div>
+               <div class="ad-link">노면에 따른 ABS · 출처: encrypted-tbn0.gstatic.com</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="reg-quick" class="section" data-index="16">
+          <h3>16. 초보용 법규 빠른 정리(한국)</h3>
+          <ul>
+            <li>라인 락 도로 사용 금지</li>
+            <li>큰 변경은 구조변경 승인(TS 상담 → 증빙 → 검사)</li>
+            <li>작업 내역·부품 증빙 보관, 보험/보증 영향 사전 고지</li>
+          </ul>
+        </section>
+
+        <section id="starter-list" class="section" data-index="17">
+          <h3>17. 입문형 체크리스트(누구나)</h3>
+          <ul>
+            <li><strong>매달</strong>: 브레이크액 눈금, 센서 주변 청소, 누유 없음, 공기압 표준, 경고등 유무</li>
+            <li><strong>장거리/시즌 전</strong>: 브레이크액 교체 주기(권장 1~2년), 패드 잔량/디스크 마모, 커넥터 흔들림 없음</li>
+            <li><strong>이상 시</strong>: 증상 기록(속도/노면/횟수), 정비소 방문 시 “ABS 내부 블리드 포함 블리딩·누설시험” 요청</li>
+          </ul>
+        </section>
+
+        <section id="qa" class="section" data-index="18">
+          <h3>18. Q&amp;A 초간단</h3>
+          <ul>
+            <li><strong>ABS가 있으면 제동거리가 항상 짧아지나요?</strong><br>항상은 아닙니다. 하지만 조향·안정성 유지로 안전성과 반복성이 좋아집니다.</li>
+            <li><strong>페달에서 딸깍딸깍/진동이 느껴져요. 고장인가요?</strong><br>급제동 시 정상적인 ABS 동작일 수 있습니다. 경고등이 같이 켜지면 점검이 필요합니다.</li>
+            <li><strong>어떤 브레이크액을 쓰면 좋나요?</strong><br>일상은 DOT 4로 충분하며 레이싱 서킷 등 고부하면 고온 DOT 4/5.1(차량 씰 호환 필수)의 교체 주기와 수분 관리가 더 중요합니다.</li>
+            <li><strong>초보가 업그레이드해도 되나요?</strong><br>라인/모듈/코딩 등은 전문가 작업입니다. 초보는 상태 관리와 점검·기록·의사소통에 집중하세요.</li>
+          </ul>
+        </section>
+
+        <section id="wrapup" class="section" data-index="19">
+          <h3>19. 마무리: 초보의 역할도 “안전과 일관성”</h3>
+          <ul>
+            <li>청결·점검·기록·합법 절차만 잘 지켜도 제동 안전 크게 향상</li>
+            <li>전문가 협업 시 체크리스트/요청 문구 적극 활용</li>
+            <li><strong>최우선</strong>: 안전 · 합법 · 반복성(일관성)</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="section" data-index="20">
+          <h3>20. 부록 A ~ D</h3>
+          <ul>
+            <li><strong>부록 A</strong> 정비소 요청 문구 샘플:
+              <ul>
+                <li>“ABS 경고등 점등. DTC 확인과 휠속 센서 간극/파형 점검 부탁드립니다.”</li>
+                <li>“브레이크 블리딩 시 ABS 내부 블리드(진단기 구동) 포함, 누설·라인압 유지 시험 결과 공유.”</li>
+                <li>“서비스 매뉴얼 토크 값 준수, 작업 내역·부품·토크 기록 출력 요청.”</li>
+              </ul>
+            </li>
+            <li><strong>부록 B</strong> 10분 점검 카드:
+              <ul>
+                <li>공기압/마모, 브레이크액 눈금, 휠하우스 이물, 경고등 유무, 페달 감각 변화 기록</li>
+              </ul>
+            </li>
+            <li><strong>부록 C</strong> 안전 금지 리스트:
+              <ul>
+                <li>라인 락 도로 사용, 임의 배선·배관·토크, 누설 방치, 규격 혼합 액 사용</li>
+              </ul>
+            </li>
+            <li><strong>부록 D</strong> 쉬운 포인트:
+              <ul>
+                <li>ABS는 바퀴별 압력을 눌렀다-유지-풀었다 반복</li>
+                <li>완전 잠김 없이 “살짝 미끄러짐” 구간 유지</li>
+                <li>미끄러운 길일수록 조향 가능성 유지가 생명</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://blog.naver.com/sunnmotors" target="_blank" rel="noopener" aria-label="썬앤모터스 블로그 이동">
+                <div class="img-ad">
+                  <img src="https://postfiles.pstatic.net/MjAxODA1MDRfMzAg/MDAxNTI1NDA2NTI3OTQy.VOyjb-3q6iLxYmu8GdSSdFHfhtPihTrT3e2MpJCCC0Mg.625LZZ7ZqUkoBTuLSp1RtB5SKTtxbs5hGrwByY4eOsMg.JPEG.sunnmotors/image_2878216691525406433468.jpg?type=w966" alt="썬앤모터스 배너">
+                </div>
+              </a>
+              <div class="ad-link">썬앤모터스 · 출처: blog.naver.com/sunnmotors</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">실제 작업 시 차량 서비스 매뉴얼과 국내 법규(한국교통안전공단 TS 등)를 반드시 확인하세요.</div>
+    </div>
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <!-- IFrame API가 교체하여 사용 -->
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    // ---- 유틸: 임베드 URL 생성 ----
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0',
+        modestbranding: '1',
+        playsinline: String(playsinline),
+        controls: String(controls),
+        enablejsapi: '1', // IFrame API와 연동
+        origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+
+    // ---- 유틸: URL에서 Video ID 추출 ----
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      // 이미 ID만 들어온 경우
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    // ---- 상태 ----
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+
+    let lastVideoId = null;
+    let lastStart = null;
+    let lastOriginalUrl = null;
+    let useNoCookieGlobal = false;
+    let player = null; // YT.Player
+    let lastFocused = null;
+
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || (lastVideoId ? `https://www.youtube.com/watch?v=${lastVideoId}` : '#');
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+
+    function trapFocus(e) {
+      if (!overlay.classList.contains('active')) return;
+      const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
+    function openOverlay() {
+      lastFocused = document.activeElement;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      document.addEventListener('keydown', trapFocus);
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', trapFocus);
+      try { if (player && player.destroy) player.destroy(); } catch(e){}
+      player = null;
+      frame.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    // ---- IFrame API 로드 ----
+    let YTReady = false;
+    let YTLoading = false;
+    const onYouTubeIframeAPIReadyCallbacks = [];
+    function loadYouTubeAPI() {
+      if (YTReady || YTLoading) return;
+      YTLoading = true;
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.async = true;
+      document.head.appendChild(tag);
+      // 전역 콜백
+      window.onYouTubeIframeAPIReady = function() {
+        YTReady = true;
+        YTLoading = false;
+        onYouTubeIframeAPIReadyCallbacks.splice(0).forEach(cb => cb());
+      };
+    }
+
+    function whenYTReady(cb) {
+      if (YTReady && window.YT && window.YT.Player) cb();
+      else onYouTubeIframeAPIReadyCallbacks.push(cb);
+    }
+
+    // ---- 플레이 로직 ----
+    function createPlayer(videoId, start, useNoCookie, autoplay = true, muted = true) {
+      // 먼저 iframe src를 세팅해 CORS 및 정책 관련 헤더/파라미터를 맞춘다
+      frame.src = buildEmbedUrl(videoId, start, useNoCookie, autoplay, muted);
+      // API로 제어하기 위해 로드
+      loadYouTubeAPI();
+      return new Promise((resolve, reject) => {
+        whenYTReady(() => {
+          try {
+            player = new YT.Player('videoFrame', {
+              events: {
+                'onReady': (e) => {
+                  try {
+                    if (muted && e.target.mute) e.target.mute();
+                    if (start && e.target.seekTo) {
+                      const s = parseInt(String(start).replace('s',''), 10);
+                      if (!Number.isNaN(s)) e.target.seekTo(s, true);
+                    }
+                    if (autoplay) {
+                      const st = e.target.playVideo && e.target.playVideo();
+                      // 일부 브라우저는 Promise 반환
+                      if (st && typeof st.then === 'function') {
+                        st.then(() => resolve('played')).catch(err => reject(err));
+                      } else {
+                        // Promise 미지원 환경: 짧은 지연 후 상태 확인
+                        setTimeout(() => resolve('played'), 300);
+                      }
+                    } else {
+                      resolve('ready');
+                    }
+                  } catch(err) {
+                    reject(err);
+                  }
+                },
+                'onError': (ev) => {
+                  reject(new Error('YT Player Error: ' + (ev && ev.data)));
+                },
+                'onStateChange': (ev) => {
+                  // 버퍼링(3)이나 재생(1) 상태면 정상으로 판단 가능하지만 onReady에서 처리
+                }
+              }
+            });
+          } catch (err) {
+            reject(err);
+          }
+        });
+      });
+    }
+
+    async function tryPlaySequence(options) {
+      const { id, start, originalUrl } = options || {};
+      lastVideoId = id;
+      lastStart = start;
+      lastOriginalUrl = originalUrl;
+
+      openOverlay();
+
+      // 시도 1: youtube.com + autoplay + mute
+      try {
+        useNoCookieGlobal = false;
+        await createPlayer(id, start, false, true, true);
+        return; // 성공
+      } catch (e1) {
+        // 시도 2: youtube-nocookie.com + autoplay + mute
+        try {
+          useNoCookieGlobal = true;
+          await createPlayer(id, start, true, true, true);
+          return;
+        } catch (e2) {
+          // 시도 3: youtube-nocookie.com + autoplay off + mute off (사용자 재생 유도)
+          try {
+            useNoCookieGlobal = true;
+            await createPlayer(id, start, true, false, false);
+            // 재생 버튼을 눌러야 할 수 있으므로 안내 배너는 띄우지 않음
+            return;
+          } catch (e3) {
+            // 모든 실패 → 링크 안내
+            closeOverlay();
+            showError(originalUrl);
+          }
+        }
+      }
+    }
+
+    // ---- 이벤트 바인딩 ----
+    document.addEventListener('click', function (e) {
+      const thumb = e.target.closest('.video-thumb');
+      if (!thumb) return;
+
+      e.preventDefault();
+      let id = thumb.getAttribute('data-video-id') || '';
+      let start = thumb.getAttribute('data-start') || '';
+      let originalUrl = thumb.getAttribute('data-video-url') || '';
+
+      if (!id && originalUrl) {
+        id = extractVideoId(originalUrl);
+        try {
+          const u = new URL(originalUrl);
+          start = start || u.searchParams.get('t') || u.searchParams.get('start') || '';
+        } catch(e){}
+      }
+      if (!originalUrl && id) originalUrl = `https://www.youtube.com/watch?v=${id}`;
+
+      if (id) {
+        tryPlaySequence({ id, start, originalUrl });
+      } else if (originalUrl) {
+        showError(originalUrl);
+      }
+    });
+
+    btnClose.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeOverlay();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay();
+    });
+  </script>
+</body>
+</html>
