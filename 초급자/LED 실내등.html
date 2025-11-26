@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>초보자를 위한 ABS 보조장치 | 누구나 따라 하는 안전 제동 가이드</title>
+    <title>초보자를 위한 자동차 LED 실내등 | 밝기·효율·분위기 업그레이드 가이드</title>
     <style>
         :root {
             --bg: #ffffff;
@@ -261,43 +261,44 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             background: #fff;
-            width: fit-content
+            width: fit-content;
+            max-width: 100%
         }
-        /* 이미지 컨테이너(정사각, 큰 이미지, 영상 썸네일, 광고) */
+        /* 이미지 공통: 부모를 넘지 않고 비율 유지 */
         .img-376, .img-576, .img-vid, .img-ad {
             overflow: hidden;
-            border-radius: 6px
+            border-radius: 6px;
+            max-width: 100%
         }
 
         .img-376 {
             width: 376px;
-            height: 376px
+            max-width: 100%
         }
 
         .img-576 {
             width: 576px;
-            height: 576px
+            max-width: 100%
         }
 
         .img-vid {
-            width: 376px;
-            height: 211px
+            width: 576px;
+            max-width: 100%
         }
 
         .img-ad {
             width: 576px;
-            height: 776px;
-            border-radius: 8px
+            max-width: 100%
         }
 
             .img-376 > img, .img-576 > img, .img-vid > img, .img-ad > img {
                 width: 100%;
-                height: 100%;
+                height: auto;
+                display: block;
                 object-fit: cover;
-                object-position: center;
-                display: block
+                object-position: center
             }
-        /* 캡션(제목/출처) */
+
         figcaption.title {
             margin-top: 6px;
             font-weight: 700;
@@ -318,7 +319,7 @@
         .center-inline {
             display: inline-block
         }
-        /* 광고 영역 */
+        /* 광고 영역 이미지도 넘침 방지 */
         .ad-section {
             background: var(--ad-bg);
             border-color: #cfcfcf
@@ -329,16 +330,21 @@
             padding: 10px;
             border-radius: 10px;
             background: #fff;
-            border: 1px solid var(--border)
+            border: 1px solid var(--border);
+            max-width: 100%
         }
 
-        .ad-link {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: 12px;
-            color: var(--muted)
-        }
-        /* 비디오 모달 */
+            .ad-card .img-ad {
+                width: 100%
+            }
+
+            .ad-card img {
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
+                display: block
+            }
+        /* 비디오 모달(간소화) */
         .video-overlay {
             position: fixed;
             inset: 0;
@@ -396,6 +402,15 @@
             cursor: pointer
         }
 
+        .ad-link {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: var(--muted);
+            max-width: 100%;
+            word-break: break-all
+        }
+
         .video-error {
             position: fixed;
             left: 50%;
@@ -423,7 +438,7 @@
     <div class="wrap">
         <header>
             <div class="brand">
-                <h1>초보자를 위한 ABS 보조장치 · 안전 제동 가이드</h1>
+                <h1>초보자를 위한 자동차 LED 실내등 · 밝기·효율·분위기 업그레이드 가이드</h1>
                 <span class="tag">입문용</span>
                 <span class="tag">한국 기준</span>
             </div>
@@ -448,33 +463,28 @@
         <div class="grid">
             <nav class="toc">
                 <a class="back" href="../menu01.html" aria-label="이전 페이지로">← 이전 페이지</a>
-                <h3>초보자를 위한 ABS 보조장치<br>안전 제동 가이드</h3>
+                <h3>초보자를 위한 LED 실내등<br>선택·장착 가이드</h3>
                 <h3>▣ 목 차 ▣</h3>
                 <ol>
                     <li><a href="#cover">표지</a></li>
                     <li><a href="#can-do">이 가이드로 무엇을 할 수 있나요?</a></li>
-                    <li><a href="#abs-easy">아주 쉽게 이해하는 ABS</a></li>
-                    <li><a href="#safety-prep">먼저 안전! 필수 준비물과 환경</a></li>
-                    <li><a href="#terms-5">최소 개념: 용어 5개만 알면 충분</a></li>
-                    <li><a href="#checklist">바로 써먹는 초보 체크리스트</a></li>
-                    <li><a href="#legal">절대 합법/안전 가이드(한국)</a></li>
-                    <li><a href="#symptoms">고장 징후와 1차 대응</a></li>
-                    <li><a href="#maintenance">집에서 가능한 유지관리</a></li>
-                    <li><a href="#bleeding-comm">블리딩 이해와 정비소 의사소통</a></li>
-                    <li><a href="#core-principles">“초보가 알 정도” 핵심 원리</a></li>
-                    <li><a href="#test">초보 친화 테스트</a></li>
-                    <li><a href="#upgrade">중급으로 가는 문: 업그레이드의 뜻</a></li>
-                    <li><a href="#choose-pro">정비소/전문가 선택 기준</a></li>
-                    <li><a href="#troubleshoot">문제 발생 시 단계별 해결</a></li>
-                    <li><a href="#data">초보도 알 수 있는 데이터 활용</a></li>
-                    <li><a href="#reg-quick">초보용 법규 빠른 정리</a></li>
-                    <li><a href="#starter-list">입문형 체크리스트(누구나)</a></li>
-                    <li><a href="#qa">Q&amp;A 초간단</a></li>
-                    <li><a href="#wrapup">마무리: 안전과 일관성</a></li>
-                    <li><a href="#appendix">부록 A~D</a></li>
+                    <li><a href="#abs-easy">LED 원리·성능 지표</a></li>
+                    <li><a href="#safety-prep">소켓 규격·전구 타입</a></li>
+                    <li><a href="#terms-5">색온도·밝기 선택 팁</a></li>
+                    <li><a href="#checklist">준비물·안전·작업 환경</a></li>
+                    <li><a href="#legal">호환성·오류 방지(폴라리티·캔버스)</a></li>
+                    <li><a href="#symptoms">장착 SOP-개요</a></li>
+                    <li><a href="#maintenance">장착 SOP-1: 맵/돔</a></li>
+                    <li><a href="#bleeding-comm">장착 SOP-2: 풋램프/트렁크</a></li>
+                    <li><a href="#core-principles">장착 SOP-3: 오류·점검</a></li>
+                    <li><a href="#test">테스트·완성 샷</a></li>
+                    <li><a href="#upgrade">트러블슈팅</a></li>
+                    <li><a href="#choose-pro">유지관리·주의</a></li>
+                    <li><a href="#troubleshoot">Q&A 초간단</a></li>
+                    <li><a href="#data">부록 A~D</a></li>
                 </ol>
 
-                <!-- 왼쪽 메뉴 하단 광고 시작 -->
+                <!-- 왼쪽 메뉴 하단 광고 시작: 변경 없음 -->
                 <div class="banner-stack" aria-label="권장 링크 배너">
                     <a class="banner" href="https://maintec.co.kr/" target="_blank" rel="noopener">
                         <img src="https://maintec.co.kr/images/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block">
@@ -497,8 +507,8 @@
                         </div>
                     </a>
                 </div>
+                <!-- 왼쪽 메뉴 하단 광고 끝 -->
             </nav>
-            <!-- 왼쪽 메뉴 하단 광고 끝 -->
 
             <main>
                 <!-- 0. 표지 -->
@@ -506,186 +516,189 @@
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-576">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJaZX4jHLuM8ROBZw8lqtiytXlJmdxCTt4Q&s">
+                                <img src="https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/8827608085/B.jpg?159133725">
                             </div>
-                            <figcaption class="title">안전 제동을 위한 ABS 보조장치</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 탄탄이의 세상읽기 https://blog.naver.com/pst8627</figcaption>
+                            <figcaption class="title">야간 실내 LED 무드 조명</figcaption>
+                            <figcaption class="source">출처 : 11번가 https://www.11st.co.kr/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 1. 무엇을 할 수 있나요 -->
+                <!-- 1. 목적/효과 -->
                 <section id="can-do" class="section" data-index="1">
                     <h3>01. 이 가이드로 무엇을 할 수 있나요?</h3>
-                    <div class="subtitle">초보 운전자/오너를 위한 실전 범위</div>
+                    <div class="subtitle">오리엔테이션: 왜 ‘LED 실내등’인가</div>
                     <ul>
-                        <li>ABS 이해, 기본 점검, 경고등 대응, 정비소 의사소통, 합법 유지관리</li>
+                        <li>밝기 향상 · 효율/수명 증가 · 현대적 분위기 · 야간 편의성</li>
+                        <li>Before/After: 가시성·색감·실내 고급감 상승</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbsMibW%2FbtszyIr9cgG%2FAAAAAAAAAAAAAAAAAAAAAM0hhAqMKOYQSJZKkgTTjj8qdkWvEtK39Yeb6nwyg7_L%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3DYJCaqeMG45WGP9jVWGspizOPmkw%253D">
+                                <img src="https://dnvefa72aowie.cloudfront.net/origin/article/202001/441041a7b548c2b604240e537eb509c619a1f7fc1e774a7890c7f98d21f30cd6.webp?q=95&s=1440x1440&t=inside">
                             </div>
-                            <figcaption class="title">ABS 점검과 서비스</figcaption>
-                            <figcaption class="source">출처 : Bullsone https://blog.bullsone.com</figcaption>
+                            <figcaption class="title">실내 무드</figcaption>
+                            <figcaption class="source">출처 : 당근 https://www.daangn.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 2. 아주 쉽게 이해하는 ABS -->
+                <!-- 2. LED 원리·지표 -->
                 <section id="abs-easy" class="section" data-index="2">
-                    <h3>02. 아주 쉽게 이해하는 ABS</h3>
+                    <h3>02. LED 원리·성능 지표</h3>
                     <ul>
-                        <li>잠김 방지로 조향 가능성 유지 · 제동 일관성 향상</li>
+                        <li>루멘[lm], 와트[W]/암페어[A], 색온도[K], 광속 유지율</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://ko.ml-vehicle.com/Content/uploads/2023931296/20230602233100c4c31cee3fe14d0496143f8ed54bcde8.jpg?size=800x0">
+                                <img src="https://www.signliteled.com/wp-content/uploads/2024/12/What-is-SMD-LED.webp">
                             </div>
-                            <figcaption class="title">미끄럼 상황에서의 조향 유지</figcaption>
-                            <figcaption class="source">출처 : ML truck https://ko.ml-vehicle.com</figcaption>
+                            <figcaption class="title">SMD LED 칩 & 보드</figcaption>
+                            <figcaption class="source">출처 : Light up the way SIGNLITE https://www.signliteled.com</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 3. 안전/준비물 -->
+                <!-- 3. 소켓 규격·타입 -->
                 <section id="safety-prep" class="section" data-index="3">
-                    <h3>03. 먼저 안전! 필수 준비물과 환경</h3>
+                    <h3>03. 소켓 규격·전구 타입</h3>
                     <ul>
-                        <li>PPE, 차량 고정, 전원·화학물 안전</li>
+                        <li>T10(W5W), Festoon(31/36/41mm), BA9s, T15 등</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://09line.co.kr/web/product/big/202409/6091e526320fc7c6ba3b16250638ea38.jpg">
+                                <img src="https://cdn.011st.com/11dims/resize/376x376/quality/75/11src/product/1730906518/B.jpg?376000000">
                             </div>
-                            <figcaption class="title">안전을 위한 PPE와 공구</figcaption>
-                            <figcaption class="source">출처 : 공구라인 https://09line.co.kr</figcaption>
+                            <figcaption class="title">T10 · Festoon 등 소켓별 전구</figcaption>
+                            <figcaption class="source">출처 : 11번가 https://www.011st.com</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 4. 용어 5개 -->
+                <!-- 4. 색온도·밝기 선택 -->
                 <section id="terms-5" class="section" data-index="4">
-                    <h3>04. 최소 개념: 용어 5개만 알면 충분</h3>
+                    <h3>04. 색온도·밝기 선택 팁</h3>
                     <ul>
-                        <li>ABS, 휠속 센서, 라인/호스, 브레이크액, DTC</li>
+                        <li>맵/돔: 500~800lm, 5000~6000K</li>
+                        <li>풋램프: 200~400lm, 4000~6000K</li>
+                        <li>트렁크: 400~800lm, 확산 렌즈 권장</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbR5izG%2Fbtsjwqgf9PH%2FAAAAAAAAAAAAAAAAAAAAAFcKExOVLnoPsbE26w5e2jPseqCCEDVxq_l3Z5u6Buba%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3D%252F3pv%252Bd6nfj5lcdma3StASRLhInY%253D">
+                                <img src="https://www.bibiled.com/wp-content/uploads/2022/03/3.12.002.jpeg">
                             </div>
-                            <figcaption class="title">브레이크 라인과 액</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / 크림우유 https://2nstory.tistory.com</figcaption>
+                            <figcaption class="title">색온도 스펙트럼 샘플</figcaption>
+                            <figcaption class="source">출처 : bibi led https://www.bibiled.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 5. 체크리스트 -->
+                <!-- 5. 준비물·안전·작업 환경 -->
                 <section id="checklist" class="section" data-index="5">
-                    <h3>05. 바로 써먹는 초보 체크리스트</h3>
+                    <h3>05. 준비물·안전·작업 환경</h3>
                     <ul>
-                        <li>경고등·이물·액량·페달 감각·누유 확인</li>
+                        <li>PPE, 전원 OFF, 트림 리무버/멀티미터/예비 퓨즈</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNTAxMTVfMjg5/MDAxNzM2OTIzNzYwOTA4.ggTmlnmMcuxIaHB3czfQk5AqdmQC8dsE4Z2Q1BggdrEg.G0h645Z5i02o0Unp-LYAIr0bbz0J65DE0J3blrUdhlEg.PNG/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2025-01-15_154832.png?type=w800">
+                                <img src="https://s-09.com/data/item/3859/thumb-mrb1003859_b_499x499.jpg">
                             </div>
-                            <figcaption class="title">대시보드 경고 확인</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 디테일러명 https://m.blog.naver.com/mk5104</figcaption>
+                            <figcaption class="title">작업 공구 & 보호장비</figcaption>
+                            <figcaption class="source">출처 : 에스공구 https://s-09.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 6. 합법/안전 -->
+                <!-- 6. 호환성·오류 방지 -->
                 <section id="legal" class="section" data-index="6">
-                    <h3>06. 절대 합법/안전 가이드(한국)</h3>
+                    <h3>06. 호환성·오류 방지(폴라리티·캔버스)</h3>
                     <ul>
-                        <li>라인 락 도로 금지, 구조변경 승인, 인증 부품, 보증 영향 확인</li>
+                        <li>극성 반전, 캔버스 오류·잔광, PWM 깜빡임 대응</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcOp1nK%2FbtsNEMtFcTL%2FAAAAAAAAAAAAAAAAAAAAAAFTgsdP4F31AtcBSqK4bZRxW8gxtEvFLKN2K5GeGbXW%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3Dy1TJE17iBt5QPZf7wkU3mEppcZM%253D">
+                                <img src="https://sc04.alicdn.com/kf/HTB1Km04aEjrK1RkHFNRq6ySvpXas.jpg">
                             </div>
-                            <figcaption class="title">법규 준수와 증빙 보관</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / CAR with MC https://carwithmc.tistory.com/</figcaption>
+                            <figcaption class="title">전기/배선 개념과 경고 대응</figcaption>
+                            <figcaption class="source">출처 : 알리바바 https://korean.alibaba.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 7. 고장 징후 -->
+                <!-- 7. SOP 개요 -->
                 <section id="symptoms" class="section" data-index="7">
-                    <h3>07. 고장 징후와 1차 대응</h3>
+                    <h3>07. 장착 SOP-개요</h3>
                     <ul>
-                        <li>톤링·간극·커넥터 점검, 블리딩 필요 시 정비소 의뢰</li>
+                        <li>커버 분리 → 전구 분리 → 극성 확인 → 삽입/테스트 → 복원</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
-                            <div class="img-vid video-thumb" data-video-id="-NcBK9hnkCo" data-video-url="https://www.youtube.com/watch?v=-NcBK9hnkCo" role="button" aria-label="페달 스폰지 현상 영상 재생">
-                                <img src="https://i.ytimg.com/vi/-NcBK9hnkCo/hqdefault.jpg">
+                            <div class="img-vid video-thumb" data-video-id="n6E1Y_1wyeA" data-video-url="https://www.youtube.com/watch?v=n6E1Y_1wyeA" role="button" aria-label="장착 개요 영상 재생">
+                                <img src="https://i.ytimg.com/vi/4gmXw9FWn_E/maxresdefault.jpg">
                             </div>
-                            <figcaption class="title">페달 스폰지 현상과 대응</figcaption>
-                            <figcaption class="source">출처 : YouTube 차박사TV 136회</figcaption>
+                            <figcaption class="title">커버 분해 & 교체 개요</figcaption>
+                            <figcaption class="source">출처: YouTube 비엠타는공돌이</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 8. 유지관리 -->
+                <!-- 8. SOP-1 맵/돔 -->
                 <section id="maintenance" class="section" data-index="8">
-                    <h3>08. 집에서 가능한 유지관리(무개조)</h3>
+                    <h3>08. 장착 SOP-1: 맵/돔</h3>
                     <ul>
-                        <li>센서 주변 청결, 액 상태 점검, 배선 외관, 공기압/편마모 확인</li>
+                        <li>Festoon/T10 삽입, 점등 확인 후 커버 체결</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://sc04.alicdn.com/kf/Ha1d3f21e49894d14820514ac14d005abI/278821880/Ha1d3f21e49894d14820514ac14d005abI.jpg">
+                                <img src="https://sc04.alicdn.com/kf/H06f9d902664e431b92ea52c0787d3f28U.jpg">
                             </div>
-                            <figcaption class="title">커넥터/배선 점검</figcaption>
-                            <figcaption class="source">출처 : 알리바바 쇼핑몰 https://korean.alibaba.com/</figcaption>
+                            <figcaption class="title">맵/돔 램프 교체</figcaption>
+                            <figcaption class="source">출처 : 알리바바 https://korean.alibaba.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 9. 블리딩 의사소통 -->
+                <!-- 9. SOP-2 풋램프/트렁크 -->
                 <section id="bleeding-comm" class="section" data-index="9">
-                    <h3>09. 블리딩 이해와 정비소 의사소통</h3>
+                    <h3>09. 장착 SOP-2: 풋램프/트렁크</h3>
                     <ul>
-                        <li>공기 혼입 시 성능 저하 → 블리딩 필수(ABS 내부 포함)</li>
+                        <li>풋램프 눈부심 억제, 트렁크 시인성 우선</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://www.wikihow.com/images/thumb/a/aa/Bleed-Car-Brakes-Step-12-Version-5.jpg/v4-728px-Bleed-Car-Brakes-Step-12-Version-5.jpg.webp">
+                                <img src="https://cdn.news.bbsi.co.kr/news/photo/202006/990665_204285_1441.jpg">
                             </div>
-                            <figcaption class="title">브레이크 블리딩 장비</figcaption>
-                            <figcaption class="source">출처 : wikiHow https://ko.wikihow.com/</figcaption>
+                            <figcaption class="title">풋웰/트렁크 조명 개선</figcaption>
+                            <figcaption class="source">출처 : 불교방송 https://news.bbsi.co.kr/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 10. 핵심 원리 -->
+                <!-- 10. 오류·점검 -->
                 <section id="core-principles" class="section" data-index="10">
-                    <h3>10. “초보가 알 정도” 핵심 원리</h3>
+                    <h3>10. 장착 SOP-3: 오류·점검</h3>
                     <ul>
-                        <li>슬립율 유지로 최대 제동력에 근접</li>
+                        <li>잔광/깜빡임/발열 점검 및 대책</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://postfiles.pstatic.net/MjAxNzA3MTdfNDgg/MDAxNTAwMjU2NTQ0NTgz.YleBt3FcODeZPf_wj3whc-kS5HdSifZu5zind_xQjk8g.7pC5VeuP9Fg--0xUccAmbu3raLol94KHDIY6Pp7aXK4g.PNG.happydriving/3.png?type=w966">
+                                <img src="https://cdn.tleaves.co.kr/news/photo/202210/3099_4750_4541.jpg">
                             </div>
-                            <figcaption class="title">노면과 타이어 접지의 이해</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 한국타이어 https://blog.naver.com/happydriving</figcaption>
+                            <figcaption class="title">전기 접점/테스트</figcaption>
+                            <figcaption class="source">출처 : 더리브스 https://www.tleaves.co.kr/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 중간 광고 시작 -->
+                <!-- 중간 광고: 변경 없음 -->
                 <section class="section ad-section">
                     <div class="center">
                         <div class="ad-card">
@@ -698,134 +711,75 @@
                         </div>
                     </div>
                 </section>
-                <!-- 중간 광고 끝 -->
 
-                <!-- 11. 테스트 -->
+                <!-- 11. 테스트·완성샷 -->
                 <section id="test" class="section" data-index="11">
-                    <h3>11. 초보 친화 테스트</h3>
+                    <h3>11. 테스트·완성 샷</h3>
                     <ul>
-                        <li>안전한 장소에서 직선 제동 테스트, 경고등 동반 시 점검</li>
+                        <li>점등/딤밍/지연소등, 야간 시인성·균일성 확인</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
-                            <div class="img-vid video-thumb" data-video-id="bWWvN2iR4uc" data-video-url="https://www.youtube.com/watch?v=bWWvN2iR4uc" role="button" aria-label="정보 영상 재생">
-                                <img src="https://i.ytimg.com/vi/bWWvN2iR4uc/hq720.jpg">
+                            <div class="img-376">
+                                <img src="https://img.yfisher.com/m34564/1747470267px3/png100-t3-scale100.webp">
                             </div>
-                            <figcaption class="title">경고등의 다양한 정보</figcaption>
-                            <figcaption class="source">출처 : YouTube 수입차정비 마일레오토서비스</figcaption>
+                            <figcaption class="title">완성 샷(야간 실내)</figcaption>
+                            <figcaption class="source">출처: KSS https://www.kingshowlight.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 12. 업그레이드의 뜻 -->
+                <!-- 12. 트러블슈팅 -->
                 <section id="upgrade" class="section" data-index="12">
-                    <h3>12. 중급으로 가는 문 : “업그레이드”의 뜻</h3>
+                    <h3>12. 트러블슈팅</h3>
                     <ul>
-                        <li>하드웨어/소프트웨어 모두 전문장비·법규 고려 필요</li>
+                        <li>안 켜짐(극성/접점), 경고등(캔버스/저항), 색 불만족(색온도 재선택)</li>
                     </ul>
-                    <div class="center">
-                        <figure class="img-card center-inline">
-                            <div class="img-376">
-                                <img src="https://www.wabco-customercentre.com/catalog/productImage/4721950180-3_tif.png">
-                            </div>
-                            <figcaption class="title">센서/밸브블록 고급화</figcaption>
-                            <figcaption class="source">출처 : AFTERMARKET https://www.wabco-customercentre.com/</figcaption>
-                        </figure>
-                    </div>
                 </section>
 
-                <!-- 13. 정비소 선택 -->
+                <!-- 13. 유지관리 -->
                 <section id="choose-pro" class="section" data-index="13">
-                    <h3>13. 정비소/전문가 선택 기준</h3>
+                    <h3>13. 유지관리·주의</h3>
                     <ul>
-                        <li>문서화·장비·합법성·데이터 피드백</li>
+                        <li>정품/인증 제품, 고출력 장시간 사용 자제, 주기 점검</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://postfiles.pstatic.net/MjAxOTAyMTJfMTc0/MDAxNTQ5OTMwNTQ1Mjk0.oNQV2ObnLbl12YSbUs5NEbsOBPOBaXYSsAYpBOdxtlsg.vNGcNlXroVzOBQYwmpXu94pPuYzW0ORxAvuooSuDplwg.JPEG.daesung-g3/%EB%8C%80%EC%84%B1G3.jpg?type=w966">
+                                <img src="https://storage.enuri.info/pic_upload/enurinews/300000/30000/331675/201106011557004_XKW4QKNM.png">
                             </div>
-                            <figcaption class="title">전문 장비와 절차</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 대성지이쓰리 https://blog.naver.com/daesung-g3</figcaption>
+                            <figcaption class="title">청결/점검으로 수명 확보</figcaption>
+                            <figcaption class="source">출처 : 에누리 쇼핑지식 https://www.enuri.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 14. 단계별 해결 -->
+                <!-- 14. Q&A -->
                 <section id="troubleshoot" class="section" data-index="14">
-                    <h3>14. 문제 발생 시 단계별 해결</h3>
-                    <ol>
-                        <li><strong>증상 기록</strong> → <strong>쉬운 점검</strong> → <strong>정비 의뢰</strong> → <strong>재발 방지</strong></li>
-                    </ol>
+                    <h3>14. Q&A 초간단</h3>
+                    <ul>
+                        <li>밝기·색온도 선택, 경고등/잔광 대응</li>
+                    </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FdyT2GQ%2FbtsNDZmCQJt%2FAAAAAAAAAAAAAAAAAAAAAO-mg0XBCYO1Wr7ME2YxEloTWLbGRJn8HOLjwgwhBXDt%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3DkyXAcbWf5uD52WKywoBNiKCRLWU%253D">
+                                <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sc8ddcab3906d4e13831e0cb11501ed93Y.jpg">
                             </div>
-                            <figcaption class="title">정비 의뢰와 커뮤니케이션</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / CAR with MC https://carwithmc.tistory.com/</figcaption>
+                            <figcaption class="title">자주 묻는 질문</figcaption>
+                            <figcaption class="source">출처: BestDeal+ https://kr.bestdealplus.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 15. 데이터 활용 -->
+                <!-- 15. 부록 -->
                 <section id="data" class="section" data-index="15">
-                    <h3>15. 초보도 알 수 있는 데이터 활용</h3>
+                    <h3>15. 부록 A~D</h3>
                     <ul>
-                        <li>쏠림, 페달 감각, 노면별 개입, 경고등 타이밍 기록</li>
-                    </ul>
-                    <div class="center">
-                        <figure class="img-card center-inline">
-                            <div class="img-376">
-                                <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1000&auto=format&fit=crop">
-                            </div>
-                            <figcaption class="title">운전 로그와 데이터 기록</figcaption>
-                            <figcaption class="source">출처 : Unsplash</figcaption>
-                        </figure>
-                    </div>
-                </section>
-
-                <!-- 16. 법규 빠른 정리 -->
-                <section id="reg-quick" class="section" data-index="16">
-                    <h3>16. 초보용 법규 빠른 정리(한국)</h3>
-                    <ul>
-                        <li>라인 락 금지, 구조변경 승인, 증빙 보관, 보험/보증 사전 고지</li>
+                        <li>체크리스트 · 품질 점검표 · 플로우차트 · 사용자 안내문</li>
                     </ul>
                 </section>
 
-                <!-- 17. 입문형 체크리스트 -->
-                <section id="starter-list" class="section" data-index="17">
-                    <h3>17. 입문형 체크리스트(누구나)</h3>
-                    <ul>
-                        <li>월간 점검, 시즌 전 점검, 이상 시 요청 문구</li>
-                    </ul>
-                </section>
-
-                <!-- 18. Q&A -->
-                <section id="qa" class="section" data-index="18">
-                    <h3>18. Q&amp;A 초간단</h3>
-                    <ul>
-                        <li>ABS의 효과, 페달 진동, 브레이크액 선택, 초보의 역할</li>
-                    </ul>
-                </section>
-
-                <!-- 19. 마무리 -->
-                <section id="wrapup" class="section" data-index="19">
-                    <h3>19. 마무리: 초보의 역할도 “안전과 일관성”</h3>
-                    <ul>
-                        <li>청결·점검·기록·합법 절차로 안전성 향상</li>
-                    </ul>
-                </section>
-
-                <!-- 20. 부록 -->
-                <section id="appendix" class="section" data-index="20">
-                    <h3>20. 부록 A ~ D</h3>
-                    <ul>
-                        <li>요청 문구, 10분 점검 카드, 금지 리스트, 쉬운 포인트</li>
-                    </ul>
-                </section>
-
-                <!-- 하단 광고 시작 -->
+                <!-- 하단 광고: 변경 없음 -->
                 <section class="section ad-section">
                     <div class="center">
                         <div class="ad-card">
@@ -838,12 +792,11 @@
                         </div>
                     </div>
                 </section>
-                <!-- 하단 광고 끝 -->
             </main>
         </div>
 
         <div class="footer">
-            <div class="center">실제 작업 시 차량 서비스 매뉴얼과 국내 법규(한국교통안전공단 TS 등)를 반드시 확인하세요.</div>
+            <div class="center">작업 전 차량 정비 매뉴얼과 소켓 규격을 확인하고, 캔버스·PWM 호환 여부를 점검하세요.</div>
         </div>
     </div>
 
@@ -878,8 +831,7 @@
             if (!raw) return null;
             if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
             try {
-                const url = new URL(raw);
-                const host = url.hostname.replace('www.', '');
+                const url = new URL(raw); const host = url.hostname.replace('www.', '');
                 if (host.includes('youtu.be')) return url.pathname.slice(1);
                 if (host.includes('youtube')) {
                     if (url.pathname === '/watch') return url.searchParams.get('v');
@@ -897,40 +849,21 @@
         const btnClose = document.getElementById('videoClose');
         const errorBanner = document.getElementById('videoError');
         const openLink = document.getElementById('videoOpenLink');
-
-        function showError(originalUrl) {
-            if (!errorBanner) return;
-            openLink.href = originalUrl || '#';
-            errorBanner.style.display = 'block';
-            clearTimeout(showError._t);
-            showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
-        }
+        function showError(originalUrl) { if (!errorBanner) return; openLink.href = originalUrl || '#'; errorBanner.style.display = 'block'; clearTimeout(showError._t); showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000); }
         function openOverlay() { overlay.classList.add('active'); overlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; btnClose.focus(); }
         function closeOverlay() { overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; try { frame.src = ''; } catch (e) { } }
-
-        async function tryPlaySequence(options) {
-            const { id, start, originalUrl } = options || {};
+        async function tryPlaySequence({ id, start, originalUrl }) {
             openOverlay();
             try { frame.src = buildEmbedUrl(id, start, false, true, true); }
             catch (e1) { try { frame.src = buildEmbedUrl(id, start, true, true, true); } catch (e2) { closeOverlay(); showError(originalUrl); } }
         }
-
         document.addEventListener('click', function (e) {
-            const thumb = e.target.closest('.video-thumb');
-            if (!thumb) return;
-            e.preventDefault();
-            let id = thumb.getAttribute('data-video-id') || '';
-            let start = thumb.getAttribute('data-start') || '';
-            let originalUrl = thumb.getAttribute('data-video-url') || '';
-            if (!id && originalUrl) {
-                id = extractVideoId(originalUrl);
-                try { const u = new URL(originalUrl); start = start || u.searchParams.get('t') || u.searchParams.get('start') || ''; } catch (e) { }
-            }
+            const thumb = e.target.closest('.video-thumb'); if (!thumb) return; e.preventDefault();
+            let id = thumb.getAttribute('data-video-id') || ''; let start = thumb.getAttribute('data-start') || ''; let originalUrl = thumb.getAttribute('data-video-url') || '';
+            if (!id && originalUrl) { id = extractVideoId(originalUrl); try { const u = new URL(originalUrl); start = start || u.searchParams.get('t') || u.searchParams.get('start') || ''; } catch (e) { } }
             if (!originalUrl && id) originalUrl = `https://www.youtube.com/watch?v=${id}`;
-            if (id) { tryPlaySequence({ id, start, originalUrl }); }
-            else if (originalUrl) { showError(originalUrl); }
+            if (id) tryPlaySequence({ id, start, originalUrl }); else if (originalUrl) showError(originalUrl);
         });
-
         btnClose.addEventListener('click', closeOverlay);
         overlay.addEventListener('click', function (e) { if (e.target === overlay) closeOverlay(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay(); });
