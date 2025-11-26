@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>초보자를 위한 ABS 보조장치 | 누구나 따라 하는 안전 제동 가이드</title>
+    <title>초보자를 위한 로우다운 스프링 | 누구나 따라 하는 자세(차고) 튜닝 가이드</title>
     <style>
         :root {
             --bg: #ffffff;
@@ -263,7 +263,7 @@
             background: #fff;
             width: fit-content
         }
-        /* 이미지 컨테이너(정사각, 큰 이미지, 영상 썸네일, 광고) */
+
         .img-376, .img-576, .img-vid, .img-ad {
             overflow: hidden;
             border-radius: 6px
@@ -297,7 +297,7 @@
                 object-position: center;
                 display: block
             }
-        /* 캡션(제목/출처) */
+        /* 이미지 캡션 */
         figcaption.title {
             margin-top: 6px;
             font-weight: 700;
@@ -409,12 +409,12 @@
             font-size: 12px;
             display: none;
             z-index: 1100;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15)
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
 
             .video-error a {
                 color: #991b1b;
-                text-decoration: underline
+                text-decoration: underline;
             }
     </style>
     <link rel="icon" href="/logo_Icon.ico">
@@ -423,7 +423,7 @@
     <div class="wrap">
         <header>
             <div class="brand">
-                <h1>초보자를 위한 ABS 보조장치 · 안전 제동 가이드</h1>
+                <h1>초보자를 위한 로우다운 스프링 · 자세(차고) 튜닝 가이드</h1>
                 <span class="tag">입문용</span>
                 <span class="tag">한국 기준</span>
             </div>
@@ -448,33 +448,28 @@
         <div class="grid">
             <nav class="toc">
                 <a class="back" href="../menu01.html" aria-label="이전 페이지로">← 이전 페이지</a>
-                <h3>초보자를 위한 ABS 보조장치<br>안전 제동 가이드</h3>
+                <h3>로우다운 스프링</h3>
                 <h3>▣ 목 차 ▣</h3>
                 <ol>
                     <li><a href="#cover">표지</a></li>
-                    <li><a href="#can-do">이 가이드로 무엇을 할 수 있나요?</a></li>
-                    <li><a href="#abs-easy">아주 쉽게 이해하는 ABS</a></li>
-                    <li><a href="#safety-prep">먼저 안전! 필수 준비물과 환경</a></li>
-                    <li><a href="#terms-5">최소 개념: 용어 5개만 알면 충분</a></li>
-                    <li><a href="#checklist">바로 써먹는 초보 체크리스트</a></li>
-                    <li><a href="#legal">절대 합법/안전 가이드(한국)</a></li>
-                    <li><a href="#symptoms">고장 징후와 1차 대응</a></li>
-                    <li><a href="#maintenance">집에서 가능한 유지관리</a></li>
-                    <li><a href="#bleeding-comm">블리딩 이해와 정비소 의사소통</a></li>
-                    <li><a href="#core-principles">“초보가 알 정도” 핵심 원리</a></li>
-                    <li><a href="#test">초보 친화 테스트</a></li>
-                    <li><a href="#upgrade">중급으로 가는 문: 업그레이드의 뜻</a></li>
-                    <li><a href="#choose-pro">정비소/전문가 선택 기준</a></li>
-                    <li><a href="#troubleshoot">문제 발생 시 단계별 해결</a></li>
-                    <li><a href="#data">초보도 알 수 있는 데이터 활용</a></li>
-                    <li><a href="#reg-quick">초보용 법규 빠른 정리</a></li>
-                    <li><a href="#starter-list">입문형 체크리스트(누구나)</a></li>
-                    <li><a href="#qa">Q&amp;A 초간단</a></li>
-                    <li><a href="#wrapup">마무리: 안전과 일관성</a></li>
-                    <li><a href="#appendix">부록 A~D</a></li>
+                    <li><a href="#why">왜 로우다운인가</a></li>
+                    <li><a href="#principle">스프링/댐핑 기초</a></li>
+                    <li><a href="#types">로우다운 방식 비교</a></li>
+                    <li><a href="#spec">핵심 규격/지표</a></li>
+                    <li><a href="#law">법규·안전(한국)</a></li>
+                    <li><a href="#tools">준비물·공구·PPE</a></li>
+                    <li><a href="#sop-overview">SOP 개요</a></li>
+                    <li><a href="#sop-front">SOP A: 전륜 스프링 교체</a></li>
+                    <li><a href="#sop-rear">SOP B: 후륜 스프링 교체</a></li>
+                    <li><a href="#align">정렬: 캠버/토 조정</a></li>
+                    <li><a href="#test">도로 테스트/세팅</a></li>
+                    <li><a href="#trouble">트러블슈팅</a></li>
+                    <li><a href="#maint">유지관리·점검</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#appendix">부록</a></li>
                 </ol>
 
-                <!-- 왼쪽 메뉴 하단 광고 시작 -->
+                <!-- 왼쪽 메뉴 하단 광고 시작: 변경 없음 -->
                 <div class="banner-stack" aria-label="권장 링크 배너">
                     <a class="banner" href="https://maintec.co.kr/" target="_blank" rel="noopener">
                         <img src="https://maintec.co.kr/images/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block">
@@ -497,8 +492,8 @@
                         </div>
                     </a>
                 </div>
+                <!-- 왼쪽 메뉴 하단 광고 끝 -->
             </nav>
-            <!-- 왼쪽 메뉴 하단 광고 끝 -->
 
             <main>
                 <!-- 0. 표지 -->
@@ -506,186 +501,169 @@
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-576">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJaZX4jHLuM8ROBZw8lqtiytXlJmdxCTt4Q&s">
+                                <img src="https://cdn.011st.com/11dims/resize/376x376/quality/75/11src/product/300354895/B.jpg?122000000">
                             </div>
-                            <figcaption class="title">안전 제동을 위한 ABS 보조장치</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 탄탄이의 세상읽기 https://blog.naver.com/pst8627</figcaption>
+                            <figcaption class="title">로우다운 스프링 · 차고/자세 튜닝</figcaption>
+                            <figcaption class="source">출처 : 11번가 https://www.11st.co.kr/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 1. 무엇을 할 수 있나요 -->
-                <section id="can-do" class="section" data-index="1">
-                    <h3>01. 이 가이드로 무엇을 할 수 있나요?</h3>
-                    <div class="subtitle">초보 운전자/오너를 위한 실전 범위</div>
+                <!-- 1. 왜 로우다운 -->
+                <section id="why" class="section" data-index="1">
+                    <h3>01. 왜 로우다운인가</h3>
+                    <div class="subtitle">자세 개선 · 롤 감소 · 무게중심 하향</div>
                     <ul>
-                        <li>ABS 이해, 기본 점검, 경고등 대응, 정비소 의사소통, 합법 유지관리</li>
+                        <li>시각적 자세 향상, 코너링 롤 감소, 고속 안정성 체감</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbsMibW%2FbtszyIr9cgG%2FAAAAAAAAAAAAAAAAAAAAAM0hhAqMKOYQSJZKkgTTjj8qdkWvEtK39Yeb6nwyg7_L%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3DYJCaqeMG45WGP9jVWGspizOPmkw%253D">
+                                <img src="https://decoratex.biz/images/article/orig/2018/03/razmer-garazha-na-1-mashinu-osobennosti-raschetov-5.jpg">
                             </div>
-                            <figcaption class="title">ABS 점검과 서비스</figcaption>
-                            <figcaption class="source">출처 : Bullsone https://blog.bullsone.com</figcaption>
+                            <figcaption class="title">차고 낮춤으로 달라지는 자세</figcaption>
+                            <figcaption class="source">출처 : MyHouse https://ko.decoratex.biz/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 2. 아주 쉽게 이해하는 ABS -->
-                <section id="abs-easy" class="section" data-index="2">
-                    <h3>02. 아주 쉽게 이해하는 ABS</h3>
+                <!-- 2. 스프링/댐핑 기초 -->
+                <section id="principle" class="section" data-index="2">
+                    <h3>02. 스프링/댐핑 기초</h3>
                     <ul>
-                        <li>잠김 방지로 조향 가능성 유지 · 제동 일관성 향상</li>
+                        <li>스프링율[N/mm], 감쇠력(Rebound/Compression), 바운스/리바운스</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://ko.ml-vehicle.com/Content/uploads/2023931296/20230602233100c4c31cee3fe14d0496143f8ed54bcde8.jpg?size=800x0">
+                                <img src="https://postfiles.pstatic.net/MjAyNTAxMTBfMjE2/MDAxNzM2NTE1MjQ2NDY2.nHfRcTYCXApJW7BjK7LUbykD9Kzb-gzictooc0GPOZMg.TLGJQE2xJcW_7yFRhZShZBkCvlNem-btmm5xIH94tuMg.JPEG/image.JPEG?type=w773">
                             </div>
-                            <figcaption class="title">미끄럼 상황에서의 조향 유지</figcaption>
-                            <figcaption class="source">출처 : ML truck https://ko.ml-vehicle.com</figcaption>
+                            <figcaption class="title">스프링과 쇼크 업소버</figcaption>
+                            <figcaption class="source">출처 : 네이버 / 모토야 https://blog.naver.com/motoyard</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 3. 안전/준비물 -->
-                <section id="safety-prep" class="section" data-index="3">
-                    <h3>03. 먼저 안전! 필수 준비물과 환경</h3>
+                <!-- 3. 방식 비교 -->
+                <section id="types" class="section" data-index="3">
+                    <h3>03. 로우다운 방식 비교</h3>
                     <ul>
-                        <li>PPE, 차량 고정, 전원·화학물 안전</li>
+                        <li>다운스프링 · 코일오버 · 에어서스의 장단점 비교</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://09line.co.kr/web/product/big/202409/6091e526320fc7c6ba3b16250638ea38.jpg">
+                                <img src="https://postfiles.pstatic.net/MjAyNTAzMDdfMTA4/MDAxNzQxMjkyMzE3NDQ5.G994mtlsIF2fQAr_YhURgI2A_OKI-9Rnfl49XoJChqMg.Luiy7cj1RdLprWSFJf9xKXttWFf3IyD8ESf-Pkx1Pzkg.JPEG/image.JPEG?type=w773">
                             </div>
-                            <figcaption class="title">안전을 위한 PPE와 공구</figcaption>
-                            <figcaption class="source">출처 : 공구라인 https://09line.co.kr</figcaption>
+                            <figcaption class="title">다운스프링 vs 코일오버 vs 에어</figcaption>
+                            <figcaption class="source">출처 : 네이버 / 튜닝 이야기 https://blog.naver.com/bmautoparts</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 4. 용어 5개 -->
-                <section id="terms-5" class="section" data-index="4">
-                    <h3>04. 최소 개념: 용어 5개만 알면 충분</h3>
+                <!-- 4. 규격/지표 -->
+                <section id="spec" class="section" data-index="4">
+                    <h3>04. 핵심 규격/지표</h3>
                     <ul>
-                        <li>ABS, 휠속 센서, 라인/호스, 브레이크액, DTC</li>
+                        <li>낮춤량[mm], 스프링율, 스트로크, 범프스톱 여유, 휠하우스 간섭</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbR5izG%2Fbtsjwqgf9PH%2FAAAAAAAAAAAAAAAAAAAAAFcKExOVLnoPsbE26w5e2jPseqCCEDVxq_l3Z5u6Buba%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3D%252F3pv%252Bd6nfj5lcdma3StASRLhInY%253D">
+                                <img src="https://service.tesla.com/docs/BodyRepair/Body_Repair_Procedures/Model_S_Palladium/HTML/ko-kr/GUID-CED9267A-8370-48C3-800D-724960CA500D-online-en-US.jpg">
                             </div>
-                            <figcaption class="title">브레이크 라인과 액</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / 크림우유 https://2nstory.tistory.com</figcaption>
+                            <figcaption class="title">휠하우스 간섭/여유 확인</figcaption>
+                            <figcaption class="source">출처 : 테슬라 https://service.tesla.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 5. 체크리스트 -->
-                <section id="checklist" class="section" data-index="5">
-                    <h3>05. 바로 써먹는 초보 체크리스트</h3>
+                <!-- 5. 법규/안전 -->
+                <section id="law" class="section" data-index="5">
+                    <h3>05. 법규·안전(한국)</h3>
                     <ul>
-                        <li>경고등·이물·액량·페달 감각·누유 확인</li>
+                        <li>차고 변경 한도, 헤드라이트/범퍼 높이, 타이어/휠 간섭 금지</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyNTAxMTVfMjg5/MDAxNzM2OTIzNzYwOTA4.ggTmlnmMcuxIaHB3czfQk5AqdmQC8dsE4Z2Q1BggdrEg.G0h645Z5i02o0Unp-LYAIr0bbz0J65DE0J3blrUdhlEg.PNG/%ED%99%94%EB%A9%B4_%EC%BA%A1%EC%B2%98_2025-01-15_154832.png?type=w800">
+                                <img src="https://edgio.clien.net/F01/9839990/21292b08dd744c.png?scale=width:480">
                             </div>
-                            <figcaption class="title">대시보드 경고 확인</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 디테일러명 https://m.blog.naver.com/mk5104</figcaption>
+                            <figcaption class="title">법규 고려: 높이/간섭/등화</figcaption>
+                            <figcaption class="source">출처 : CLIen https://www.clien.net/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 6. 합법/안전 -->
-                <section id="legal" class="section" data-index="6">
-                    <h3>06. 절대 합법/안전 가이드(한국)</h3>
+                <!-- 6. 준비물/공구 -->
+                <section id="tools" class="section" data-index="6">
+                    <h3>06. 준비물·공구·PPE</h3>
                     <ul>
-                        <li>라인 락 도로 금지, 구조변경 승인, 인증 부품, 보증 영향 확인</li>
+                        <li>스프링 컴프레서, 토크 렌치, 잭 스탠드, 육각/별비트, 페인트마커</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcOp1nK%2FbtsNEMtFcTL%2FAAAAAAAAAAAAAAAAAAAAAAFTgsdP4F31AtcBSqK4bZRxW8gxtEvFLKN2K5GeGbXW%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3Dy1TJE17iBt5QPZf7wkU3mEppcZM%253D">
+                                <img src="https://s-09.com/data/item/1630/thumb-mrb1001630_a_499x499.jpg">
                             </div>
-                            <figcaption class="title">법규 준수와 증빙 보관</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / CAR with MC https://carwithmc.tistory.com/</figcaption>
+                            <figcaption class="title">서스펜션 작업 공구와 PPE</figcaption>
+                            <figcaption class="source">출처 : 에스공구 https://s-09.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 7. 고장 징후 -->
-                <section id="symptoms" class="section" data-index="7">
-                    <h3>07. 고장 징후와 1차 대응</h3>
+                <!-- 7. SOP 개요 -->
+                <section id="sop-overview" class="section" data-index="7">
+                    <h3>07. SOP 개요</h3>
                     <ul>
-                        <li>톤링·간극·커넥터 점검, 블리딩 필요 시 정비소 의뢰</li>
+                        <li>전원/안전 → 락업 → 분해 → 교체 → 토크 → 지상하차 → 정렬</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
-                            <div class="img-vid video-thumb" data-video-id="-NcBK9hnkCo" data-video-url="https://www.youtube.com/watch?v=-NcBK9hnkCo" role="button" aria-label="페달 스폰지 현상 영상 재생">
-                                <img src="https://i.ytimg.com/vi/-NcBK9hnkCo/hqdefault.jpg">
+                            <div class="img-vid video-thumb" data-video-id="dqO0H8edSbE" data-video-url="https://www.youtube.com/watch?v=dqO0H8edSbE" role="button" aria-label="로우다운 작업 영상 재생">
+                                <img src="https://i.ytimg.com/vi/dqO0H8edSbE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCQUwAJ-BUMgEnK0q3Im6eehMon2Q">
                             </div>
-                            <figcaption class="title">페달 스폰지 현상과 대응</figcaption>
-                            <figcaption class="source">출처 : YouTube 차박사TV 136회</figcaption>
+                            <figcaption class="title">로우다운 작업 개요</figcaption>
+                            <figcaption class="source">출처 : YouTube 카닷TV[자동차정비]</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 8. 유지관리 -->
-                <section id="maintenance" class="section" data-index="8">
-                    <h3>08. 집에서 가능한 유지관리(무개조)</h3>
+                <!-- 8. 전륜 SOP -->
+                <section id="sop-front" class="section" data-index="8">
+                    <h3>08. SOP A: 전륜 스프링 교체</h3>
                     <ul>
-                        <li>센서 주변 청결, 액 상태 점검, 배선 외관, 공기압/편마모 확인</li>
-                    </ul>
-                    <div class="center">
-                        <figure class="img-card center-inline">
-                            <div class="img-376">
-                                <img src="https://sc04.alicdn.com/kf/Ha1d3f21e49894d14820514ac14d005abI/278821880/Ha1d3f21e49894d14820514ac14d005abI.jpg">
-                            </div>
-                            <figcaption class="title">커넥터/배선 점검</figcaption>
-                            <figcaption class="source">출처 : 알리바바 쇼핑몰 https://korean.alibaba.com/</figcaption>
-                        </figure>
-                    </div>
-                </section>
-
-                <!-- 9. 블리딩 의사소통 -->
-                <section id="bleeding-comm" class="section" data-index="9">
-                    <h3>09. 블리딩 이해와 정비소 의사소통</h3>
-                    <ul>
-                        <li>공기 혼입 시 성능 저하 → 블리딩 필수(ABS 내부 포함)</li>
+                        <li>스트럿 탈거, 컴프레서로 스프링 탈착, 마운트/부싱 상태 점검</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://www.wikihow.com/images/thumb/a/aa/Bleed-Car-Brakes-Step-12-Version-5.jpg/v4-728px-Bleed-Car-Brakes-Step-12-Version-5.jpg.webp">
+                                <img src="https://i.namu.wiki/i/O6MxZh1GgAwufv7CoON2LSfg3KU0xcVUK3mnwqtMYjr85gwFf0jxJi4b4Sv7bSJmKp_fZ9EpASuQRpUBuyA6VauVEUW6e9hvC_ZVS8ThsvZioVQRJongA3yTCFNetWa35trZcrQpQBFHog-OZyWbXg.webp">
                             </div>
-                            <figcaption class="title">브레이크 블리딩 장비</figcaption>
-                            <figcaption class="source">출처 : wikiHow https://ko.wikihow.com/</figcaption>
+                            <figcaption class="title">전륜 스트럿/스프링 분해</figcaption>
+                            <figcaption class="source">출처 : 나무위키 https://namu.wiki/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 10. 핵심 원리 -->
-                <section id="core-principles" class="section" data-index="10">
-                    <h3>10. “초보가 알 정도” 핵심 원리</h3>
+                <!-- 9. 후륜 SOP -->
+                <section id="sop-rear" class="section" data-index="9">
+                    <h3>09. SOP B: 후륜 스프링 교체</h3>
                     <ul>
-                        <li>슬립율 유지로 최대 제동력에 근접</li>
+                        <li>링크 이완 후 스프링 탈거, 아이솔레이터/범프스톱 확인</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://postfiles.pstatic.net/MjAxNzA3MTdfNDgg/MDAxNTAwMjU2NTQ0NTgz.YleBt3FcODeZPf_wj3whc-kS5HdSifZu5zind_xQjk8g.7pC5VeuP9Fg--0xUccAmbu3raLol94KHDIY6Pp7aXK4g.PNG.happydriving/3.png?type=w966">
+                                <img src=https://img.danawa.com/prod_img/500000/338/942/img/42942338_1.jpg?_v=20250818084606&shrink=360:360">
                             </div>
-                            <figcaption class="title">노면과 타이어 접지의 이해</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 한국타이어 https://blog.naver.com/happydriving</figcaption>
+                            <figcaption class="title">후륜 코일 스프링 교체</figcaption>
+                            <figcaption class="source">출처 : 다나와 https://prod.danawa.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 중간 광고 시작 -->
+                <!-- 중간 광고: 변경 없음 -->
                 <section class="section ad-section">
                     <div class="center">
                         <div class="ad-card">
@@ -698,134 +676,96 @@
                         </div>
                     </div>
                 </section>
-                <!-- 중간 광고 끝 -->
 
-                <!-- 11. 테스트 -->
+                <!-- 10. 정렬 -->
+                <section id="align" class="section" data-index="10">
+                    <h3>10. 정렬: 캠버/토 조정</h3>
+                    <ul>
+                        <li>차고 낮춤 후 캠버/토 변화 → 얼라인먼트 필수</li>
+                    </ul>
+                    <div class="center">
+                        <figure class="img-card center-inline">
+                            <div class="img-376">
+                                <img src="https://www.launchkorea.com/child/img/sub/4/3_img1.png">
+                            </div>
+                            <figcaption class="title">정밀 얼라인먼트 세팅</figcaption>
+                            <figcaption class="source">출처 : 런치코리아(주) https://www.launchkorea.com/</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <!-- 11. 도로 테스트 -->
                 <section id="test" class="section" data-index="11">
-                    <h3>11. 초보 친화 테스트</h3>
+                    <h3>11. 도로 테스트/세팅</h3>
                     <ul>
-                        <li>안전한 장소에서 직선 제동 테스트, 경고등 동반 시 점검</li>
+                        <li>낮은 과속방지턱, 요철, 코너링, 고속 직진 안정성 점검</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
-                            <div class="img-vid video-thumb" data-video-id="bWWvN2iR4uc" data-video-url="https://www.youtube.com/watch?v=bWWvN2iR4uc" role="button" aria-label="정보 영상 재생">
-                                <img src="https://i.ytimg.com/vi/bWWvN2iR4uc/hq720.jpg">
+                            <div class="img-vid video-thumb" data-video-id="l5YPfouBkug" data-video-url="https://www.youtube.com/watch?v=l5YPfouBkug" role="button" aria-label="테스트 영상 재생">
+                                <img src="https://i.ytimg.com/vi/l5YPfouBkug/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCBrGW2UQDpAUpu5GotBfb-5dzjGg">
                             </div>
-                            <figcaption class="title">경고등의 다양한 정보</figcaption>
-                            <figcaption class="source">출처 : YouTube 수입차정비 마일레오토서비스</figcaption>
+                            <figcaption class="title">로드 테스트 체크포인트</figcaption>
+                            <figcaption class="source">출처 : YouTube 오토뷰(AutoView) - 자동차 & 타이어 구입 참고서</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 12. 업그레이드의 뜻 -->
-                <section id="upgrade" class="section" data-index="12">
-                    <h3>12. 중급으로 가는 문 : “업그레이드”의 뜻</h3>
+                <!-- 12. 트러블슈팅 -->
+                <section id="trouble" class="section" data-index="12">
+                    <h3>12. 트러블슈팅</h3>
                     <ul>
-                        <li>하드웨어/소프트웨어 모두 전문장비·법규 고려 필요</li>
-                    </ul>
-                    <div class="center">
-                        <figure class="img-card center-inline">
-                            <div class="img-376">
-                                <img src="https://www.wabco-customercentre.com/catalog/productImage/4721950180-3_tif.png">
-                            </div>
-                            <figcaption class="title">센서/밸브블록 고급화</figcaption>
-                            <figcaption class="source">출처 : AFTERMARKET https://www.wabco-customercentre.com/</figcaption>
-                        </figure>
-                    </div>
-                </section>
-
-                <!-- 13. 정비소 선택 -->
-                <section id="choose-pro" class="section" data-index="13">
-                    <h3>13. 정비소/전문가 선택 기준</h3>
-                    <ul>
-                        <li>문서화·장비·합법성·데이터 피드백</li>
+                        <li>잡소리: 토크 재점검/상단마운트/부싱 교체</li>
+                        <li>타이어 간섭: 차고/캠버/휀더 여유 확인</li>
+                        <li>승차감 저하: 스프링율/댐핑 밸런스 조정</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://postfiles.pstatic.net/MjAxOTAyMTJfMTc0/MDAxNTQ5OTMwNTQ1Mjk0.oNQV2ObnLbl12YSbUs5NEbsOBPOBaXYSsAYpBOdxtlsg.vNGcNlXroVzOBQYwmpXu94pPuYzW0ORxAvuooSuDplwg.JPEG.daesung-g3/%EB%8C%80%EC%84%B1G3.jpg?type=w966">
+                                <img src="https://www.kiasportage.net/files/attach/images/7401610/296/346/017/83e851b3e51e4eeefd58309b2627d40d.jpg">
                             </div>
-                            <figcaption class="title">전문 장비와 절차</figcaption>
-                            <figcaption class="source">출처 : 네이버 / 대성지이쓰리 https://blog.naver.com/daesung-g3</figcaption>
+                            <figcaption class="title">간섭·잡소리 해결 포인트</figcaption>
+                            <figcaption class="source">출처 : 스포넷 https://www.kiasportage.net/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 14. 단계별 해결 -->
-                <section id="troubleshoot" class="section" data-index="14">
-                    <h3>14. 문제 발생 시 단계별 해결</h3>
-                    <ol>
-                        <li><strong>증상 기록</strong> → <strong>쉬운 점검</strong> → <strong>정비 의뢰</strong> → <strong>재발 방지</strong></li>
-                    </ol>
-                    <div class="center">
-                        <figure class="img-card center-inline">
-                            <div class="img-376">
-                                <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FdyT2GQ%2FbtsNDZmCQJt%2FAAAAAAAAAAAAAAAAAAAAAO-mg0XBCYO1Wr7ME2YxEloTWLbGRJn8HOLjwgwhBXDt%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1764514799%26allow_ip%3D%26allow_referer%3D%26signature%3DkyXAcbWf5uD52WKywoBNiKCRLWU%253D">
-                            </div>
-                            <figcaption class="title">정비 의뢰와 커뮤니케이션</figcaption>
-                            <figcaption class="source">출처 : 티스토리 / CAR with MC https://carwithmc.tistory.com/</figcaption>
-                        </figure>
-                    </div>
-                </section>
-
-                <!-- 15. 데이터 활용 -->
-                <section id="data" class="section" data-index="15">
-                    <h3>15. 초보도 알 수 있는 데이터 활용</h3>
+                <!-- 13. 유지관리 -->
+                <section id="maint" class="section" data-index="13">
+                    <h3>13. 유지관리·점검</h3>
                     <ul>
-                        <li>쏠림, 페달 감각, 노면별 개입, 경고등 타이밍 기록</li>
+                        <li>주기적 토크 체크, 부싱 균열, 범프스톱/부트 상태 점검</li>
                     </ul>
                     <div class="center">
                         <figure class="img-card center-inline">
                             <div class="img-376">
-                                <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1000&auto=format&fit=crop">
+                                <img src="https://www.heydealer.com/blog/wp-content/uploads/2023/06/9.jpg">
                             </div>
-                            <figcaption class="title">운전 로그와 데이터 기록</figcaption>
-                            <figcaption class="source">출처 : Unsplash</figcaption>
+                            <figcaption class="title">정기 점검과 청결 유지</figcaption>
+                            <figcaption class="source">출처 : hey dealer blog https://www.heydealer.com/</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <!-- 16. 법규 빠른 정리 -->
-                <section id="reg-quick" class="section" data-index="16">
-                    <h3>16. 초보용 법규 빠른 정리(한국)</h3>
+                <!-- 14. FAQ -->
+                <section id="faq" class="section" data-index="14">
+                    <h3>14. FAQ</h3>
                     <ul>
-                        <li>라인 락 금지, 구조변경 승인, 증빙 보관, 보험/보증 사전 고지</li>
+                        <li>낮춤량 권장? 일상 20~35mm, 휠/타이어·지상고 고려</li>
+                        <li>스톡 쇼바와 호환? 제조사 권장 조합 확인</li>
+                        <li>검사 영향? 법규 범위 준수 시 가능</li>
                     </ul>
                 </section>
 
-                <!-- 17. 입문형 체크리스트 -->
-                <section id="starter-list" class="section" data-index="17">
-                    <h3>17. 입문형 체크리스트(누구나)</h3>
+                <!-- 15. 부록 -->
+                <section id="appendix" class="section" data-index="15">
+                    <h3>15. 부록</h3>
                     <ul>
-                        <li>월간 점검, 시즌 전 점검, 이상 시 요청 문구</li>
+                        <li>작업 토크 표, 점검 체크리스트, 얼라인 기본값 예시</li>
                     </ul>
                 </section>
 
-                <!-- 18. Q&A -->
-                <section id="qa" class="section" data-index="18">
-                    <h3>18. Q&amp;A 초간단</h3>
-                    <ul>
-                        <li>ABS의 효과, 페달 진동, 브레이크액 선택, 초보의 역할</li>
-                    </ul>
-                </section>
-
-                <!-- 19. 마무리 -->
-                <section id="wrapup" class="section" data-index="19">
-                    <h3>19. 마무리: 초보의 역할도 “안전과 일관성”</h3>
-                    <ul>
-                        <li>청결·점검·기록·합법 절차로 안전성 향상</li>
-                    </ul>
-                </section>
-
-                <!-- 20. 부록 -->
-                <section id="appendix" class="section" data-index="20">
-                    <h3>20. 부록 A ~ D</h3>
-                    <ul>
-                        <li>요청 문구, 10분 점검 카드, 금지 리스트, 쉬운 포인트</li>
-                    </ul>
-                </section>
-
-                <!-- 하단 광고 시작 -->
+                <!-- 하단 광고: 변경 없음 -->
                 <section class="section ad-section">
                     <div class="center">
                         <div class="ad-card">
@@ -838,12 +778,11 @@
                         </div>
                     </div>
                 </section>
-                <!-- 하단 광고 끝 -->
             </main>
         </div>
 
         <div class="footer">
-            <div class="center">실제 작업 시 차량 서비스 매뉴얼과 국내 법규(한국교통안전공단 TS 등)를 반드시 확인하세요.</div>
+            <div class="center">작업/검사 전 차량 매뉴얼과 국내 법규(TS 등)를 확인하고, 안전·정렬 절차를 준수하세요.</div>
         </div>
     </div>
 
@@ -865,6 +804,9 @@
     </div>
 
     <script>
+        const DEBUG_LOG = false;
+        function log() { if (DEBUG_LOG) console.log.apply(console, arguments); }
+
         function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
             if (!videoId) return null;
             const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
@@ -878,8 +820,7 @@
             if (!raw) return null;
             if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
             try {
-                const url = new URL(raw);
-                const host = url.hostname.replace('www.', '');
+                const url = new URL(raw); const host = url.hostname.replace('www.', '');
                 if (host.includes('youtu.be')) return url.pathname.slice(1);
                 if (host.includes('youtube')) {
                     if (url.pathname === '/watch') return url.searchParams.get('v');
@@ -898,39 +839,21 @@
         const errorBanner = document.getElementById('videoError');
         const openLink = document.getElementById('videoOpenLink');
 
-        function showError(originalUrl) {
-            if (!errorBanner) return;
-            openLink.href = originalUrl || '#';
-            errorBanner.style.display = 'block';
-            clearTimeout(showError._t);
-            showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
-        }
+        function showError(originalUrl) { if (!errorBanner) return; openLink.href = originalUrl || '#'; errorBanner.style.display = 'block'; clearTimeout(showError._t); showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000); }
         function openOverlay() { overlay.classList.add('active'); overlay.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; btnClose.focus(); }
         function closeOverlay() { overlay.classList.remove('active'); overlay.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; try { frame.src = ''; } catch (e) { } }
-
-        async function tryPlaySequence(options) {
-            const { id, start, originalUrl } = options || {};
+        async function tryPlaySequence({ id, start, originalUrl }) {
             openOverlay();
             try { frame.src = buildEmbedUrl(id, start, false, true, true); }
             catch (e1) { try { frame.src = buildEmbedUrl(id, start, true, true, true); } catch (e2) { closeOverlay(); showError(originalUrl); } }
         }
-
         document.addEventListener('click', function (e) {
-            const thumb = e.target.closest('.video-thumb');
-            if (!thumb) return;
-            e.preventDefault();
-            let id = thumb.getAttribute('data-video-id') || '';
-            let start = thumb.getAttribute('data-start') || '';
-            let originalUrl = thumb.getAttribute('data-video-url') || '';
-            if (!id && originalUrl) {
-                id = extractVideoId(originalUrl);
-                try { const u = new URL(originalUrl); start = start || u.searchParams.get('t') || u.searchParams.get('start') || ''; } catch (e) { }
-            }
+            const thumb = e.target.closest('.video-thumb'); if (!thumb) return; e.preventDefault();
+            let id = thumb.getAttribute('data-video-id') || ''; let start = thumb.getAttribute('data-start') || ''; let originalUrl = thumb.getAttribute('data-video-url') || '';
+            if (!id && originalUrl) { id = extractVideoId(originalUrl); try { const u = new URL(originalUrl); start = start || u.searchParams.get('t') || u.searchParams.get('start') || ''; } catch (e) { } }
             if (!originalUrl && id) originalUrl = `https://www.youtube.com/watch?v=${id}`;
-            if (id) { tryPlaySequence({ id, start, originalUrl }); }
-            else if (originalUrl) { showError(originalUrl); }
+            if (id) tryPlaySequence({ id, start, originalUrl }); else if (originalUrl) showError(originalUrl);
         });
-
         btnClose.addEventListener('click', closeOverlay);
         overlay.addEventListener('click', function (e) { if (e.target === overlay) closeOverlay(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay(); });
