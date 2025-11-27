@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>초급자 가이드 리스트</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --text: #111827;
+            --muted: #6b7280;
+            --accent: #f8fafc;
+            --primary: #2563eb;
+            --visited: #16a34a;
+            --disabled: #6b7280;
+            --accent2: #eef2ff;
+            --radius: 12px;
+            --gap: 12px;
+            --shadow: 0 8px 20px rgba(0,0,0,.06);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui,-apple-system,"Noto Sans KR",Roboto,Arial,sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8px 10px; /* 상하 살짝 축소 */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 10px; /* 버튼도 살짝 컴팩트 */
+            background: var(--accent2);
+            border: 1px solid var(--border);
+            color: #1f2937;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+            .back:focus {
+                outline: 2px solid #93c5fd;
+                outline-offset: 2px;
+            }
+
+            .back:hover {
+                filter: brightness(1.02)
+            }
+
+        h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.2px
+        }
+
+        @media (min-width:768px) {
+            .header-inner {
+                padding: 10px 14px;
+                gap: 12px
+            }
+
+            h1 {
+                font-size: 20px
+            }
+        }
+
+        .partner-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6px 12px 8px; /* 상하 축소 */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .partner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit
+        }
+
+            .partner img {
+                height: 22px;
+                width: auto;
+                object-fit: contain;
+                display: block
+            }
+
+            .partner .text-box {
+                display: flex;
+                flex-direction: column
+            }
+
+            .partner .name {
+                font-size: 12px;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.25
+            }
+
+            .partner .url {
+                font-size: 11px;
+                color: var(--muted);
+                margin: 0
+            }
+
+        @media (min-width:768px) {
+            .partner img {
+                height: 26px
+            }
+
+            .partner .name {
+                font-size: 13px
+            }
+
+            .partner .url {
+                font-size: 12px
+            }
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12px 12px 24px; /* 상하 축소 */
+            flex: 1;
+            width: 100%;
+        }
+
+        @media (min-width:768px) {
+            .wrap {
+                padding: 14px 16px 28px
+            }
+        }
+        /* 2열 카드 레이아웃 */
+        .list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px; /* gap 축소 */
+            margin-top: 10px;
+        }
+
+        @media (min-width:640px) {
+            .list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* 카드형 아이템: a 자체가 카드가 되도록 */
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* 간격 축소 */
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px; /* 패딩 축소 */
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .12s ease;
+            /* min-height 제거로 내용에 맞게 압축 */
+        }
+
+        @media (hover:hover) {
+            .item:hover {
+                border-color: #d8dee6;
+                box-shadow: var(--shadow);
+                transform: translateY(-1px)
+            }
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            justify-content: space-between;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+        /* 점도 소형화 */
+        .title {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.25; /* 약간 작게/조밀하게 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-link {
+            appearance: none;
+            border: 1px solid var(--primary);
+            background: #eef2ff;
+            color: #1e3a8a;
+            padding: 4px 8px; /* 버튼 패딩 축소 */
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+            .btn-link:hover {
+                filter: brightness(1.03);
+            }
+        /* 모바일에서 줄바꿈 시 좌측 정렬 */
+        @media (max-width:480px) {
+            .row {
+                align-items: flex-start
+            }
+
+            .right {
+                width: 100%;
+                justify-content: flex-start
+            }
+        }
+
+        .footer {
+            padding: 12px 0 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 12px
+        }
+
+        @media (min-width:768px) {
+            .footer {
+                font-size: 13px
+            }
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            background: #111827;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px; /* 토스트도 컴팩트 */
+            border: 1px solid #374151;
+            box-shadow: 0 12px 30px rgba(0,0,0,.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+            font-size: 13px;
+            font-weight: 600;
+            max-width: 92vw;
+            text-align: center;
+        }
+
+            .toast.show {
+                opacity: 1
+            }
+
+        @supports(padding: max(0px)) {
+            .toast {
+                bottom: max(20px, env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a class="back" href="menu00.html" aria-label="이전 페이지로">← 이전 페이지</a>
+            <h1>중급자 가이드 리스트</h1>
+        </div>
+        <div class="partner-inner">
+            <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+                <img src="http://www.katiagroup.or.kr/images/header/logo_new.png" alt="KATIA 로고">
+                <div class="text-box">
+                    <div class="name">Korea Auto Tuning Industry Association</div>
+                    <div class="url">www.katiagroup.or.kr</div>
+                </div>
+            </a>
+            <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+                <img src="https://www.kal.ac.kr/Files/202210/stie/20221031105706062_1_0.png" alt="KAL 로고">
+                <div class="text-box">
+                    <div class="name">KAL</div>
+                    <div class="url">www.kal.ac.kr</div>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div id="list" class="list" role="list"></div>
+        <div class="footer">모든 이동은 현재창에서 진행됩니다. 링크가 있는 메뉴만 이동합니다.</div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">현재 작업 중 입니다.</div>
+
+    <script>
+        // 제목 + 버튼만 보이며, 세로 여백을 최소화한 카드
+        const items = [
+            { id: 'ecu-mapping', title: 'ECU 맵핑', href: '중급자/ECU 맵핑.html' },
+            { id: 'reinforced-clutch', title: '강화 클러치', href: '중급자/강화 클러치.html' },
+            { id: 'tow-hitch', title: '견인고리', href: '중급자/견인고리(토_히치).html' },
+            { id: 'lightweight-wheel', title: '경량 휠', href: '중급자/경량 휠.html' },
+            { id: 'performance-air-filter', title: '고성능 에어필터', href: '중급자/고성능 에어필터.html' },
+            { id: 'highflow-catalytic-converter', title: '고성능 촉매 변환기', href: '중급자/고성능 촉매 변환기.html' },
+            { id: 'performance-tire', title: '고성능 타이어', href: '중급자/고성능 타이어.html' },
+            { id: 'downpipe', title: '다운파이프', href: '중급자/다운파이프.html' },
+            { id: 'pdr-dent-repair', title: '덴트 복원(PDR)', href: '중급자/덴트 복원(PDR).html' },
+            { id: 'racing-bucket-seat', title: '레이싱 버킷시트', href: '중급자/레이싱 버킷시트.html' },
+            { id: 'roll-cage', title: '롤케이지', href: '중급자/롤케이지.html' },
+            { id: 'bodykit-aero-parts', title: '바디 키트 · 에어로 파츠', href: '중급자/바디 키트·에어로 파츠.html' },
+            { id: 'nvh-damping', title: '방음·방진(NVH)', href: '중급자/방음·방진(NVH).html' },
+            { id: 'exhaust-manifold', title: '배기 매니폴드', href: '중급자/배기 매니폴드.html' },
+            { id: 'brake-disc-pad', title: '브레이크 디스크·패드', href: '중급자/브레이크 디스크&패드.html' },
+            { id: 'brake-caliper', title: '브레이크 캘리퍼', href: '중급자/브레이크 캘리퍼.html' },
+            { id: 'shock-spring', title: '쇼크 업소버 · 스프링', href: '중급자/쇼크 업소버·스프링.html' },
+            { id: 'supercharger', title: '수퍼차저', href: '중급자/수퍼차저.html' },
+            { id: 'steering-wheel', title: '스티어링 휠', href: '중급자/스티어링 휠.html' },
+            { id: 'steel-brake-line', title: '스틸 브레이크 라인', href: '중급자/스틸 브레이크 라인.html' },
+            { id: 'spoiler', title: '스포일러', href: '중급자/스포일러.html' },
+            { id: 'sport-muffler', title: '스포츠 머플러', href: '중급자/스포츠 머플러.html' },
+            { id: 'sport-exhaust-system', title: '스포츠 배기 시스템', href: '중급자/스포츠 배기 시스템.html' },
+            { id: 'sunroof', title: '썬루프', href: '중급자/썬루프.html' },
+            { id: 'antiroll-strut-bar', title: '안티롤 바 · 스트럿 바', href: '중급자/안티롤 바 & 스트럿 바.html' },
+            { id: 'engine-mount', title: '엔진 마운트', href: '중급자/엔진 마운트.html' },
+            { id: 'oil-catch-can', title: '오일 캐치캔', href: '중급자/오일 캐치캔.html' },
+            { id: 'oil-cooler', title: '오일 쿨러', href: '중급자/오일 쿨러.html' },
+            { id: 'advanced-tuning', title: '자동차 튜닝 심화', href: '중급자/자동차 튜닝 심화.html' },
+            { id: 'ignition-system', title: '점화 시스템', href: '중급자/점화 시스템.html' },
+            { id: 'aux-gauges', title: '추가 게이지', href: '중급자/추가 게이지.html' },
+            { id: 'turbocharger', title: '터보차저', href: '중급자/터보차저.html' },
+            { id: 'full-exhaust-system', title: '풀 배기 시스템', href: '중급자/풀 배기 시스템.html' },
+            { id: 'header-replacement', title: '헤더 교체', href: '중급자/헤더 교체.html' },
+            { id: 'hood-scoop', title: '후드 스쿠프', href: '중급자/후드 스쿠프.html' },
+            { id: 'hood-window-deflector', title: '후드 · 윈도우 디플렉터', href: '중급자/후드_윈도우 디플렉터.html' },
+            { id: 'intake-manifold', title: '흡기 매니폴드', href: '중급자/흡기 매니폴드.html' }
+        ];
+
+        const listEl = document.getElementById('list');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg = '현재 작업 중 입니다.', ms = 1200) {
+            if (!toast) return;
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(showToast._t);
+            showToast._t = setTimeout(() => toast.classList.remove('show'), ms);
+        }
+
+        function createItemCard(item) {
+            const a = document.createElement('a');
+            a.className = 'item';
+            a.href = item.href || 'javascript:void(0)';
+            a.setAttribute('role', 'listitem');
+            a.addEventListener('click', (e) => {
+                if (!item.href) {
+                    e.preventDefault();
+                    showToast('준비 중인 메뉴입니다.');
+                }
+            });
+
+            const row1 = document.createElement('div');
+            row1.className = 'row';
+
+            const left = document.createElement('div');
+            left.className = 'left';
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            const title = document.createElement('h3');
+            title.className = 'title';
+            title.textContent = item.title || '항목';
+            left.appendChild(dot);
+            left.appendChild(title);
+
+            const right = document.createElement('div');
+            right.className = 'right';
+            const btn = document.createElement('span');
+            btn.className = 'btn-link';
+            btn.textContent = '바로가기';
+            right.appendChild(btn);
+
+            row1.appendChild(left);
+            row1.appendChild(right);
+
+            a.appendChild(row1);
+            return a;
+        }
+
+        function renderList() {
+            listEl.innerHTML = '';
+            items.forEach(item => listEl.appendChild(createItemCard(item)));
+        }
+
+        renderList();
+    </script>
+</body>
+</html>

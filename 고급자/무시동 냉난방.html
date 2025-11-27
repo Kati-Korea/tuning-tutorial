@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>초보자를 위한 무시동 냉난방 | 누구나 따라 하는 캠퍼·상용차 무시동 히터/에어컨 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+    .video-error {
+      position:fixed; left:50%; top:16px; transform:translateX(-50%);
+      background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px;
+      padding:8px 12px; font-size:12px; display:none; z-index:1100;
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>초보자를 위한 무시동 냉난방 · 캠핑/상용차 가이드</h1>
+        <span class="tag">입문용</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="https://www.korea.kr/news/policyNewsView.do?newsId=148865598" target="_blank" rel="noopener" aria-label="정책브리핑">
+          <img src="https://www.korea.kr/res/img/common/logo_kr.png" alt="정책브리핑 로고">
+          <div class="text-box">
+            <div class="name">정책브리핑</div>
+            <div class="url">www.korea.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener" aria-label="TS">
+          <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" alt="TS 로고">
+          <div class="text-box">
+            <div class="name">TS 한국교통안전공단</div>
+            <div class="url">main.kotsa.or.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu03.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>초보자를 위한 무시동 냉난방<br>캠핑/상용차 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#intro">왜 무시동 냉난방인가</a></li>
+          <li><a href="#system">시스템 개요: 구성·작동·KPI</a></li>
+          <li><a href="#heater">무시동 히터 심화</a></li>
+          <li><a href="#ac">무시동 에어컨 심화</a></li>
+          <li><a href="#power">전력 시스템</a></li>
+          <li><a href="#env">열·소음·진동·방수</a></li>
+          <li><a href="#design">준비·설계 단계</a></li>
+          <li><a href="#sop-heater">시공 SOP(히터)</a></li>
+          <li><a href="#sop-ac">시공 SOP(에어컨)</a></li>
+          <li><a href="#commission">시운전·검수·인수</a></li>
+          <li><a href="#maintenance">유지관리·정비</a></li>
+          <li><a href="#tuning">연계 튜닝</a></li>
+          <li><a href="#law">법령·검사·보험/인증</a></li>
+          <li><a href="#ncs">NCS 직무역량·평가</a></li>
+          <li><a href="#labs">실습 시나리오</a></li>
+          <li><a href="#troubleshoot">트러블슈팅 사례</a></li>
+          <li><a href="#handover">고객 커뮤니케이션</a></li>
+          <li><a href="#appendix">부록 A~C</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://www.youtube.com/results?search_query=diesel+air+heater+install" target="_blank" rel="noopener">
+            <img src="https://i.ytimg.com/img/no_thumbnail.jpg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="YouTube">
+            <div class="content">
+              <p class="title">디젤 히터 설치 영상</p>
+              <p class="desc">프라이밍/배기/흡기 라우팅</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.google.com/search?q=RV+rooftop+AC+install+sealing" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/AC_unit_rooftop.jpg/320px-AC_unit_rooftop.jpg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="루프탑 AC">
+            <div class="content">
+              <p class="title">루프탑 AC 방수</p>
+              <p class="desc">루프 컷·보강·실링 팁</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.google.com/search?q=LFP+battery+DC-DC+MPPT+wiring+diagram" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lithium_iron_phosphate_battery.jpg/320px-Lithium_iron_phosphate_battery.jpg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="LFP 배터리">
+            <div class="content">
+              <p class="title">전력 시스템 배선</p>
+              <p class="desc">LFP·DC-DC·MPPT</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="캠퍼밴과 무시동 냉난방 컨셉 이미지">
+              </div>
+               <div class="ad-link">표지 · 출처: Unsplash</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="intro" class="section" data-index="1">
+          <h3>01. 왜 지금 무시동 냉난방인가</h3>
+          <div class="subtitle">엔진 OFF, 편안함 ON</div>
+          <ul>
+            <li>엔진 공회전 없이 난방/냉방 → 연료 절감, 배출가스·소음 저감, 공회전 제한 조례 리스크 회피</li>
+            <li>캠핑·차박·상용차 대기·야간 숙영·반려동물/의료 동승 환경에서 피로·위험 감소</li>
+            <li>배터리 친화 운용과 에너지 예산 기반 운영으로 일관된 쾌적성 확보</li>
+          </ul>
+        </section>
+
+        <section id="system" class="section" data-index="2">
+          <h3>02. 시스템 개요: 구성·작동·KPI</h3>
+          <ul>
+            <li><strong>히터</strong>: 본체(연소실/히트익스체인저/팬), 연료펌프·라인, 흡기/배기, 흡음/방열, 제어패널</li>
+            <li><strong>에어컨</strong>: 컴프레서·콘덴서·증발기·팽창장치, 팬, 제어모듈</li>
+            <li><strong>전력</strong>: 보조배터리(LFP/AGM), BMS, DC-DC 주행충전, MPPT 태양광, 인버터, 차단기/퓨즈/버스바, PMS</li>
+          </ul>
+          <ul>
+            <li><strong>KPI(히터)</strong>: 정격 열량[kW], 연료소비[g/h], 전류[A], 승온시간, 소음[dB(A)]</li>
+            <li><strong>KPI(에어컨)</strong>: 정격 냉량[W 또는 BTU/h], 소비전력[W], COP/EER, 기동전류, 소음, 드레인 성능</li>
+            <li><strong>KPI(전력)</strong>: 일일 에너지 예산[Wh], 충전 프로파일, SOC·SOH</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Diesel_heater_install.jpg/512px-Diesel_heater_install.jpg" alt="디젤 히터 구성 예시">
+              </div>
+              <div class="ad-link">디젤 히터 구성 · 출처: Wikimedia</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="heater" class="section" data-index="3">
+          <h3>03. 무시동 히터 심화</h3>
+          <ul>
+            <li><strong>연료식(디젤/가솔린)</strong>: 열밀도 높고 소비전력 낮아 동계 최적. 배기는 외기로 배출, 흡기는 이격 배치.</li>
+            <li><strong>전기식</strong>: 배기가스 없음·설치 단순. 대전력 소모 → LFP 대용량·고출력 DC-DC 필수, 과열/화재 보호 필요.</li>
+            <li><strong>안전</strong>: CO/NOx 차단을 위해 하부 측/후방 하향 배기관, 실내 누기 절대 금지. 연료라인은 규격 피팅·누설시험 필수.</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1517775943075-0f2f8f7b4e2a?q=80&w=800&auto=format&fit=crop" alt="하부 배기 라우팅 컨셉">
+              </div>
+              <div class="ad-link">배기 라우팅 컨셉 · 출처: Unsplash</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="ac" class="section" data-index="4">
+          <h3>04. 무시동 에어컨 심화</h3>
+          <ul>
+            <li><strong>일체형(루프탑)</strong>: 설치 간편·일체형 배수/밀폐. 루프 컷·보강·방수·하중/무게중심 검토 필요.</li>
+            <li><strong>분리형</strong>: 배치 유연·저중심 설계. 냉매 라인 제작·진공/누설시험·가스 충전 장비 필요.</li>
+            <li><strong>용량 매칭</strong>: 차내 체적·단열·일사량·탑승자/기기 발열 고려하여 냉량 산정.</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Recreational_vehicle_air_conditioner.jpg/512px-Recreational_vehicle_air_conditioner.jpg" alt="RV 루프탑 에어컨">
+              </div>
+              <div class="ad-link">루프탑 AC · 출처: Wikimedia</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="power" class="section" data-index="5">
+          <h3>05. 전력 시스템</h3>
+          <ul>
+            <li><strong>배터리</strong>: LFP(고사이클·경량·BMS 필요) vs AGM(저비용·저온충전 주의)</li>
+            <li><strong>용량 산정</strong>: 일일 소비[Wh]=Σ(부하W×시간). 권장 용량[LFP Ah]=Wh/12/0.8</li>
+            <li><strong>충전</strong>: DC-DC(차량 보호·분리 충전), 태양광 MPPT, 발전량 시뮬.</li>
+            <li><strong>분전/보호</strong>: 메인퓨즈·개별 보호, 전압강하 <3%, 스타형 접지.</li>
+            <li><strong>인버터</strong>: 정현파, 피크/지속용량과 기동전류 대응.</li>
+            <li><strong>PMS</strong>: SOC 모니터, 저전압 차단, 차단기·릴레이 인터록.</li>
+          </ul>
+        </section>
+
+        <section id="env" class="section" data-index="6">
+          <h3>06. 열·소음·진동·방수</h3>
+          <ul>
+            <li><strong>열</strong>: 배기관 이격거리 확보, 방열판/슬리브, 가연물 근접 금지.</li>
+            <li><strong>소음/진동</strong>: 펌프 고무마운트, 플렉서블 배기관, 흡음재·덕트 설계.</li>
+            <li><strong>방수/방진</strong>: 루프 관통부 실링, 드레인 S-트랩, IP 등급 커넥터.</li>
+          </ul>
+        </section>
+
+        <section id="design" class="section" data-index="7">
+          <h3>07. 준비·설계 단계</h3>
+          <ul>
+            <li>부하/열량 계산, 설비 배치 도면, 관통부 강화(프레임/리브 회피)</li>
+            <li>부품 스펙시트: 호스/피팅 규격, 케이블 게이지, 퓨즈 선택표, 방수등급</li>
+            <li>위험분석(HAZOP): 화재, CO, 누설, 쇼트, 침수 시 대책</li>
+          </ul>
+        </section>
+
+        <section id="sop-heater" class="section" data-index="8">
+          <h3>08. 시공 SOP(히터)</h3>
+          <ol>
+            <li>작업 안전: 연료 증기 환기, 소화기, 배터리 분리</li>
+            <li>위치 선정·템플릿 마킹, 하부 관통 드릴링</li>
+            <li>본체 고정·가스켓·실링, 흡기/배기 배치(하향·차폭내)</li>
+            <li>연료 라인: 탱크 피딩·필터·펌프 방향성·동고·클램프</li>
+            <li>전원: 메인퓨즈→릴레이→히터, 제어패널 배선</li>
+            <li>시동·초기화: 프라이밍, 연소 안정화, 누기·CO 측정</li>
+            <li>문서화: 토크·배관·전기 사진, 체크리스트</li>
+          </ol>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-vid video-thumb" data-video-id="y9Yv1Yt5pK8" role="button" aria-label="디젤 히터 프라이밍 영상 재생">
+                <img src="https://i.ytimg.com/vi/y9Yv1Yt5pK8/hqdefault.jpg" alt="디젤 히터 프라이밍 썸네일">
+              </div>
+               <div class="ad-link">프라이밍 예시 · 출처: YouTube</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="sop-ac" class="section" data-index="9">
+          <h3>09. 시공 SOP(에어컨)</h3>
+          <ol>
+            <li>레이아웃·하중 검토</li>
+            <li>루프 컷(일체형): 마스킹→컷→프라이머→보강→실링</li>
+            <li>분리형: 실내/실외기 브라켓, 진동 아이솔레이터</li>
+            <li>배관/배선: 냉매 라인 플레어/브레이징, 진공/누설시험, 드레인 경사</li>
+            <li>전기: 전원 케이블 굵기, 메인퓨즈·차단기, 인버터/직결</li>
+            <li>시운전: 과열/결빙, 소음/진동, 누수/결로 점검</li>
+            <li>문서화: 냉매량·진공/누설 기록, 소음 측정</li>
+          </ol>
+        </section>
+
+        <section id="commission" class="section" data-index="10">
+          <h3>10. 시운전·검수·인수</h3>
+          <ul>
+            <li><strong>성능</strong>: 히터 승온 속도/전류, 에어컨 냉각 속도/소비전력, COP/EER</li>
+            <li><strong>안전</strong>: 실내 CO 0 ppm, 배기 누기 0, 누유/누수 0, 케이블 온도 상승 허용치 이내</li>
+            <li><strong>소음</strong>: 실내/외 dB, 펌프·팬 소음 관리</li>
+            <li><strong>문서</strong>: 회로도, 토크표, 사진 10컷+, 시운전 로그, 인수서</li>
+          </ul>
+        </section>
+
+        <section id="maintenance" class="section" data-index="11">
+          <h3>11. 유지관리·정비</h3>
+          <ul>
+            <li><strong>히터</strong>: 연료필터·버너 카본 청소, 흡기 필터, 배기관 부식 점검</li>
+            <li><strong>에어컨</strong>: 필터 청소, 콘덴서/증발기 세척, 냉매 압력/누설 점검</li>
+            <li><strong>전력</strong>: 배터리 SOC·내저항, 단자 토크·부식, 펌웨어 점검</li>
+            <li><strong>보증/주기</strong>: 사용시간 로깅, 소모품 스케줄 준수</li>
+          </ul>
+        </section>
+
+        <section id="tuning" class="section" data-index="12">
+          <h3>12. 연계 튜닝</h3>
+          <ul>
+            <li>태양광: 루프패널·랙 통합, MPPT 매칭, 케이블 루팅, 발전량 예측</li>
+            <li>주행충전: 고출력 DC-DC(발전기 보호), 열관리</li>
+            <li>단열/차광: 열부하 저감 → 필요한 냉/난방 용량·소비 전력 감소</li>
+            <li>소음 저감: 펌프/배기 흡음, 방진 마운트</li>
+          </ul>
+        </section>
+
+        <section id="law" class="section" data-index="13">
+          <h3>13. 법령·검사·보험/인증(한국)</h3>
+          <ul>
+            <li><strong>튜닝 분류</strong>: 무시동 히터/에어컨은 통상 ‘경미한 튜닝’. 단, 루프 컷·구조보강·배기관 외부 배출 구조는 안전기준 적합 필요.</li>
+            <li><strong>전기·KC</strong>: 12/24V 장치 KC 적합성, 전선/퓨즈 규격 준수</li>
+            <li><strong>소음/주차</strong>: 야간 소음 민원 예방, 캠핑장 규정 준수</li>
+            <li><strong>검사/서류</strong>: 시공 사진, 전기/배기 도면, 부품 사양서, 인증서, 점검표</li>
+            <li><strong>보험/책임</strong>: 화재·중독 사고 대비, 사전 고지·작업 증빙·정기 점검 기록</li>
+          </ul>
+          <div class="callout">참고: “자동차 튜닝에 관한 규정(국토교통부)”, 지자체 공회전 제한 조례, KC/전기안전 관련 법령 확인</div>
+        </section>
+
+        <section id="ncs" class="section" data-index="14">
+          <h3>14. NCS 기반 직무역량·평가</h3>
+          <ul>
+            <li>요구분석·설계: 부하·열량·전력예산, 배치/관통, 위험분석</li>
+            <li>전력시스템 구축: 배터리/BMS, DC-DC/MPPT/인버터, 분전/보호</li>
+            <li>히터/에어컨 시공: 연료·배기·흡기/냉매·드레인, 장착·실링</li>
+            <li>시운전·검수·문서화: 성능/안전 시험, 인수서 패키지</li>
+            <li>법규·고객안내: 기준 준수, 보험/책임, 유지관리 교육</li>
+          </ul>
+          <ul>
+            <li>전선 굵기/퓨즈 100% 적합, 전압강하 <3%</li>
+            <li>실내 CO 0 ppm, 누유/누수 0, 절연저항 합격</li>
+            <li>히터 승온/에어컨 냉각 목표치 ±10% 이내</li>
+            <li>문서화 100%(회로·토크·사진·로그·서명)</li>
+          </ul>
+        </section>
+
+        <section id="labs" class="section" data-index="15">
+          <h3>15. 실습 시나리오(예시)</h3>
+          <ul>
+            <li>실습 A: 2kW 연료식 히터 장착(4시간) → 관통·배기/흡기·연료 라우팅·CO 0</li>
+            <li>실습 B: 12V 루프탑 에어컨 설치(6시간) → 루프컷/보강/실링, 드레인 설계</li>
+            <li>실습 C: 분리형 AC 진공·누설시험(3시간) → -1 bar 30분 유지, 누설 0</li>
+            <li>실습 D: 전력 패키지(200Ah LFP+40A DC-DC+300W 태양광)(6시간) → 배선/보호/설정</li>
+            <li>실습 E: 트러블슈팅 챌린지(2시간) → 시동불량·결로 누수·전압강하 진단</li>
+          </ul>
+        </section>
+
+        <section id="troubleshoot" class="section" data-index="16">
+          <h3>16. 트러블슈팅 사례</h3>
+          <ul>
+            <li>히터 꺼짐/미점화: 연료 공기혼입·펌프 극성·배기 역풍 → 라인 재정렬·역류방지·프라이밍</li>
+            <li>연소 냄새/CO: 실링 불량·흡기 재순환 → 실링 재시공·흡기 위치 변경</li>
+            <li>펌프 딸깍 소음: 고정 불량·공명 → 아이솔레이터·흡음재</li>
+            <li>에어컨 냉방 약함: 일사/단열 부족·냉매 부족 → 차광·단열·충전</li>
+            <li>결로/누수: 드레인 경사/막힘 → 경사 재설계·청소</li>
+            <li>전력 부족: 인버터 피크·케이블 과소·전압강하 → 굵기 상향·배선 재시공</li>
+          </ul>
+        </section>
+
+        <section id="handover" class="section" data-index="17">
+          <h3>17. 고객 커뮤니케이션·문서</h3>
+          <ul>
+            <li><strong>안전</strong>: CO 경보기 점검, 환기 원칙, 연료/배기 주의, 야간 소음 매너</li>
+            <li><strong>운용</strong>: 히터 예열/후열, 필터 청소, 에너지 예산 계산</li>
+            <li><strong>보증</strong>: 소모품·설치부 보증 조건, 정기점검 주기</li>
+            <li><strong>문서 패키지</strong>: 회로/배치도, 부품 스펙, 시운전 로그, 유지관리 카드, 법적 안내문, 사진 12컷+</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="section" data-index="18">
+          <h3>18. 부록 A ~ C</h3>
+          <ul>
+            <li><strong>부록 A</strong> 체크리스트/로그/양식:
+              <ul>
+                <li>배선 굵기/퓨즈 표, 관통부 실링 체크, 냉매 진공/누설 기록지, 성능 로그, CO·소음 측정표, 인수증</li>
+              </ul>
+            </li>
+            <li><strong>부록 B</strong> 권장 부품 스펙/참고 키워드:
+              <ul>
+                <li>“diesel air heater installation under van”, “RV rooftop AC install sealing”</li>
+                <li>“LFP battery DC-DC MPPT wiring diagram”, “van solar panel MPPT wiring”</li>
+              </ul>
+            </li>
+            <li><strong>부록 C</strong> 용어집·FAQ:
+              <ul>
+                <li>용어: LFP, AGM, BMS, DC-DC, MPPT, COP/EER, SOC/SOH, 프라이밍, 드레인, 버스바, 전압강하</li>
+                <li>FAQ: “배기관 끝단 위치?” → 하부 측/후방 하향·객실/흡기/연료·전장과 충분 이격</li>
+                <li>FAQ: “200Ah로 여름 밤 AC 몇 시간?” → 냉방부하·EER에 따라 다름(예: 600W 소비 기준 에너지 예산 참조)</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://www.google.com/search?q=diesel+heater+kit" target="_blank" rel="noopener" aria-label="히터 키트 검색">
+                <div class="img-ad">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Diesel_air_heater_kit.jpg/512px-Diesel_air_heater_kit.jpg" alt="디젤 히터 키트">
+                </div>
+              </a>
+              <div class="ad-link">디젤 히터 키트 · 출처: Wikimedia</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">실제 작업 시 차량 서비스 매뉴얼과 국내 법규(교통안전공단 TS, KC 등)를 반드시 확인하세요.</div>
+    </div>
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0',
+        modestbranding: '1',
+        playsinline: String(playsinline),
+        controls: String(controls),
+        enablejsapi: '1',
+        origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+
+    let lastVideoId = null;
+    let lastStart = null;
+    let lastOriginalUrl = null;
+    let useNoCookieGlobal = false;
+    let player = null;
+    let lastFocused = null;
+
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || (lastVideoId ? `https://www.youtube.com/watch?v=${lastVideoId}` : '#');
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+
+    function trapFocus(e) {
+      if (!overlay.classList.contains('active')) return;
+      const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
+    function openOverlay() {
+      lastFocused = document.activeElement;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      document.addEventListener('keydown', trapFocus);
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', trapFocus);
+      try { if (player && player.destroy) player.destroy(); } catch(e){}
+      player = null;
+      frame.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    let YTReady = false;
+    let YTLoading = false;
+    const onYouTubeIframeAPIReadyCallbacks = [];
+    function loadYouTubeAPI() {
+      if (YTReady || YTLoading) return;
+      YTLoading = true;
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.async = true;
+      document.head.appendChild(tag);
+      window.onYouTubeIframeAPIReady = function() {
+        YTReady = true;
+        YTLoading = false;
+        onYouTubeIframeAPIReadyCallbacks.splice(0).forEach(cb => cb());
+      };
+    }
+    function whenYTReady(cb) {
+      if (YTReady && window.YT && window.YT.Player) cb();
+      else onYouTubeIframeAPIReadyCallbacks.push(cb);
+    }
+
+    function createPlayer(videoId, start, useNoCookie, autoplay = true, muted = true) {
+      frame.src = buildEmbedUrl(videoId, start, useNoCookie, autoplay, muted);
+      loadYouTubeAPI();
+      return new Promise((resolve, reject) => {
+        whenYTReady(() => {
+          try {
+            player = new YT.Player('videoFrame', {
+              events: {
+                'onReady': (e) => {
+                  try {
+                    if (muted && e.target.mute) e.target.mute();
+                    if (start && e.target.seekTo) {
+                      const s = parseInt(String(start).replace('s',''), 10);
+                      if (!Number.isNaN(s)) e.target.seekTo(s, true);
+                    }
+                    if (autoplay) {
+                      const st = e.target.playVideo && e.target.playVideo();
+                      if (st && typeof st.then === 'function') {
+                        st.then(() => resolve('played')).catch(err => reject(err));
+                      } else {
+                        setTimeout(() => resolve('played'), 300);
+                      }
+                    } else {
+                      resolve('ready');
+                    }
+                  } catch(err) {
+                    reject(err);
+                  }
+                },
+                'onError': (ev) => {
+                  reject(new Error('YT Player Error: ' + (ev && ev.data)));
+                },
+              }
+            });
+          } catch (err) {
+            reject(err);
+          }
+        });
+      });
+    }
+
+    async function tryPlaySequence(options) {
+      const { id, start, originalUrl } = options || {};
+      lastVideoId = id;
+      lastStart = start;
+      lastOriginalUrl = originalUrl;
+
+      openOverlay();
+
+      try {
+        useNoCookieGlobal = false;
+        await createPlayer(id, start, false, true, true);
+        return;
+      } catch (e1) {
+        try {
+          useNoCookieGlobal = true;
+          await createPlayer(id, start, true, true, true);
+          return;
+        } catch (e2) {
+          closeOverlay();
+          showError(originalUrl || (id ? `https://www.youtube.com/watch?v=${id}` : '#'));
+        }
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('.video-thumb');
+      if (t) {
+        const raw = t.getAttribute('data-video-id');
+        const id = extractVideoId(raw);
+        const start = t.getAttribute('data-start') || null;
+        tryPlaySequence({ id, start, originalUrl: raw });
+      }
+    });
+
+    btnClose && btnClose.addEventListener('click', closeOverlay);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay();
+    });
+  </script>
+</body>
+</html>

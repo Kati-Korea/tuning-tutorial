@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>고급자를 위한 고성능 점화 시스템 | 원리·설계·설치·검증 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+    .video-error {
+      position:fixed; left:50%; top:16px; transform:translateX(-50%);
+      background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px;
+      padding:8px 12px; font-size:12px; display:none; z-index:1100;
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>고성능 점화 시스템 · 원리·설계·설치·검증 가이드</h1>
+        <span class="tag">고급</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="../image/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="../image/kal_logo.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu03.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>고성능 점화 시스템(고급)<br>원리·설계·설치·검증 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#intro">서문·학습 목표</a></li>
+          <li><a href="#ncs">NCS 직무정의(개요)</a></li>
+          <li><a href="#physics">점화의 물리</a></li>
+          <li><a href="#system">시스템 구성(코일·플러그·ECU)</a></li>
+          <li><a href="#coil">코일 설계 파라미터</a></li>
+          <li><a href="#plug">플러그 기술</a></li>
+          <li><a href="#modes">점화 모드(CDI/TCI)</a></li>
+          <li><a href="#mixture">연료·공기와 점화</a></li>
+          <li><a href="#ncs-pre">NCS-사전평가</a></li>
+          <li><a href="#ncs-design-target">NCS-설계(목표값)</a></li>
+          <li><a href="#ncs-design-hw">NCS-설계(하드웨어)</a></li>
+          <li><a href="#emc">EMC/차폐·접지</a></li>
+          <li><a href="#install">설치 SOP·배선·Dwell 튜닝</a></li>
+          <li><a href="#validation">검증·로깅(에너지·오실로스코프)</a></li>
+          <li><a href="#law">법령·검사·보험/보증</a></li>
+          <li><a href="#troubleshoot">트러블슈팅</a></li>
+          <li><a href="#qa">Q&A 초간단</a></li>
+          <li><a href="#appendix">부록 A~D</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://www.youtube.com/results?search_query=ignition+system+coil+plug+spark+energy+dwell+oscilloscope" target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=400&auto=format&fit=crop" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="점화 시스템 개요">
+            <div class="content">
+              <p class="title">개념 영상</p>
+              <p class="desc">코일/플러그/드웰</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.youtube.com/results?search_query=ignition+coil+design+inductance+turns+saturation+testing" target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1588774069162-5a6f0bbefbd6?q=80&w=400&auto=format&fit=crop" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="코일 설계">
+            <div class="content">
+              <p class="title">코일 설계</p>
+              <p class="desc">인덕턴스·포화</p>
+            </div>
+          </a>
+          <a class="banner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener">
+            <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="TS한국교통안전공단 로고">
+            <div class="content">
+              <p class="title">TS한국교통안전공단</p>
+              <p class="desc">검사·안전·튜닝</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://images.unsplash.com/photo-1520617671782-c1c5a40a3a45?q=80&w=1200&auto=format&fit=crop" alt="점화 시스템 표지 이미지">
+              </div>
+              <div class="ad-link">표지 · 예시 이미지(Unsplash)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="intro" class="section" data-index="1">
+          <h3>01. 서문·학습 목표</h3>
+          <div class="subtitle">점화 시스템의 본질 — 연소 시작을 지배하는 기술</div>
+          <ul>
+            <li>핵심 가치: 점화 에너지·재현성·내구·EMC</li>
+            <li>학습 목표: 물리→구성→설계/검증·법규</li>
+            <li>로드맵: 목표 에너지/드웰→코일/플러그 선정→오실로스코프 검증</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1000&auto=format&fit=crop" alt="서문·목표">
+              </div>
+              <div class="ad-link">ignition spark energy dwell oscilloscope(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="ncs" class="section" data-index="2">
+          <h3>02. NCS 직무정의(개요)</h3>
+          <ul>
+            <li>상담/진단: 차량·연료·용도·법규/보험</li>
+            <li>작업 계획: 코일/플러그/드라이버·하네스/차폐</li>
+            <li>품질관리: 미스파이어·EMI/노이즈·리포트</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1556229162-5c63ed9c5403?q=80&w=1000&auto=format&fit=crop" alt="직무 흐름">
+              </div>
+              <div class="ad-link">ignition workflow checklist qc(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="physics" class="section" data-index="3">
+          <h3>03. 점화의 물리</h3>
+          <ul>
+            <li>스파크 플라즈마·이온화·화염 전파</li>
+            <li>점화 에너지·갭 브레이크다운 전압</li>
+            <li>사이드 이그니션·멀티플 스파크 효과</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1511910849309-0dffb8785146?q=80&w=1000&auto=format&fit=crop" alt="점화의 물리">
+              </div>
+              <div class="ad-link">spark plasma ionization flame speed(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="system" class="section" data-index="4">
+          <h3>04. 시스템 구성(코일·플러그·점화 드라이버·ECU·하네스)</h3>
+          <ul>
+            <li>코일 온플러그(COP)·와이어드·레일형</li>
+            <li>점화 드라이버(IGBT/MOSFET)·게이트 구동</li>
+            <li>ECU 트리거·캠/크랭크 싱크·하네스/커넥터</li>
+          </ul>
+        </section>
+
+        <section id="coil" class="section" data-index="5">
+          <h3>05. 코일 설계 파라미터</h3>
+          <ul>
+            <li>인덕턴스·턴수·자속·포화 전류</li>
+            <li>저항·충전(드웰)·방전 에너지</li>
+            <li>열/진동 내구·수지 포팅·절연</li>
+          </ul>
+        </section>
+
+        <section id="plug" class="section" data-index="6">
+          <h3>06. 플러그 기술</h3>
+          <ul>
+            <li>열가 선정·전극 재질(니켈/이리듐/백금)</li>
+            <li>갭·레이저 용접 전극·멀티 그라운드</li>
+            <li>오염/침적·열범위·수명/교환 주기</li>
+          </ul>
+        </section>
+
+        <section id="modes" class="section" data-index="7">
+          <h3>07. 점화 모드: CDI vs TCI, 멀티스파크, 이온 센싱</h3>
+          <ul>
+            <li>CDI: 고전압·짧은 스파크·고 rpm 대응</li>
+            <li>TCI: 에너지 크고 지속·저중속 안정</li>
+            <li>이온 센싱: 연소 검출·실화 진단</li>
+          </ul>
+        </section>
+
+        <section id="mixture" class="section" data-index="8">
+          <h3>08. 연료·공기와 점화</h3>
+          <ul>
+            <li>AFR·EGR·압축비·연소실 형상</li>
+            <li>난점화 조건(저온·희박·고EGR·부스트)</li>
+            <li>점화 타이밍·스파크 위치·점화 에너지 전략</li>
+          </ul>
+        </section>
+
+        <section id="ncs-pre" class="section" data-index="9">
+          <h3>09. NCS-사전평가</h3>
+          <ul>
+            <li>차량/연료/용도·법규/보험·보증 리스크</li>
+            <li>발전기 용량·배선 경로·접지/퓨즈</li>
+            <li>문서화: 인증·사진/로그·위험 매트릭스</li>
+          </ul>
+        </section>
+
+        <section id="ncs-design-target" class="section" data-index="10">
+          <h3>10. NCS-설계(목표값)</h3>
+          <ul>
+            <li>점화 에너지·드웰·스파크 지속 시간</li>
+            <li>부스트/연료별 타이밍 맵·코일 전류 한계</li>
+            <li>EMC 한계·노이즈 버짓·보호 전략</li>
+          </ul>
+        </section>
+
+        <section id="ncs-design-hw" class="section" data-index="11">
+          <h3>11. NCS-설계(하드웨어)</h3>
+          <ul>
+            <li>코일/플러그/드라이버·차폐/트위스트 페어</li>
+            <li>커넥터/핀아웃·내열/방수·배선 클립</li>
+            <li>발열/방열·진동·패키징</li>
+          </ul>
+        </section>
+
+        <section id="emc" class="section" data-index="12">
+          <h3>12. EMC/차폐·접지</h3>
+          <ul>
+            <li>차폐 케이블·스타 접지·바디/엔진 본딩</li>
+            <li>스나버/TVS·EMI 필터·레이아웃</li>
+            <li>노이즈 소스 분리·센서 보호</li>
+          </ul>
+        </section>
+
+        <section id="install" class="section" data-index="13">
+          <h3>13. 설치 SOP·배선·Dwell 튜닝</h3>
+          <ul>
+            <li>하네스 제작·전원/접지·차종별 핀아웃</li>
+            <li>오실로스코프 기반 드웰 최적화</li>
+            <li>초기 시동·DTC 확인·열/진동 체크</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-vid video-thumb" data-video-id="" role="button" aria-label="점화 시스템 설치/드웰 튜닝 영상 재생">
+                <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1000&auto=format&fit=crop" alt="설치 SOP">
+              </div>
+              <div class="ad-link">ignition dwell tuning oscilloscope wiring(영상 키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="validation" class="section" data-index="14">
+          <h3>14. 검증·로깅(에너지·오실로스코프)</h3>
+          <ul>
+            <li>1차 전류·2차 전압/스파크 파형</li>
+            <li>멀티스파크 간격/지속·실화율 로깅</li>
+            <li>연료/부스트/온도 조건별 재현성</li>
+          </ul>
+        </section>
+
+        <section id="law" class="section" data-index="15">
+          <h3>15. 법령·검사·보험/보증</h3>
+          <ul>
+            <li>구조변경·전자파 적합성·안전 규격</li>
+            <li>보험/보증 영향·고지/동의·책임 범위</li>
+            <li>문서화: 부품 인증·토크·사진/로그</li>
+          </ul>
+        </section>
+
+        <section id="troubleshoot" class="section" data-index="16">
+          <h3>16. 트러블슈팅</h3>
+          <ul>
+            <li>실화/버벅임: 갭·드웰·코일 포화/절연</li>
+            <li>EMI 간섭: 차폐/접지·레이아웃·필터</li>
+            <li>고온/내구: 오버히트·수지 균열·진동</li>
+          </ul>
+        </section>
+
+        <section id="qa" class="section" data-index="17">
+          <h3>17. Q&A 초간단</h3>
+          <ul>
+            <li><strong>Q. CDI가 항상 더 좋은가?</strong> — A. 고회전/저부하엔 유리하나 저회전 연비/정숙성은 TCI가 유리.</li>
+            <li><strong>Q. 플러그 갭 확대 효과?</strong> — A. 에너지 충분·브레이크다운 전압 확보 시 연소 안정↑, 반대면 실화↑.</li>
+            <li><strong>Q. 드웰 얼마로?</strong> — A. 코일 포화전류·전압·온도 고려, 오실로스코프로 전류 리플·포화 시점 확인.</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="section" data-index="18">
+          <h3>18. 부록 A~D</h3>
+          <ul>
+            <li><strong>부록 A</strong> 설계 체크리스트(에너지·드웰·차폐·배선)</li>
+            <li><strong>부록 B</strong> QA 점검표: 파형/실화율/EMI/열</li>
+            <li><strong>부록 C</strong> 트러블슈팅 플로우(증상→원인→대책)</li>
+            <li><strong>부록 D</strong> 고객 안내문: 점검 주기·플러그 교환·EMC 주의</li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://www.youtube.com/results?search_query=ignition+oscilloscope+primary+current+secondary+voltage+dwell+tuning+misfire" target="_blank" rel="noopener" aria-label="점화 시스템 설계·검증 참고">
+                <div class="img-ad">
+                  <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop" alt="점화 시스템 배너">
+                </div>
+              </a>
+              <div class="ad-link">오실로스코프 로깅·실화 진단 · 참고 영상</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">점화 시스템 튜닝은 에너지·재현성·EMC·법규의 균형입니다. 정확한 설계/설치와 데이터 기반 검증, 고객 고지/문서화를 지키세요.</div>
+    </div>
+
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0',
+        modestbranding: '1',
+        playsinline: String(playsinline),
+        controls: String(controls),
+        enablejsapi: '1',
+        origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || '#';
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+
+    function openOverlay() {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      try { frame.src = ''; } catch(e){}
+    }
+
+    async function tryPlaySequence(options) {
+      const { id, start, originalUrl } = options || {};
+      openOverlay();
+      try {
+        frame.src = buildEmbedUrl(id, start, false, true, true);
+      } catch (e1) {
+        try {
+          frame.src = buildEmbedUrl(id, start, true, true, true);
+        } catch (e2) {
+          closeOverlay();
+          showError(originalUrl);
+        }
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      const thumb = e.target.closest('.video-thumb');
+      if (!thumb) return;
+      e.preventDefault();
+
+      let id = thumb.getAttribute('data-video-id') || '';
+      let start = thumb.getAttribute('data-start') || '';
+      let originalUrl = thumb.getAttribute('data-video-url') || '';
+
+      if (!id && originalUrl) {
+        id = extractVideoId(originalUrl);
+        try {
+          const u = new URL(originalUrl);
+          start = start || u.searchParams.get('t') || u.searchParams.get('start') || '';
+        } catch(e){}
+      }
+      if (!originalUrl && id) originalUrl = `https://www.youtube.com/watch?v=${id}`;
+
+      if (id) {
+        tryPlaySequence({ id, start, originalUrl });
+      } else if (originalUrl) {
+        showError(originalUrl);
+      }
+    });
+
+    btnClose.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeOverlay();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay();
+    });
+  </script>
+</body>
+</html>

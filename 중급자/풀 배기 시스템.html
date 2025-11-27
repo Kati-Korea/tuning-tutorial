@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>중급자를 위한 풀 배기 시스템 | 원리·설계·설치·검증 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+    .video-error {
+      position:fixed; left:50%; top:16px; transform:translateX(-50%);
+      background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px;
+      padding:8px 12px; font-size:12px; display:none; z-index:1100;
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>중급자를 위한 풀 배기 시스템 · 원리·설계·설치·검증 가이드</h1>
+        <span class="tag">중급</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="../image/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="../image/kal_logo.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu02.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>풀 배기 시스템<br>원리·설계·설치·검증 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#intro">서문·학습 목표</a></li>
+          <li><a href="#ncs">NCS 직무 정의</a></li>
+          <li><a href="#physics">배기 유동의 물리</a></li>
+          <li><a href="#components">시스템 구성요소</a></li>
+          <li><a href="#design">파이프 설계·맥동/공명</a></li>
+          <li><a href="#nvh">소음·NVH·사운드 튜닝</a></li>
+          <li><a href="#install">설치 SOP·용접·간섭</a></li>
+          <li><a href="#validation">검증·로깅(배압·온도·유속)</a></li>
+          <li><a href="#law">법령·검사·배출/소음</a></li>
+          <li><a href="#troubleshoot">트러블슈팅</a></li>
+          <li><a href="#qa">Q&A 초간단</a></li>
+          <li><a href="#appendix">부록 A~D</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://www.youtube.com/results?search_query=exhaust+system+design+backpressure+resonance+header" target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=400&auto=format&fit=crop" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="배기 시스템 개요">
+            <div class="content">
+              <p class="title">개념 영상</p>
+              <p class="desc">배압·공명</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.youtube.com/results?search_query=exhaust+welding+mandrel+bend+hanger+fitment+sound" target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1588774069162-5a6f0bbefbd6?q=80&w=400&auto=format&fit=crop" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="설치/용접">
+            <div class="content">
+              <p class="title">설치/용접</p>
+              <p class="desc">만드렐 벤드·행거</p>
+            </div>
+          </a>
+          <a class="banner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener">
+            <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="TS한국교통안전공단 로고">
+            <div class="content">
+              <p class="title">TS한국교통안전공단</p>
+              <p class="desc">검사·안전·튜닝</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://images.unsplash.com/photo-1609171192417-827f9acbd2fe?q=80&w=1200&auto=format&fit=crop" alt="풀 배기 시스템 표지 이미지">
+              </div>
+              <div class="ad-link">표지 · 예시 이미지(Unsplash)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="intro" class="section" data-index="1">
+          <h3>01. 서문·학습 목표</h3>
+          <div class="subtitle">최적화된 배기 흐름으로 완성되는 퍼포먼스와 사운드</div>
+          <ul>
+            <li>핵심 가치: 성능·법규·사운드·내구의 균형</li>
+            <li>학습 목표: 유동 물리→설계→설치/검증·법규</li>
+            <li>로드맵: 배압 관리→공명/사운드 설계→로깅</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1000&auto=format&fit=crop" alt="서문·목표">
+              </div>
+              <div class="ad-link">exhaust performance sound compliance(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="ncs" class="section" data-index="2">
+          <h3>02. NCS 관점의 직무 정의</h3>
+          <ul>
+            <li>상담/진단: 소음 목표·배압·차종/운용</li>
+            <li>작업 계획: 지름/재질·머플러/레조·행거</li>
+            <li>품질관리: 간섭·누기·사운드·로그/리포트</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1556229162-5c63ed9c5403?q=80&w=1000&auto=format&fit=crop" alt="직무 흐름">
+              </div>
+              <div class="ad-link">exhaust workflow checklist qc(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="physics" class="section" data-index="3">
+          <h3>03. 배기 유동의 물리</h3>
+          <ul>
+            <li>배압·유속·맥동·공명·파동 튜닝</li>
+            <li>집배기/배기관 길이·지름·벤드 영향</li>
+            <li>촉매·DPF/OPF의 저항과 온도</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1511910849309-0dffb8785146?q=80&w=1000&auto=format&fit=crop" alt="배기 유동의 물리">
+              </div>
+              <div class="ad-link">backpressure resonance pulse wave tuning(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="components" class="section" data-index="4">
+          <h3>04. 시스템 구성요소</h3>
+          <ul>
+            <li>헤더/매니폴드·캐트·중통·레조·엔드</li>
+            <li>밸브드 머플러·액티브 사운드·플랩</li>
+            <li>재질: 304/409/티타늄·단열/행거</li>
+          </ul>
+        </section>
+
+        <section id="design" class="section" data-index="5">
+          <h3>05. 파이프 설계·맥동/공명</h3>
+          <ul>
+            <li>지름 산정: 유량·목표 소음·차체 여유</li>
+            <li>렝스 튜닝: 4-2-1/4-1·X/H파이프</li>
+            <li>만드렐 벤드·플렉스 조인트·팁 디자인</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-376">
+                <img src="https://images.unsplash.com/photo-1605973372294-477cc9bae866?q=80&w=1000&auto=format&fit=crop" alt="설계/공명">
+              </div>
+              <div class="ad-link">pipe sizing x-pipe h-pipe mandrel(키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="nvh" class="section" data-index="6">
+          <h3>06. 소음·NVH·사운드 튜닝</h3>
+          <ul>
+            <li>드론 저감: 헬름홀츠/레조네이터</li>
+            <li>밸브 제어·주파수 밸런스·법규 레벨</li>
+            <li>내부 구조: 스트레이트/체임버드·패킹</li>
+          </ul>
+        </section>
+
+        <section id="install" class="section" data-index="7">
+          <h3>07. 설치 SOP·용접·간섭</h3>
+          <ul>
+            <li>용접: TIG/MIG·백퓨지·왜곡 관리</li>
+            <li>행거 각도·고무부싱·열간 유격</li>
+            <li>간섭/누기 검사: 스모크·압력 테스트</li>
+          </ul>
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-vid video-thumb" data-video-id="" role="button" aria-label="설치/용접 영상 재생">
+                <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1000&auto=format&fit=crop" alt="설치 SOP">
+              </div>
+              <div class="ad-link">welding hanger leak smoke test(영상 키워드)</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="validation" class="section" data-index="8">
+          <h3>08. 검증·로깅(배압·온도·유속)</h3>
+          <ul>
+            <li>배압 센서 포트·로그: 아이들/부하/고RPM</li>
+            <li>EGT/촉매 전후 ΔT·유속/소음 레벨</li>
+            <li>전/후 비교: 출력·응답·드론 체크</li>
+          </ul>
+        </section>
+
+        <section id="law" class="section" data-index="9">
+          <h3>09. 법령·검사·배출/소음</h3>
+          <ul>
+            <li>구조변경·배출/소음 기준·검사 절차</li>
+            <li>촉매/OPF 삭제 금지·O2 오류 대응</li>
+            <li>문서화: 부품 스펙·토크·사진/로그</li>
+          </ul>
+        </section>
+
+        <section id="troubleshoot" class="section" data-index="10">
+          <h3>10. 트러블슈팅</h3>
+          <ul>
+            <li>드론/공명: 헬름홀츠 용량·레조 추가</li>
+            <li>출력 저하: 과지름/배압·용접 비드 간섭</li>
+            <li>누설/진동: 플랜지 평탄·행거 재배치</li>
+          </ul>
+        </section>
+
+        <section id="qa" class="section" data-index="11">
+          <h3>11. Q&A 초간단</h3>
+          <ul>
+            <li><strong>Q. 직관식이 항상 성능이 좋나요?</strong> — A. 저회전 토크/드론 악화 가능, 목적에 맞춘 설계가 우선입니다.</li>
+            <li><strong>Q. 소음 규제 어떻게 맞추나요?</strong> — A. 레조/밸브·패킹/두께 조정과 로그로 검증하세요.</li>
+            <li><strong>Q. 촉매는 꼭 유지해야 하나요?</strong> — A. 배출/검사/내구 측면에서 유지가 기본입니다.</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="section" data-index="12">
+          <h3>12. 부록 A~D</h3>
+          <ul>
+            <li><strong>부록 A</strong> 설치 체크리스트(지름·재질·행거·용접·차열)</li>
+            <li><strong>부록 B</strong> QA 점검표: 배압/누기/간섭/드론</li>
+            <li><strong>부록 C</strong> 트러블슈팅 플로우(증상→원인→대책)</li>
+            <li><strong>부록 D</strong> 사용자 안내문: 점검 주기·사운드 관리</li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://www.youtube.com/results?search_query=exhaust+design+resonance+helmholtz+muffler+testing+sound+meter" target="_blank" rel="noopener" aria-label="배기 시스템 설계·검증 참고">
+                <div class="img-ad">
+                  <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop" alt="배기 시스템 배너">
+                </div>
+              </a>
+              <div class="ad-link">공명/헬름홀츠·소음계 테스트 · 참고 영상</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">풀 배기 튜닝은 성능·사운드·법규의 균형입니다. 정확한 설계/용접과 데이터 검증, 규정 준수를 지키세요.</div>
+    </div>
+
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0',
+        modestbranding: '1',
+        playsinline: String(playsinline),
+        controls: String(controls),
+        enablejsapi: '1',
+        origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || '#';
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+
+    function openOverlay() {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      try { frame.src = ''; } catch(e){}
+    }
+
+    async function tryPlaySequence(options) {
+      const { id, start, originalUrl } = options || {};
+      openOverlay();
+      try {
+        frame.src = buildEmbedUrl(id, start, false, true, true);
+      } catch (e1) {
+        try {
+          frame.src = buildEmbedUrl(id, start, true, true, true);
+        } catch (e2) {
+          closeOverlay();
+          showError(originalUrl);
+        }
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      const thumb = e.target.closest('.video-thumb');
+      if (!thumb) return;
+      e.preventDefault();
+
+      let id = thumb.getAttribute('data-video-id') || '';
+      let start = thumb.getAttribute('data-start') || '';
+      let originalUrl = thumb.getAttribute('data-video-url') || '';
+
+      if (!id && originalUrl) {
+        id = extractVideoId(originalUrl);
+        try {
+          const u = new URL(originalUrl);
+          start = start || u.searchParams.get('t') || u.searchParams.get('start') || '';
+        } catch(e){}
+      }
+      if (!originalUrl && id) originalUrl = `https://www.youtube.com/watch?v=${id}`;
+
+      if (id) {
+        tryPlaySequence({ id, start, originalUrl });
+      } else if (originalUrl) {
+        showError(originalUrl);
+      }
+    });
+
+    btnClose.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeOverlay();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeOverlay();
+    });
+  </script>
+</body>
+</html>
