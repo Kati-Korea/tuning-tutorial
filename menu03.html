@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>초급자 가이드 리스트</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --text: #111827;
+            --muted: #6b7280;
+            --accent: #f8fafc;
+            --primary: #2563eb;
+            --visited: #16a34a;
+            --disabled: #6b7280;
+            --accent2: #eef2ff;
+            --radius: 12px;
+            --gap: 12px;
+            --shadow: 0 8px 20px rgba(0,0,0,.06);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui,-apple-system,"Noto Sans KR",Roboto,Arial,sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8px 10px; /* 상하 살짝 축소 */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 10px; /* 버튼도 살짝 컴팩트 */
+            background: var(--accent2);
+            border: 1px solid var(--border);
+            color: #1f2937;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+            .back:focus {
+                outline: 2px solid #93c5fd;
+                outline-offset: 2px;
+            }
+
+            .back:hover {
+                filter: brightness(1.02)
+            }
+
+        h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.2px
+        }
+
+        @media (min-width:768px) {
+            .header-inner {
+                padding: 10px 14px;
+                gap: 12px
+            }
+
+            h1 {
+                font-size: 20px
+            }
+        }
+
+        .partner-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6px 12px 8px; /* 상하 축소 */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .partner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit
+        }
+
+            .partner img {
+                height: 22px;
+                width: auto;
+                object-fit: contain;
+                display: block
+            }
+
+            .partner .text-box {
+                display: flex;
+                flex-direction: column
+            }
+
+            .partner .name {
+                font-size: 12px;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.25
+            }
+
+            .partner .url {
+                font-size: 11px;
+                color: var(--muted);
+                margin: 0
+            }
+
+        @media (min-width:768px) {
+            .partner img {
+                height: 26px
+            }
+
+            .partner .name {
+                font-size: 13px
+            }
+
+            .partner .url {
+                font-size: 12px
+            }
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 12px 12px 24px; /* 상하 축소 */
+            flex: 1;
+            width: 100%;
+        }
+
+        @media (min-width:768px) {
+            .wrap {
+                padding: 14px 16px 28px
+            }
+        }
+        /* 2열 카드 레이아웃 */
+        .list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px; /* gap 축소 */
+            margin-top: 10px;
+        }
+
+        @media (min-width:640px) {
+            .list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* 카드형 아이템: a 자체가 카드가 되도록 */
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* 간격 축소 */
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px; /* 패딩 축소 */
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease, transform .12s ease;
+            /* min-height 제거로 내용에 맞게 압축 */
+        }
+
+        @media (hover:hover) {
+            .item:hover {
+                border-color: #d8dee6;
+                box-shadow: var(--shadow);
+                transform: translateY(-1px)
+            }
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            justify-content: space-between;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+        /* 점도 소형화 */
+        .title {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.25; /* 약간 작게/조밀하게 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-link {
+            appearance: none;
+            border: 1px solid var(--primary);
+            background: #eef2ff;
+            color: #1e3a8a;
+            padding: 4px 8px; /* 버튼 패딩 축소 */
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+            .btn-link:hover {
+                filter: brightness(1.03);
+            }
+        /* 모바일에서 줄바꿈 시 좌측 정렬 */
+        @media (max-width:480px) {
+            .row {
+                align-items: flex-start
+            }
+
+            .right {
+                width: 100%;
+                justify-content: flex-start
+            }
+        }
+
+        .footer {
+            padding: 12px 0 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 12px
+        }
+
+        @media (min-width:768px) {
+            .footer {
+                font-size: 13px
+            }
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            background: #111827;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px; /* 토스트도 컴팩트 */
+            border: 1px solid #374151;
+            box-shadow: 0 12px 30px rgba(0,0,0,.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+            font-size: 13px;
+            font-weight: 600;
+            max-width: 92vw;
+            text-align: center;
+        }
+
+            .toast.show {
+                opacity: 1
+            }
+
+        @supports(padding: max(0px)) {
+            .toast {
+                bottom: max(20px, env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a class="back" href="menu00.html" aria-label="이전 페이지로">← 이전 페이지</a>
+            <h1>고급자 가이드 리스트</h1>
+        </div>
+        <div class="partner-inner">
+            <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+                <img src="http://www.katiagroup.or.kr/images/header/logo_new.png" alt="KATIA 로고">
+                <div class="text-box">
+                    <div class="name">Korea Auto Tuning Industry Association</div>
+                    <div class="url">www.katiagroup.or.kr</div>
+                </div>
+            </a>
+            <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+                <img src="https://www.kal.ac.kr/Files/202210/stie/20221031105706062_1_0.png" alt="KAL 로고">
+                <div class="text-box">
+                    <div class="name">KAL</div>
+                    <div class="url">www.kal.ac.kr</div>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="wrap">
+        <div id="list" class="list" role="list"></div>
+        <div class="footer">모든 이동은 현재창에서 진행됩니다. 링크가 있는 메뉴만 이동합니다.</div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">현재 작업 중 입니다.</div>
+
+    <script>
+        // 제목 + 버튼만 보이며, 세로 여백을 최소화한 카드
+        const items = [
+            { id: '6p-8p-brake', title: '6P · 8P 브레이크', href: '고급자/6P_8P 브레이크.html' },
+            { id: 'lsd-limited-slip-differential', title: 'LSD 제한 슬립 차동', href: '고급자/LSD 제한 슬립 차동.html' },
+            { id: 'advanced-abs-assist', title: '고급 ABS 보조장치', href: '고급자/고급 ABS 보조장치.html' },
+            { id: 'high-performance-ignition', title: '고성능 점화 시스템', href: '고급자/고성능 점화 시스템.html' },
+            { id: 'grille-guard', title: '그릴가드', href: '고급자/그릴가드.html' },
+            { id: 'forged-wheel', title: '단조 휠', href: '고급자/단조 휠.html' },
+            { id: 'data-logging-monitoring', title: '데이터 로깅·모니터링 시스템', href: '고급자/데이터 로깅·모니터링 시스템.html' },
+            { id: 'running-board', title: '러닝보드', href: '고급자/러닝보드.html' },
+            { id: 'roof-carrier', title: '루프캐리어', href: '고급자/루프캐리어.html' },
+            { id: 'rooftop-visor', title: '루프탑 바이저', href: '고급자/루프탑 바이저.html' },
+            { id: 'rooftop-tent', title: '루프탑 텐트', href: '고급자/루프탑 텐트.html' },
+            { id: 'mat-chrome-wrapping', title: '매트 · 크롬 랩핑', href: '고급자/매트·크롬 랩핑.html' },
+            { id: 'mfsw', title: '멀티펑션 스티어링 휠(Multi-function Steering Wheel, MFSW)', href: '고급자/멀티펑션 스티어링 휠(Multi-function Steering Wheel, MFSW).html' },
+            { id: 'idle-free-hvac', title: '무시동 냉난방', href: '고급자/무시동 냉난방.html' },
+            { id: 'valve-control-exhaust', title: '밸브 컨트롤 배기', href: '고급자/밸브 컨트롤 배기.html' },
+            { id: 'bucket-seat', title: '버킷 시트', href: '고급자/버킷 시트.html' },
+            { id: 'bumper-guard', title: '범퍼가드', href: '고급자/범퍼가드.html' },
+            { id: 'brake-cooling-system', title: '브레이크 냉각 시스템', href: '고급자/브레이크 냉각 시스템.html' },
+            { id: 'brake-system', title: '브레이크 시스템', href: '고급자/브레이크 시스템.html' },
+            { id: 'auto-hold-epb-hill-hold', title: '브레이크 자동잠금_해제(오토홀드·힐홀드·EPB)', href: '고급자/브레이크 자동잠금_해제(오토홀드·힐홀드·EPB).html' },
+            { id: 'ceramic-coating', title: '세라믹 코팅', href: '고급자/세라믹 코팅.html' },
+            { id: 'throttle-body-etc', title: '스로틀 바디(ETC)', href: '고급자/스로틀 바디(ETC).html' },
+            { id: 'standalone-ecu', title: '스탠드얼론 ECU', href: '고급자/스탠드얼론 ECU.html' },
+            { id: 'sequential-gearbox', title: '시퀀셜 기어박스', href: '고급자/시퀀셜 기어박스.html' },
+            { id: 'ambient-light', title: '앰비언트 라이트', href: '고급자/앰비언트 라이트.html' },
+            { id: 'awning', title: '어닝 설치 · 운용', href: '고급자/어닝 설치·운용.html' },
+            { id: 'fuel-system', title: '연료 시스템', href: '고급자/연료 시스템.html' },
+            { id: 'wiring-harness', title: '와이어링 하니스', href: '고급자/와이어링 하니스.html' },
+            { id: 'infotainment', title: '인포테인먼트', href: '고급자/인포테인먼트.html' },
+            { id: 'aero-tuning', title: '자동차 에어로다이내믹 튜닝', href: '고급자/자동차 에어로다이내믹 튜닝.html' },
+            { id: 'advanced-tuning-guide', title: '자동차 튜닝 심층 가이드', href: '고급자/자동차 튜닝 심층 가이드.html' },
+            { id: 'electric-water-oil-pump', title: '전동 워터 펌프 및 오일 펌프', href: '고급자/전동 워터 펌프 및 오일 펌프.html' },
+            { id: 'vehicle-solar-power', title: '차량용 태양광 전력 시스템', href: '고급자/차량용 태양광 전력 시스템.html' },
+            { id: 'carbon-fiber-steering-wheel', title: '카본 파이버 스티어링 휠', href: '고급자/카본 파이버 스티어링 휠.html' },
+            { id: 'camshaft', title: '캠샤프트', href: '고급자 · 캠샤프트.html' },
+            { id: 'custom-large-diameter-wheel', title: '커스텀 대구경 휠', href: '고급자/커스텀 대구경 휠.html' },
+            { id: 'custom-interior-trim', title: '커스텀 인테리어 트림', href: '고급자/커스텀 인테리어 트림.html' },
+            { id: 'convertible-roll-bar', title: '컨버터블 롤바', href: '고급자/컨버터블 롤바.html' },
+            { id: 'coilover-suspension', title: '코일오버 서스펜션', href: '고급자/코일오버 서스펜션.html' },
+            { id: 'titanium-full-exhaust', title: '타이타늄 풀 배기 시스템', href: '고급자/타이타늄 풀 배기 시스템.html' },
+            { id: 'full-adaptable-suspension', title: '풀 어댑터블 서스펜션', href: '고급자/풀 어댑터블 서스펜션.html' },
+            { id: 'footwell-light', title: '풋웰 조명', href: '고급자/풋웰 조명.html' },
+            { id: 'premium-car-audio', title: '프리미엄 카 오디오', href: '고급자/프리미엄 카 오디오.html' },
+            { id: 'fender-cover', title: '휀더커버', href: '고급자/휀더커버.html' }
+        ];
+
+        const listEl = document.getElementById('list');
+        const toast = document.getElementById('toast');
+
+        function showToast(msg = '현재 작업 중 입니다.', ms = 1200) {
+            if (!toast) return;
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(showToast._t);
+            showToast._t = setTimeout(() => toast.classList.remove('show'), ms);
+        }
+
+        function createItemCard(item) {
+            const a = document.createElement('a');
+            a.className = 'item';
+            a.href = item.href || 'javascript:void(0)';
+            a.setAttribute('role', 'listitem');
+            a.addEventListener('click', (e) => {
+                if (!item.href) {
+                    e.preventDefault();
+                    showToast('준비 중인 메뉴입니다.');
+                }
+            });
+
+            const row1 = document.createElement('div');
+            row1.className = 'row';
+
+            const left = document.createElement('div');
+            left.className = 'left';
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            const title = document.createElement('h3');
+            title.className = 'title';
+            title.textContent = item.title || '항목';
+            left.appendChild(dot);
+            left.appendChild(title);
+
+            const right = document.createElement('div');
+            right.className = 'right';
+            const btn = document.createElement('span');
+            btn.className = 'btn-link';
+            btn.textContent = '바로가기';
+            right.appendChild(btn);
+
+            row1.appendChild(left);
+            row1.appendChild(right);
+
+            a.appendChild(row1);
+            return a;
+        }
+
+        function renderList() {
+            listEl.innerHTML = '';
+            items.forEach(item => listEl.appendChild(createItemCard(item)));
+        }
+
+        renderList();
+    </script>
+</body>
+</html>

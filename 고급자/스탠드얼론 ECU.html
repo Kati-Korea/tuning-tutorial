@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>초보자를 위한 스탠드얼론 ECU | 설치·시동·맵핑 안전 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+    .video-error { position:fixed; left:50%; top:16px; transform:translateX(-50%); background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px; padding:8px 12px; font-size:12px; display:none; z-index:1100; box-shadow:0 6px 16px rgba(0,0,0,0.15); }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>초보자를 위한 스탠드얼론 ECU · 설치·시동·맵핑 가이드</h1>
+        <span class="tag">입문용</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="../image/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="../image/kal_logo.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu03.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>스탠드얼론 ECU<br>설치 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#intro">왜 스탠드얼론 ECU인가</a></li>
+          <li><a href="#architecture">시스템 아키텍처</a></li>
+          <li><a href="#mapping">센서·액추에이터 매핑</a></li>
+          <li><a href="#harness">하네스 설계·제작</a></li>
+          <li><a href="#controls">연료·점화·공기 제어</a></li>
+          <li><a href="#idle">아이들·크랭킹·월웜업</a></li>
+          <li><a href="#boost">부스트·노킹·보호</a></li>
+          <li><a href="#comm">CAN/OBD/대시 연동</a></li>
+          <li><a href="#first-start">초기 시동 절차</a></li>
+          <li><a href="#workflow">로깅·캘리브 워크플로</a></li>
+          <li><a href="#diagnostics">진단·트러블슈팅</a></li>
+          <li><a href="#integration">신차 전장 연동 이슈</a></li>
+          <li><a href="#durability">내구·열관리·EMC</a></li>
+          <li><a href="#cost">비용·패키지·보증·문서화</a></li>
+          <li><a href="#law">법령·검사·보험</a></li>
+          <li><a href="#ncs">NCS 역량·평가체계</a></li>
+          <li><a href="#appendix">부록(체크리스트 등)</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://www.google.com/search?q=standalone+ECU+wiring+diagram" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Engine_control_unit.jpg/320px-Engine_control_unit.jpg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="ECU">
+            <div class="content">
+              <p class="title">ECU 배선</p>
+              <p class="desc">하네스/핀맵</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.google.com/search?q=CAN+bus+automotive+diagram" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/CAN-Bus-Archi.svg/320px-CAN-Bus-Archi.svg.png" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="CAN 버스">
+            <div class="content">
+              <p class="title">CAN/OBD</p>
+              <p class="desc">통신/대시</p>
+            </div>
+          </a>
+          <a class="banner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener">
+            <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="TS한국교통안전공단 로고">
+            <div class="content">
+              <p class="title">검사/법규</p>
+              <p class="desc">구조변경/보험</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://images.unsplash.com/photo-1531092601640-37aa14d9cb95?q=80&w=1200&auto=format&fit=crop" alt="ECU 하니스 작업 컨셉">
+              </div>
+              <div class="ad-link">표지 · 출처: Unsplash</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="intro" class="section" data-index="1">
+          <h3>01. 서론: 왜 스탠드얼론 ECU인가</h3>
+          <div class="subtitle">목표: 출력 + 신뢰성 + 합법성의 균형</div>
+          <ul>
+            <li>제조사 ECU 한계를 넘는 제어 자유도 제공</li>
+            <li>동반 리스크: 안전·법규·보험. 로드카는 합법성 검토 필수</li>
+            <li>대표 적용: 대형 인젝터/펌프, 대구경 터보, 개조 캠, ITB, 레이스 연료, 독립 DBW</li>
+          </ul>
+        </section>
+
+        <section id="architecture" class="section" data-index="2">
+          <h3>02. 시스템 아키텍처: ECU–엔진–차량 네트워크</h3>
+          <ul>
+            <li>센서(크랭크/캠/MAF/MAP/IAT/CLT/O2/압력/온도/노크) → ECU → 인젝터/코일/스로틀/밸브</li>
+            <li>차량 네트워크: CAN/LIN, OBD-II, 대시/로거 연동</li>
+          </ul>
+        </section>
+
+        <section id="mapping" class="section" data-index="3">
+          <h3>03. 센서·액추에이터 매핑</h3>
+          <ul>
+            <li>전압/주파수/디지털 신호 표준과 핀맵 규칙</li>
+            <li>센서 기준선 보정과 폴라리티, 풀업/풀다운, 실드/트위스트 페어</li>
+          </ul>
+        </section>
+
+        <section id="harness" class="section" data-index="4">
+          <h3>04. 하네스 설계·제작</h3>
+          <ul>
+            <li>전원·접지 스타포인트, 차폐·커넥터 선택, 방수/방진</li>
+            <li>퓨즈·릴레이 선정, 하니스 루팅과 스트레인 릴리프</li>
+          </ul>
+        </section>
+
+        <section id="controls" class="section" data-index="5">
+          <h3>05. 연료·점화·공기 제어 기본</h3>
+          <ul>
+            <li>VE 기반 연료, 람다 타깃, 점화 맵의 MBT/노크 한계</li>
+            <li>개도-토크, 부하-RPM 테이블 구조 이해</li>
+          </ul>
+        </section>
+
+        <section id="idle" class="section" data-index="6">
+          <h3>06. 아이들·크랭킹·월웜업</h3>
+          <ul>
+            <li>첫 시동 연료 크랭킹 연료/점화/공기, 냉간 보정, 아이들 제어</li>
+          </ul>
+        </section>
+
+        <section id="boost" class="section" data-index="7">
+          <h3>07. 부스트·노킹·보호</h3>
+          <ul>
+            <li>과급 제어(솔레노이드 듀티, 목표 맵), 흡기/배기 온도 제한</li>
+            <li>노킹 감지/보정, 연료/점화 컷과 보호 로직</li>
+          </ul>
+        </section>
+
+        <section id="comm" class="section" data-index="8">
+          <h3>08. CAN/OBD/대시</h3>
+          <ul>
+            <li>CAN 매핑, OBD PID, 대시보드/로그 장비 연동</li>
+          </ul>
+        </section>
+
+        <section id="first-start" class="section" data-index="9">
+          <h3>09. 초기 시동 절차</h3>
+          <ol>
+            <li>하네스 continuity/절연 확인, 연료/점화/동기 신호 확인</li>
+            <li>첫 시동 → 안정화 → 폐루프 전환 순서</li>
+          </ol>
+        </section>
+
+        <section id="workflow" class="section" data-index="10">
+          <h3>10. 로깅·캘리브레이션 워크플로</h3>
+          <ul>
+            <li>안전한 맵핑 순서: 연료 → 점화 → 부스트 → 트랙션/보호</li>
+            <li>로그 기반 보정과 리스크 관리</li>
+          </ul>
+        </section>
+
+        <section id="diagnostics" class="section" data-index="11">
+          <h3>11. 진단·트러블슈팅</h3>
+          <ul>
+            <li>시동 불가, 미스파이어, 센서 에러의 체계적 진단</li>
+            <li>파형/스코프·스캔툴 데이터로 원인 분리</li>
+          </ul>
+        </section>
+
+        <section id="integration" class="section" data-index="12">
+          <h3>12. 하이브리드/신차 전장 연동 이슈</h3>
+          <ul>
+            <li>BCM/ABS/ESP 신호와의 호환성, 안전/경고 연계</li>
+          </ul>
+        </section>
+
+        <section id="durability" class="section" data-index="13">
+          <h3>13. 내구·열관리·EMC</h3>
+          <ul>
+            <li>노이즈 대책, 발열/방열, 수분/먼지 보호</li>
+          </ul>
+        </section>
+
+        <section id="cost" class="section" data-index="14">
+          <h3>14. 비용·패키지·보증·문서화</h3>
+          <ul>
+            <li>부품/공임/캘리브 비용과 문서화·보증 범위</li>
+          </ul>
+        </section>
+
+        <section id="law" class="section" data-index="15">
+          <h3>15. 법령·검사·보험(대한민국)</h3>
+          <ul>
+            <li>구조변경/인증, 배출/소음/전자파 적합성</li>
+            <li>변경사항 서류화·보험 고지</li>
+          </ul>
+          <div class="callout">참고: TS 한국교통안전공단 구조변경 가이드와 배출/소음/전자파 관련 규정을 사전 확인하세요.</div>
+        </section>
+
+        <section id="ncs" class="section" data-index="16">
+          <h3>16. NCS 기반 역량·평가체계</h3>
+          <ul>
+            <li>요구분석/설계 · 하네스/배선 · 초기 시동/맵핑 · 검증/문서화</li>
+            <li>KPI 달성(시동성/안정성), 경고/에러 0, 문서 패키지 100%</li>
+          </ul>
+        </section>
+
+        <section id="appendix" class="section" data-index="17">
+          <h3>17. 부록</h3>
+          <ul>
+            <li>체크리스트/템플릿, 핀맵 예시, 토크·배선 규격, 이미지 키워드·링크, 용어집·FAQ</li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://www.google.com/search?q=standalone+ECU+kit" target="_blank" rel="noopener" aria-label="스탠드얼론 ECU 키트 검색">
+                <div class="img-ad">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Engine_control_unit.jpg/512px-Engine_control_unit.jpg" alt="엔진 컨트롤 유닛">
+                </div>
+              </a>
+              <div class="ad-link">스탠드얼론 ECU 키트 · 출처: Wikimedia</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">실제 적용 전 서비스 매뉴얼과 국내 법규(구조변경·배출/소음·전자파)를 반드시 확인하세요.</div>
+    </div>
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0', modestbranding: '1', playsinline: String(playsinline),
+        controls: String(controls), enablejsapi: '1', origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+    let lastVideoId = null, player = null, lastFocused = null;
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || (lastVideoId ? `https://www.youtube.com/watch?v=${lastVideoId}` : '#');
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+    function trapFocus(e) {
+      if (!overlay.classList.contains('active')) return;
+      const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    function openOverlay() {
+      lastFocused = document.activeElement;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      document.addEventListener('keydown', trapFocus);
+    }
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', trapFocus);
+      try { if (player && player.destroy) player.destroy(); } catch(e){}
+      player = null; frame.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    let YTReady=false, YTLoading=false; const onYTReadyCbs=[];
+    function loadYT(){ if(YTReady||YTLoading) return; YTLoading=true; const tag=document.createElement('script'); tag.src="https://www.youtube.com/iframe_api"; tag.async=true; document.head.appendChild(tag); window.onYouTubeIframeAPIReady=function(){ YTReady=true; YTLoading=false; onYTReadyCbs.splice(0).forEach(cb=>cb()); }; }
+    function whenYTReady(cb){ if(YTReady && window.YT && window.YT.Player) cb(); else onYTReadyCbs.push(cb); }
+    function createPlayer(videoId, start, useNoCookie, autoplay=true, muted=true){
+      frame.src = buildEmbedUrl(videoId, start, useNoCookie, autoplay, muted);
+      loadYT();
+      return new Promise((resolve,reject)=>{
+        whenYTReady(()=>{
+          try{
+            player = new YT.Player('videoFrame',{events:{
+              onReady:(e)=>{ try{ if(muted&&e.target.mute) e.target.mute(); if(autoplay){ const st=e.target.playVideo&&e.target.playVideo(); if(st&&typeof st.then==='function'){ st.then(()=>resolve('played')).catch(reject);} else { setTimeout(()=>resolve('played'),300);} } else { resolve('ready'); } }catch(err){reject(err);} },
+              onError:(ev)=>reject(new Error('YT Player Error:'+(ev&&ev.data)))
+            }});
+          }catch(err){reject(err);}
+        });
+      });
+    }
+    async function tryPlaySequence({id,start,originalUrl}){
+      lastVideoId=id; openOverlay();
+      try{ await createPlayer(id,start,false,true,true); return; }
+      catch(e1){ try{ await createPlayer(id,start,true,true,true); return; }
+        catch(e2){ closeOverlay(); showError(originalUrl || (id?`https://www.youtube.com/watch?v=${id}`:'#')); } }
+    }
+    document.addEventListener('click',(e)=>{ const t=e.target.closest('.video-thumb'); if(t){ const raw=t.getAttribute('data-video-id'); const id=extractVideoId(raw); const start=t.getAttribute('data-start')||null; tryPlaySequence({id,start,originalUrl:raw}); }});
+    btnClose && btnClose.addEventListener('click', closeOverlay);
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&overlay.classList.contains('active')) closeOverlay(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>초보자를 위한 프리미엄 카 오디오 | 설계·인스톨·튜닝·검사 가이드</title>
+  <style>
+    :root { --bg:#ffffff; --text:#222; --muted:#666; --primary:#0c6efd; --accent:#f0f4ff; --card:#fafafa; --border:#e5e7eb; --caption-bg:#f8fafc; --caption-text:#6b7280; --ad-bg:#d8d8d8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1040px;margin:0 auto;padding:24px}
+    .partner-inner{max-width:1040px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .partner{display:flex;align-items:center;gap:6px}
+    .partner img{height:28px;width:auto;object-fit:contain;display:block}
+    .partner .text-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:28px}
+    .partner .name{font-size:13px;font-weight:600;color:var(--text);margin:0}
+    .partner .url{font-size:11px;color:var(--muted);margin:0}
+    header .brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;text-align:center;width:100%}
+    header .brand h1{width:100%;margin:0;font-size:20px;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.2fr 2fr;gap:24px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .toc{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .toc h3{margin:0 0 12px;font-size:16px;border-bottom:1px dashed var(--border);padding-bottom:8px;text-align:center}
+    .toc ol{margin:0;padding-left:16px;font-size:13px;line-height:1.5}
+    .toc li{margin:4px 0}
+    .back{display:block;width:100%;text-align:center;padding:8px 12px;border-radius:8px;background:#eef2ff;border:1px solid var(--border);color:#1f2937;font-size:14px;font-weight:600;margin-bottom:12px;text-decoration:none}
+    .back:hover{filter:brightness(1.03);text-decoration:none}
+    .banner-stack{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .banner{display:grid;grid-template-columns:88px 1fr;gap:10px;width:100%;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease;align-items:center}
+    .banner:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-1px)}
+    .banner .content .title{margin:0;font-size:14px;color:var(--text);font-weight:600}
+    .banner .content .desc{margin:2px 0 0;font-size:12px;color:var(--muted)}
+    .section{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;position:relative}
+    .section h3{margin:0 0 8px;font-size:18px}
+    .section .subtitle{color:var(--muted);margin-bottom:12px;font-size:14px}
+    .callout{background:var(--accent);border-left:4px solid var(--primary);padding:10px 12px;border-radius:6px;margin:10px 0;font-size:14px}
+    .footer{margin-top:16px;padding:16px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--border)}
+    .tag{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);margin-right:6px}
+    figure.img-card{margin:8px auto 12px;padding:8px;border:1px solid var(--border);border-radius:10px;background:#fff;width:fit-content}
+    .img-376,.img-576,.img-vid,.img-ad{overflow:hidden;border-radius:6px}
+    .img-376{width:376px;height:376px}
+    .img-576{width:576px;height:576px}
+    .img-vid{width:376px;height:211px}
+    .img-ad{width:576px;height:776px;border-radius:8px}
+    .img-376>img,.img-576>img,.img-vid>img,.img-ad>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    figcaption.credit{margin-top:6px;padding:6px 8px;background:var(--caption-bg);color:var(--caption-text);border:1px dashed var(--border);border-radius:6px;font-size:12px;line-height:1.4}
+    figcaption.credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .center{text-align:center}
+    .center-inline{display:inline-block}
+    .video-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+    .video-overlay.active{display:flex}
+    .video-modal{position:relative;background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35);width:min(90vw,1280px);height:min(80vh,720px)}
+    .video-modal iframe{width:100%;height:100%;display:block;border:0}
+    .video-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.9);color:#111;border:none;border-radius:999px;width:32px;height:32px;font-size:18px;cursor:pointer;line-height:32px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .video-close:hover{background:#fff}
+    .video-thumb{cursor:pointer}
+    .ad-section{background:var(--ad-bg);border-color:#cfcfcf}
+    .ad-card{display:inline-block;padding:10px;border-radius:10px;background:#fff;border:1px solid var(--border)}
+    .ad-link{display:inline-block;margin-top:6px;font-size:12px;color:#6b7280}
+    .video-error { position:fixed; left:50%; top:16px; transform:translateX(-50%); background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:8px; padding:8px 12px; font-size:12px; display:none; z-index:1100; box-shadow:0 6px 16px rgba(0,0,0,0.15); }
+    .video-error a { color:#991b1b; text-decoration:underline; }
+  </style>
+  <link rel="icon" href="/logo_Icon.ico">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1>초보자를 위한 프리미엄 카 오디오 · 설계·인스톨·튜닝·검사</h1>
+        <span class="tag">입문용</span>
+        <span class="tag">한국 기준</span>
+      </div>
+      <div class="partner-inner">
+        <a class="partner" href="http://www.katiagroup.or.kr/" target="_blank" rel="noopener" aria-label="KATIA">
+          <img src="../image/logo_new.png" alt="KATIA 로고">
+          <div class="text-box">
+            <div class="name">Korea Auto Tuning Industry Association</div>
+            <div class="url">www.katiagroup.or.kr</div>
+          </div>
+        </a>
+        <a class="partner" href="http://www.kal.ac.kr" target="_blank" rel="noopener" aria-label="KAL">
+          <img src="../image/kal_logo.png" alt="KAL 로고">
+          <div class="text-box">
+            <div class="name">KAL</div>
+            <div class="url">www.kal.ac.kr</div>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <nav class="toc">
+        <a class="back" href="../menu03.html" aria-label="이전 페이지로">← 이전 페이지</a>
+        <h3>프리미엄 카 오디오<br>실무 가이드</h3>
+        <h3>▣ 목 차 ▣</h3>
+        <ol>
+          <li><a href="#cover">표지</a></li>
+          <li><a href="#intro">서론: 목표와 시스템 관점</a></li>
+          <li><a href="#acoustics">차량 음향학 기초</a></li>
+          <li><a href="#components">구성요소·선정 기준</a></li>
+          <li><a href="#architecture">시스템 아키텍처·채널·크로스오버</a></li>
+          <li><a href="#power">전원/접지/노이즈 대책</a></li>
+          <li><a href="#install">물리적 인스톨·인클로저·흡차음</a></li>
+          <li><a href="#dsp">DSP 튜닝·타임 얼라인먼트·EQ</a></li>
+          <li><a href="#measurement">측정·검증·레퍼런스</a></li>
+          <li><a href="#law">대한민국 법령·검사·보험</a></li>
+          <li><a href="#appendix">부록 A~D</a></li>
+        </ol>
+
+        <div class="banner-stack" aria-label="권장 링크 배너">
+          <a class="banner" href="https://www.google.com/search?q=car+audio+DSP+amplifier" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Car_audio_amplifier.JPG/320px-Car_audio_amplifier.JPG" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="카 오디오 앰프">
+            <div class="content">
+              <p class="title">앰프/DSP</p>
+              <p class="desc">채널·게인</p>
+            </div>
+          </a>
+          <a class="banner" href="https://www.google.com/search?q=car+subwoofer+enclosure" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Subwoofer.jpg/320px-Subwoofer.jpg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="서브우퍼">
+            <div class="content">
+              <p class="title">서브우퍼</p>
+              <p class="desc">인클로저</p>
+            </div>
+          </a>
+          <a class="banner" href="https://main.kotsa.or.kr/main.do" target="_blank" rel="noopener">
+            <img src="https://main.kotsa.or.kr/web/images/common/logo.svg" style="width:80px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block" alt="TS 한국교통안전공단">
+            <div class="content">
+              <p class="title">검사/법규</p>
+              <p class="desc">구조변경/전기안전</p>
+            </div>
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <section id="cover" class="section">
+          <div class="center">
+            <figure class="img-card center-inline">
+              <div class="img-576">
+                <img src="https://images.unsplash.com/photo-1518440345870-5c681855987c?q=80&w=1200&auto=format&fit=crop" alt="프리미엄 카 오디오 인테리어 컨셉">
+              </div>
+              <div class="ad-link">표지 · 출처: Unsplash</div>
+            </figure>
+          </div>
+        </section>
+
+        <section id="intro" class="section" data-index="1">
+          <h3>01. 서론: 프리미엄 카 오디오의 목표와 시스템 관점</h3>
+          <div class="subtitle">운전 환경에서의 음악 재현: 정확성·몰입감·일관성</div>
+          <ul>
+            <li>목표: 무대감, 좌우 균형, 명료도, 저역 확장과 타격감</li>
+            <li>제약: 비대칭 캐빈, 반사·흡음, 전원·공간·법규</li>
+          </ul>
+        </section>
+
+        <section id="acoustics" class="section" data-index="2">
+          <h3>02. 차량 음향학 기초</h3>
+          <ul>
+            <li>캐빈 모드·1차/2차 공진, SBIR, 엣지 회절</li>
+            <li>감도[dB/W·m], 임피던스, 위상·그룹지연, 지향성</li>
+          </ul>
+        </section>
+
+        <section id="components" class="section" data-index="3">
+          <h3>03. 구성요소·선정 기준: 헤드유닛·DSP·앰프·스피커·서브·전원</h3>
+          <ul>
+            <li>헤드유닛/DSP: 채널 수·입출력 형식, FIR/IIR, 라우팅</li>
+            <li>앰프: 전압/전류 드라이브, S/N·THD, 브리징, 히트싱크</li>
+            <li>스피커: 트위터/미드/미드우퍼·감도·파워 핸들링·재질</li>
+            <li>전원: 메인 배터리·세컨드·커패시터, 퓨즈·분기박스</li>
+          </ul>
+        </section>
+
+        <section id="architecture" class="section" data-index="4">
+          <h3>04. 시스템 아키텍처 설계: 채널 계획, 크로스오버, 게인 구조</h3>
+          <ul>
+            <li>채널 매핑: 프런트 3웨이+서브, 센터/리어 옵션</li>
+            <li>크로스오버: 슬로프·컷오프, 위상 정합, 폴라리티 테스트</li>
+            <li>게인 구조: 소스→DSP→앰프 헤드룸 확보, 클리핑 방지</li>
+          </ul>
+        </section>
+
+        <section id="power" class="section" data-index="5">
+          <h3>05. 전원/접지/노이즈 대책: 하네스·퓨즈·배터리·아이솔레이션</h3>
+          <ul>
+            <li>배선: 게이지 선택, 퓨즈 위치(배터리 근접), 스타 그라운드</li>
+            <li>노이즈: 그라운드 루프 아이솔레이터, 하이레벨 입력 대책</li>
+            <li>충전: 아이들링 출력 한계, 세컨드 배터리·DC-DC 충전기</li>
+          </ul>
+        </section>
+
+        <section id="install" class="section" data-index="6">
+          <h3>06. 물리적 인스톨: 인클로저·도어 트위터·미드·서브 위치, 흡차음</h3>
+          <ul>
+            <li>트위터 각도/위치 튜닝, 미드우퍼 체결·레졸넌스 제어</li>
+            <li>서브 인클로저: 밀폐/포트형 선택, 순정 공간 활용</li>
+            <li>흡차음: 도어 실링·매트·폼, 패널 공진 억제</li>
+          </ul>
+        </section>
+
+        <section id="dsp" class="section" data-index="7">
+          <h3>07. DSP 튜닝: 타임 얼라인먼트·EQ·크로스오버·하우스 커브</h3>
+          <ul>
+            <li>타임 얼라인먼트: 리스너 위치 기준 지연 계산/미세 보정</li>
+            <li>EQ: 필터(Q/게인/주파수), 하우스 커브 목표, 스위트 스폿</li>
+            <li>레벨/극성: 채널 레벨 매칭, 극성 반전 테스트</li>
+          </ul>
+        </section>
+
+        <section id="measurement" class="section" data-index="8">
+          <h3>08. 측정·검증·레퍼런스</h3>
+          <ul>
+            <li>측정: RTA/스윕/펄스, 좌/우·합성 응답, 위상·그룹지연 확인</li>
+            <li>검증: SNR·왜곡·클리핑, 주행 소음 하에서 재검</li>
+            <li>레퍼런스: 테스트 트랙 리스트, 장르별 체크 포인트</li>
+          </ul>
+        </section>
+
+        <section id="law" class="section" data-index="9">
+          <h3>09. 대한민국 법령·검사·보험</h3>
+          <ul>
+            <li>전기안전·배선 보호·돌출/예각·적재물 고정, 배터리 고정</li>
+            <li>소음·전자파 간섭(EMC) 고려, 구조변경·보험 고지</li>
+          </ul>
+          <div class="callout">참고: TS 한국교통안전공단 구조변경 가이드와 전기설비/적재물 고정·실내 장치 관련 고시를 사전 확인하세요.</div>
+        </section>
+
+        <section id="appendix" class="section" data-index="10">
+          <h3>10. 부록 A ~ D</h3>
+          <ul>
+            <li><strong>부록 A</strong> 게인 구조 계산 시트(소스→DSP→앰프)</li>
+            <li><strong>부록 B</strong> 트위터 각도 튜닝 체크리스트</li>
+            <li><strong>부록 C</strong> 배선·퓨즈·접지 규격표</li>
+            <li><strong>부록 D</strong> 측정/튜닝 로그 시트·FAQ</li>
+          </ul>
+        </section>
+
+        <section class="section ad-section">
+          <div class="center">
+            <div class="ad-card">
+              <a href="https://www.google.com/search?q=car+audio+DSP+kit+amplifier+subwoofer" target="_blank" rel="noopener" aria-label="프리미엄 카 오디오 키트 검색">
+                <div class="img-ad">
+                  <img src="https://images.unsplash.com/photo-1517059224940-d4af9eec41e5?q=80&w=800&auto=format&fit=crop" alt="프리미엄 카 오디오 구성">
+                </div>
+              </a>
+              <div class="ad-link">프리미엄 카 오디오 키트 · 출처: Unsplash</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      <div class="center">실제 적용 전 제조사 매뉴얼과 국내 법규(구조변경·전기설비 안전·적재물 고정·보험)를 반드시 확인하세요.</div>
+    </div>
+  </div>
+
+  <div class="video-error" id="videoError" role="alert" aria-live="polite">
+    동영상 임베드가 제한되어 재생할 수 없습니다. 아래 링크로 YouTube에서 직접 보세요.
+    <a id="videoOpenLink" href="#" target="_blank" rel="noopener">YouTube에서 열기</a>
+  </div>
+
+  <div class="video-overlay" id="videoOverlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="영상 재생">
+      <button class="video-close" id="videoClose" aria-label="닫기">✕</button>
+      <iframe id="videoFrame"
+              src=""
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    function buildEmbedUrl(videoId, startSec, useNoCookie, autoplay = true, muted = true, controls = 1, playsinline = 1) {
+      if (!videoId) return null;
+      const base = useNoCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+      const params = new URLSearchParams({
+        rel: '0', modestbranding: '1', playsinline: String(playsinline),
+        controls: String(controls), enablejsapi: '1', origin: window.location.origin,
+      });
+      if (autoplay) params.set('autoplay', '1');
+      if (muted) params.set('mute', '1');
+      if (startSec) {
+        const s = String(startSec).replace('s','');
+        if (/^\d+$/.test(s)) params.set('start', s);
+      }
+      return `${base}/embed/${videoId}?${params.toString()}`;
+    }
+    function extractVideoId(raw) {
+      if (!raw) return null;
+      if (/^[A-Za-z0-9_-]{6,}$/.test(raw) && !raw.includes('http')) return raw;
+      try {
+        const url = new URL(raw);
+        const host = url.hostname.replace('www.', '');
+        if (host.includes('youtu.be')) return url.pathname.slice(1);
+        if (host.includes('youtube')) {
+          if (url.pathname === '/watch') return url.searchParams.get('v');
+          if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/')[2];
+          if (url.pathname.startsWith('/embed/')) return url.pathname.split('/')[2];
+        }
+      } catch(e) {
+        const m = String(raw).match(/(?:youtu\.be\/|v=|\/shorts\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+        if (m) return m[1];
+      }
+      return null;
+    }
+    const overlay = document.getElementById('videoOverlay');
+    const frame = document.getElementById('videoFrame');
+    const btnClose = document.getElementById('videoClose');
+    const errorBanner = document.getElementById('videoError');
+    const openLink = document.getElementById('videoOpenLink');
+    let lastVideoId = null, player = null, lastFocused = null;
+    function showError(originalUrl) {
+      if (!errorBanner) return;
+      openLink.href = originalUrl || (lastVideoId ? `https://www.youtube.com/watch?v=${lastVideoId}` : '#');
+      errorBanner.style.display = 'block';
+      clearTimeout(showError._t);
+      showError._t = setTimeout(() => { errorBanner.style.display = 'none'; }, 8000);
+    }
+    function trapFocus(e) {
+      if (!overlay.classList.contains('active')) return;
+      const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+    function openOverlay() {
+      lastFocused = document.activeElement;
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', trapFocus);
+      btnClose && btnClose.focus();
+    }
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', trapFocus);
+      try { if (player && player.destroy) player.destroy(); } catch(e){}
+      player = null; frame.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    let YTReady=false, YTLoading=false; const onYTReadyCbs=[];
+    function loadYT(){ if(YTReady||YTLoading) return; YTLoading=true; const tag=document.createElement('script'); tag.src="https://www.youtube.com/iframe_api"; tag.async=true; document.head.appendChild(tag); window.onYouTubeIframeAPIReady=function(){ YTReady=true; YTLoading=false; onYTReadyCbs.splice(0).forEach(cb=>cb()); }; }
+    function whenYTReady(cb){ if(YTReady && window.YT && window.YT.Player) cb(); else onYTReadyCbs.push(cb); }
+    function createPlayer(videoId, start, useNoCookie, autoplay=true, muted=true){
+      frame.src = buildEmbedUrl(videoId, start, useNoCookie, autoplay, muted);
+      loadYT();
+      return new Promise((resolve,reject)=>{
+        whenYTReady(()=>{
+          try{
+            player = new YT.Player('videoFrame',{events:{
+              onReady:(e)=>{ try{ if(muted&&e.target.mute) e.target.mute(); if(autoplay){ const st=e.target.playVideo&&e.target.playVideo(); if(st&&typeof st.then==='function'){ st.then(()=>resolve('played')).catch(reject);} else { setTimeout(()=>resolve('played'),300);} } else { resolve('ready'); } }catch(err){reject(err);} },
+              onError:(ev)=>reject(new Error('YT Player Error:'+(ev&&ev.data)))
+            }});
+          }catch(err){reject(err);}
+        });
+      });
+    }
+    async function tryPlaySequence({id,start,originalUrl}){
+      lastVideoId=id; openOverlay();
+      try{ await createPlayer(id,start,false,true,true); return; }
+      catch(e1){ try{ await createPlayer(id,start,true,true,true); return; }
+        catch(e2){ closeOverlay(); showError(originalUrl || (id?`https://www.youtube.com/watch?v=${id}`:'#')); } }
+    }
+    document.addEventListener('click',(e)=>{ const t=e.target.closest('.video-thumb'); if(t){ const raw=t.getAttribute('data-video-id'); const id=extractVideoId(raw); const start=t.getAttribute('data-start')||null; tryPlaySequence({id,start,originalUrl:raw}); }});
+    const btnCloseEl = document.getElementById('videoClose');
+    btnCloseEl && btnCloseEl.addEventListener('click', closeOverlay);
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'&&document.getElementById('videoOverlay').classList.contains('active')) closeOverlay(); });
+  </script>
+</body>
+</html>
