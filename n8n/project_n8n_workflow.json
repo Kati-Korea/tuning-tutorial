@@ -1,0 +1,168 @@
+{
+    "name": "Makers_TuningGuide_Parser_v1",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "trigger-node",
+            "name": "On Google Drive File Created",
+            "type": "n8n-nodes-base.googleDriveTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "fileId": "={{ $json.id }}"
+            },
+            "id": "download-node",
+            "name": "Google Drive Download",
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 2,
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "googleDriveOAuth2Api": {
+                    "id": "YOUR_CREDENTIAL_ID",
+                    "name": "Google Drive Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "mode": "json",
+                "jsonInput": "={{ $json.data }}",
+                "options": {}
+            },
+            "id": "text-extract-node",
+            "name": "Extract Text from File",
+            "type": "n8n-nodes-base.readBinaryFile",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "model": "gpt-4o",
+                "messages": {
+                    "values": [
+                        {
+                            "role": "system",
+                            "content": "You are an Expert Educational Content Structurer. Parse the input text into a strict JSON format based on the Tuning Guide Schema."
+                        },
+                        {
+                            "role": "user",
+                            "content": "={{ $json.text }}"
+                        }
+                    ]
+                },
+                "jsonOutput": true
+            },
+            "id": "ai-parser-node",
+            "name": "AI Content Parser",
+            "type": "@n8n/n8n-nodes-langchain.openAi",
+            "typeVersion": 1,
+            "position": [
+                850,
+                300
+            ],
+            "credentials": {
+                "openAiApi": {
+                    "id": "YOUR_OPENAI_CREDENTIAL_ID",
+                    "name": "OpenAI Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "authentication": "oAuth2",
+                "resource": "file",
+                "operation": "createOrUpdate",
+                "owner": "Kati-Korea",
+                "repository": "tuning-tutorial",
+                "filePath": "docs/data/data.json",
+                "fileContent": "={{ $json.message.content }}",
+                "commitMessage": "Auto-update content via n8n"
+            },
+            "id": "github-node",
+            "name": "Commit to GitHub",
+            "type": "n8n-nodes-base.github",
+            "typeVersion": 1,
+            "position": [
+                1050,
+                300
+            ],
+            "credentials": {
+                "githubOAuth2Api": {
+                    "id": "YOUR_GITHUB_CREDENTIAL_ID",
+                    "name": "GitHub Account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "content": "={{ $json.message.content }}",
+                "extension": "json"
+            },
+            "id": "save-node",
+            "name": "Save Parsed JSON",
+            "type": "n8n-nodes-base.writeBinaryFile",
+            "typeVersion": 1,
+            "position": [
+                1050,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "On Google Drive File Created": {
+            "main": [
+                [
+                    {
+                        "node": "Google Drive Download",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Drive Download": {
+            "main": [
+                [
+                    {
+                        "node": "Extract Text from File",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract Text from File": {
+            "main": [
+                [
+                    {
+                        "node": "AI Content Parser",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Content Parser": {
+            "main": [
+                [
+                    {
+                        "node": "Commit to GitHub",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
