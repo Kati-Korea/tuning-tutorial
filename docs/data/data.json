@@ -1,0 +1,139 @@
+{
+    "metadata": {
+        "title": "데칼 커스텀 가이드 라인",
+        "source_file": "데칼 커스텀 가이드 라인_데커스.pdf",
+        "version": "1.0",
+        "last_updated": "2025-12-08"
+    },
+    "chapters": [
+        {
+            "id": "ch1",
+            "title": "1. 자동차 데칼의 기원과 역사",
+            "level": 1,
+            "content_blocks": [
+                {
+                    "type": "text",
+                    "style": "normal",
+                    "content": "자동차 데칼의 기원은 20세기 초반으로 거슬러 올라갑니다. 최초의 자동차 데칼은 상업적 광고를 목적으로 차량에 부착된 기업 로고와 상품 정보였습니다."
+                },
+                {
+                    "type": "text",
+                    "style": "normal",
+                    "content": "초기에는 단순한 텍스트와 상징으로 구성되었으나, 1970~80년대 모터스포츠와 커스터마이징 문화의 확산에 따라 예술적이고 개성적인 디자인의 중요한 부분으로 자리 잡았습니다."
+                },
+                {
+                    "type": "image",
+                    "url": "images/history_motorsport.jpg",
+                    "caption": "1980년대 모터스포츠 데칼 예시",
+                    "alt": "레이싱카에 부착된 화려한 스폰서 데칼들"
+                }
+            ]
+        },
+        {
+            "id": "ch2",
+            "title": "2. 데칼 필름의 소개",
+            "level": 1,
+            "content_blocks": [
+                {
+                    "type": "text",
+                    "style": "normal",
+                    "content": "데칼 필름은 차량 외장에 부착되는 특수 필름으로, 다양한 소재와 종류가 존재합니다. 크게 PVC, 폴리우레탄, 캐스트 필름 등으로 나뉩니다."
+                }
+            ],
+            "subsections": [
+                {
+                    "id": "ch2-1",
+                    "title": "2.1. PVC 필름 (Polyvinyl Chloride Film)",
+                    "level": 2,
+                    "content_blocks": [
+                        {
+                            "type": "text",
+                            "style": "normal",
+                            "content": "PVC 필름은 가장 많이 사용되는 기본적인 필름입니다. 비용이 저렴하고 인쇄/커팅이 용이하여 소규모 프로젝트에 적합합니다."
+                        },
+                        {
+                            "type": "callout",
+                            "style": "warning",
+                            "content": "내구성이나 변색에 있어 제한이 있을 수 있어, 주로 단기간 사용되는 데칼에 적합합니다."
+                        },
+                        {
+                            "type": "image",
+                            "url": "images/pvc_film_roll.jpg",
+                            "caption": "다양한 색상의 PVC 필름 롤"
+                        }
+                    ]
+                },
+                {
+                    "id": "ch2-2",
+                    "title": "2.2. 폴리우레탄 필름 (Polyurethane Film)",
+                    "level": 2,
+                    "content_blocks": [
+                        {
+                            "type": "text",
+                            "style": "normal",
+                            "content": "내구성이 뛰어나고 충격에 강하며 유연성이 좋습니다. 주행 중 돌(스톤칩) 등으로부터 보호하는 PPF(Paint Protection Film)의 주 소재이기도 합니다."
+                        }
+                    ]
+                },
+                {
+                    "id": "ch2-4",
+                    "title": "2.4. 특수 필름 (Specialty Film)",
+                    "level": 2,
+                    "content_blocks": [
+                        {
+                            "type": "text",
+                            "style": "normal",
+                            "content": "반사 필름, 나노 코팅 필름, 변색 필름 등이 포함됩니다."
+                        },
+                        {
+                            "type": "list",
+                            "items": [
+                                "반사 필름: 야간 가시성 확보",
+                                "나노 코팅 필름: 표면 보호 및 세척 용이",
+                                "변색 필름: 날씨/온도에 따라 색상 변화 (카멜레온 효과)"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "url": "images/specialty_film_chameleon.jpg",
+                            "caption": "각도에 따라 색이 변하는 특수 필름",
+                            "alt": "변색 필름이 시공된 차량 표면"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ch5",
+            "title": "5. 데칼 시공의 과정과 기술",
+            "level": 1,
+            "content_blocks": [
+                {
+                    "type": "text",
+                    "style": "normal",
+                    "content": "시공 과정은 크게 다음 단계로 나눠집니다."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "디자인 개발: 차량 구조와 목적에 맞는 설계 (CAD/3D 활용)",
+                        "출력 및 재단: 고해상도 프린팅 및 정밀 커팅",
+                        "표면 준비 (전처리): 탈지 작업 및 이물질 제거",
+                        "시공 및 마감: 열처리와 압착, 엣지 마감"
+                    ]
+                },
+                {
+                    "type": "callout",
+                    "style": "tip",
+                    "content": "표면 준비 단계에서 먼지나 기름이 조금이라도 남아있으면 접착력이 크게 떨어지므로, 알코올이나 전용 탈지제를 사용하여 완벽하게 닦아내야 합니다."
+                },
+                {
+                    "type": "image",
+                    "url": "images/installation_heatgun.jpg",
+                    "caption": "히트건을 이용한 곡면 마감 작업"
+                }
+            ]
+        }
+    ]
+}

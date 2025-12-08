@@ -1,0 +1,118 @@
+# Target JSON Schema for n8n Pipeline
+
+This schema defines the structure that the n8n AI Agent must output for every processed document. It is designed to be compatible with GitBook/WikiDocs static site generators.
+
+```json
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Educational Content Block Schema",
+    "description": "A structured representation of a tuning guide document",
+    "type": "object",
+    "properties": {
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Document Title"
+                },
+                "original_filename": {
+                    "type": "string"
+                },
+                "processed_date": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "doc_type": {
+                    "type": "string",
+                    "enum": [
+                        "manual",
+                        "report",
+                        "textbook"
+                    ]
+                }
+            }
+        },
+        "chapters": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique slug for the chapter"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "Hierarchy level (1=Chapter, 2=Section)"
+                    },
+                    "content_blocks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "block_type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "text",
+                                        "image",
+                                        "list",
+                                        "code",
+                                        "warning",
+                                        "tip",
+                                        "concept",
+                                        "example"
+                                    ]
+                                },
+                                "content": {
+                                    "type": [
+                                        "string",
+                                        "array"
+                                    ],
+                                    "description": "String for text/code, Array for lists"
+                                },
+                                "attributes": {
+                                    "type": "object",
+                                    "properties": {
+                                        "url": {
+                                            "type": "string",
+                                            "description": "For images"
+                                        },
+                                        "caption": {
+                                            "type": "string"
+                                        },
+                                        "difficulty": {
+                                            "type": "string",
+                                            "enum": [
+                                                "beginner",
+                                                "intermediate",
+                                                "advanced",
+                                                "common"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "required": [
+                                "block_type",
+                                "content"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "title",
+                    "content_blocks"
+                ]
+            }
+        }
+    },
+    "required": [
+        "metadata",
+        "chapters"
+    ]
+}
+```
