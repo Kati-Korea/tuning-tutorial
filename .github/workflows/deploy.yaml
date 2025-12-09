@@ -16,7 +16,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                node-version: '18'  # HonKit 호환 버전
+                node-version: '20'  # HonKit requires Node 20+ for global File API
             - name: Install dependencies
               run: npm ci # 패키지 설치 (npm install 보다 빠르고 안전)
             - name: Build Hoonkit
