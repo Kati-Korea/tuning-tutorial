@@ -1,0 +1,30 @@
+name: Deploy Hoonkit to Github Pages
+
+on:
+  push:
+    branches:
+      - main
+      - 'st-59_honkit__init__' # 현재 작업 중인 브랜치에서도 테스트하려면 추가
+permissions:
+    contents: write  # gh-pages 브랜치에 푸시하기 위한 권한
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'  # HonKit requires Node 20+ for global File API
+            - name: Install dependencies
+              run: npm ci # 패키지 설치 (npm install 보다 빠르고 안전)
+            - name: Build Hoonkit
+              run: npm run build # _book 폴더 새엉
+            - name: Deploy
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./_book
+                
+              
