@@ -1,0 +1,12 @@
+{
+    "name": "tuning-tutorial",
+    "version": "1.0.0",
+    "description": "Vehicle Tuning Guide built with HonKit",
+    "scripts": {
+        "start": "honkit serve",
+        "build": "honkit build"
+    },
+    "devDependencies": {
+        "honkit": "^6.0.0"
+    }
+}
