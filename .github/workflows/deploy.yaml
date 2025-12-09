@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 'st-59_honkit__init__' # 현재 작업 중인 브랜치에서도 테스트하려면 추가
 permissions:
     contents: write  # gh-pages 브랜치에 푸시하기 위한 권한
 
@@ -20,7 +19,9 @@ jobs:
             - name: Install dependencies
               run: npm ci # 패키지 설치 (npm install 보다 빠르고 안전)
             - name: Build Hoonkit
-              run: npm run build # _book 폴더 새엉
+              run: |
+                npm run build
+                touch _book/.nojekyll  # GitHub Pages의 Jekyll 처리 방지
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v4
               with:
