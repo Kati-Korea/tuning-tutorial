@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "documentURL": "={{$json.documentId}}"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        560
+      ],
+      "id": "9d1d46c1-74dc-444d-acb4-94c97e9781f6",
+      "name": "Get a document4",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "u29kGuG3K9YPvbf6",
+          "name": "Google Docs account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const documents = [{\n  documentId: \"13KZ3DT7F-UmpQK-R-MAf5d3Mht--es0FIceGHsVIvmc\",\n  levelId: \"beginner\",      // ✅ 추가\n  categoryId: \"exterior\",   // ✅ 추가\n  slug: \"gear-knob-guide\"   // ✅ 추가\n}];\n\nreturn documents.map(doc => ({ json: doc }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        560
+      ],
+      "id": "948b83b4-1507-417f-af73-6a2371382a9b",
+      "name": "Code in JavaScript12"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://83b6669a32e1.ngrok-free.app/api/guides/parse",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "ngrok-skip-browser-warning", "value": "true" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "text", "value": "=={{  $json.content }}" },
+            { "name": "levelId", "value": "={{ $('Code in JavaScript12').first().json.levelId }}" },
+            { "name": "categoryId", "value": "={{ $('Code in JavaScript12').first().json.categoryId }}" },
+            { "name": "title", "value": "기어 노브 튜닝 가이드" },
+            { "name": "slug", "value": "={{ $('Code in JavaScript12').first().json.slug }}" },
+            { "name": "status", "value": "published" }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1536,
+        560
+      ],
+      "id": "ddb97963-610b-44db-973e-6b7cd11f453a",
+      "name": "HTTP Request1"
+    }
+  ],
+  "connections": {
+    "Get a document4": {
+      "main": [
+        [
+          { "node": "HTTP Request1", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Code in JavaScript12": {
+      "main": [
+        [
+          { "node": "Get a document4", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "75a8f42d307a667a4f3f3c7074891145aebcabefa31fbfd22ede2202d68a84f8"
+  }
+}
+
