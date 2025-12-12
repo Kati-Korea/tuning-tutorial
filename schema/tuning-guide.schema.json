@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TuningGuide",
+  "description": "튜닝 가이드 최종 스키마 (팀장님 규칙 적용)",
+  "type": "object",
+  "required": ["id", "levelId", "categoryId", "title", "slug", "blocks"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "고유 ID: {level}_{category}_{slug}",
+      "pattern": "^[a-z]+_[a-z]+_[a-z0-9-]+$",
+      "example": "beginner_exterior_decal-guide"
+    },
+    "levelId": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "description": "레벨 ID (한글명은 클라이언트 매핑)"
+    },
+    "categoryId": {
+      "type": "string",
+      "description": "카테고리 ID (한글명은 클라이언트 매핑)",
+      "example": "exterior"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "example": "decal-tuning-guide"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "미리보기용 요약 (선택)"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 10,
+      "description": "검색용 태그 (선택)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "archived"],
+      "default": "published"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "blocks": {
+      "type": "array",
+      "description": "콘텐츠 블록 배열 (orderNum 제거, 배열 순서 = 표시 순서)",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/HeadingBlock" },
+          { "$ref": "#/definitions/ParagraphBlock" },
+          { "$ref": "#/definitions/ListBlock" },
+          { "$ref": "#/definitions/ImageBlock" },
+          { "$ref": "#/definitions/QuoteBlock" },
+          { "$ref": "#/definitions/TableBlock" },
+          { "$ref": "#/definitions/VideoBlock" },
+          { "$ref": "#/definitions/DividerBlock" },
+          { "$ref": "#/definitions/AdBlock" }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "HeadingBlock": {
+      "type": "object",
+      "required": ["type", "level", "content"],
+      "properties": {
+        "type": { "const": "heading" },
+        "level": { "type": "number", "minimum": 1, "maximum": 6 },
+        "content": { "type": "string" },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "TOC 앵커용 ID (선택)"
+        }
+      }
+    },
+    "ParagraphBlock": {
+      "type": "object",
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "paragraph" },
+        "content": { "type": "string" }
+      }
+    },
+    "ListBlock": {
+      "type": "object",
+      "required": ["type", "style", "items"],
+      "properties": {
+        "type": { "const": "list" },
+        "style": { "type": "string", "enum": ["bullet", "ordered"] },
+        "items": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ImageBlock": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "image" },
+        "url": { "type": "string", "format": "uri" },
+        "alt": { "type": "string" },
+        "caption": { "type": "string" }
+      }
+    },
+    "QuoteBlock": {
+      "type": "object",
+      "required": ["type", "content"],
+      "properties": {
+        "type": { "const": "quote" },
+        "content": { "type": "string" },
+        "style": { "type": "string", "enum": ["info", "warning", "error", "success"], "default": "info" }
+      }
+    },
+    "TableBlock": {
+      "type": "object",
+      "required": ["type", "headers", "rows"],
+      "properties": {
+        "type": { "const": "table" },
+        "headers": { "type": "array", "items": { "type": "string" } },
+        "rows": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
+      }
+    },
+    "VideoBlock": {
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type": { "const": "video" },
+        "url": { "type": "string", "format": "uri" },
+        "provider": { "type": "string", "enum": ["youtube", "vimeo", "direct"] }
+      }
+    },
+    "DividerBlock": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "divider" }
+      }
+    },
+    "AdBlock": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "ad" },
+        "position": { "type": "string", "enum": ["top", "middle", "bottom", "sidebar"] }
+      }
+    }
+  }
+}
