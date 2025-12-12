@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,6 +15,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
+const db = getFirestore(app);
+
+export async function fetchFirestoreData(collectionName: string) {
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
 let analytics;
 
 if (typeof window !== "undefined") {

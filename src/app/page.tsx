@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FirestoreRenderer from "@/components/FirestoreRenderer";
 
 export default function Home() {
   return (
@@ -62,4 +63,15 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export function TestMarkdownPage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-8">Firestore 데이터 렌더링</h1>
+      <FirestoreRenderer />
+    </div>
+  );
+
+
 }
