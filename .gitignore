@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+/next
 
 # production
 /build
@@ -33,6 +34,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Firebase service account key (NEVER commit this!)
+service-account-key.json
+
 # vercel
 .vercel
 
@@ -42,3 +46,6 @@ next-env.d.ts
 
 # etc
 .DS_Store
+
+# stray files
+tuning-tutorial@*
