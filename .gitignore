@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+/next
 
 # production
 /build
@@ -45,3 +46,6 @@ next-env.d.ts
 
 # etc
 .DS_Store
+
+# stray files
+tuning-tutorial@*
